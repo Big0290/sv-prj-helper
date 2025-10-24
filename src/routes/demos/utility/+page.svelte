@@ -4,7 +4,6 @@
 		InfiniteScroll, ContextMenu, Popover, Dropdown, Button, Card
 	} from '$lib/ui';
   import Input from '$lib/ui/atoms/Input.svelte';
-  import Input from '$lib/ui/atoms/Input.svelte';
 	import '../../../lib/styles/theme.css';
 
 	let showPortal = $state(false);
