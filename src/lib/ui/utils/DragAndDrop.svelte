@@ -113,8 +113,10 @@
 	ondragleave={handleDragLeave}
 	ondrop={handleDrop}
 	onclick={() => !disabled && fileInputEl.click()}
+	onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && !disabled && fileInputEl.click()}
 	role="button"
 	tabindex="0"
+	aria-label="Drop files here or click to select"
 >
 	<input
 		bind:this={fileInputEl}

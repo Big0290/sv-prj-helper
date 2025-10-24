@@ -138,10 +138,12 @@
 		bind:this={triggerEl}
 		class="popover-trigger"
 		onclick={handleTriggerClick}
+		onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && handleTriggerClick()}
 		onmouseenter={handleMouseEnter}
 		onmouseleave={handleMouseLeave}
 		role="button"
 		tabindex="0"
+		aria-label="Open popover"
 	>
 		{@render children()}
 	</div>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
-	import { mount, unmount } from 'svelte';
 
 	interface Props {
 		children?: Snippet;
@@ -12,38 +11,30 @@
 		target = 'body'
 	}: Props = $props();
 
-	let container: HTMLDivElement;
-	let targetEl: HTMLElement | null = $state(null);
+	let mounted = $state(false);
+	let targetElement = $state<HTMLElement | null>(null);
 
 	$effect(() => {
+		if (typeof document === 'undefined') return;
+		
 		if (typeof target === 'string') {
-			targetEl = document.querySelector(target);
+			targetElement = document.querySelector(target);
 		} else {
-			targetEl = target;
+			targetElement = target;
 		}
 
-		if (!targetEl) {
-			targetEl = document.body;
+		if (!targetElement) {
+			targetElement = document.body;
 		}
 
-		container = document.createElement('div');
-		targetEl.appendChild(container);
+		mounted = true;
 
 		return () => {
-			if (container && targetEl?.contains(container)) {
-				targetEl.removeChild(container);
-			}
+			mounted = false;
 		};
 	});
 </script>
 
-{#if container && children}
-	{@html ''}
-	<svelte:component this={() => {
-		if (container) {
-			container.innerHTML = '';
-			const component = children ? children() : '';
-			return component;
-		}
-	}} />
+{#if mounted && targetElement && children}
+	{@render children()}
 {/if}

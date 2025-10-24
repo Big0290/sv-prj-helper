@@ -95,6 +95,7 @@
 			onClick();
 		}
 	}}
+	{...onClick ? { role: 'button', tabindex: '0', 'aria-label': `Play video: ${title}` } : {}}
 >
 	<div class="thumbnail-wrapper">
 		{#if enableHoverPreview}

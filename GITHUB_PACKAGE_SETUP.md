@@ -5,8 +5,9 @@ Your UI library is now configured as a GitHub Package and ready to be published 
 ## What's Been Set Up
 
 ### ✅ Package Configuration
-- **Package name**: `@sv-prj-helper/ui`
+- **Package name**: `@big0290/sv-prj-helper-ui`
 - **Registry**: GitHub Packages (`https://npm.pkg.github.com`)
+- **Repository**: `https://github.com/Big0290/sv-prj-helper`
 - **Version**: `0.1.0`
 - **Build output**: `dist/` directory with all components and types
 
@@ -37,7 +38,7 @@ git push origin main
 
 **Option A: Manual Publishing**
 ```bash
-npm login --scope=@sv-prj-helper --registry=https://npm.pkg.github.com
+npm login --scope=@big0290 --registry=https://npm.pkg.github.com
 npm publish
 ```
 
@@ -53,23 +54,23 @@ Create a test project and try installing:
 ```bash
 mkdir test-project && cd test-project
 npm init -y
-echo "@sv-prj-helper:registry=https://npm.pkg.github.com" >> .npmrc
-npm install @sv-prj-helper/ui
+echo "@big0290:registry=https://npm.pkg.github.com" >> .npmrc
+npm install @big0290/sv-prj-helper-ui
 ```
 
 ## Usage in Other Projects
 
 ### Installation
 ```bash
-echo "@sv-prj-helper:registry=https://npm.pkg.github.com" >> .npmrc
-npm install @sv-prj-helper/ui
+echo "@big0290:registry=https://npm.pkg.github.com" >> .npmrc
+npm install @big0290/sv-prj-helper-ui
 ```
 
 ### Import Components
 ```svelte
 <script>
-  import { Button, Card, Input, Alert } from '@sv-prj-helper/ui';
-  import '@sv-prj-helper/ui/styles';
+  import { Button, Card, Input, Alert } from '@big0290/sv-prj-helper-ui';
+  import '@big0290/sv-prj-helper-ui/styles';
 </script>
 
 <Card>

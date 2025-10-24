@@ -15,7 +15,7 @@
 npm run build
 
 # Login to GitHub Packages (one-time setup)
-npm login --scope=@sv-prj-helper --registry=https://npm.pkg.github.com
+npm login --scope=@big0290 --registry=https://npm.pkg.github.com
 
 # Publish
 npm publish
@@ -72,10 +72,10 @@ After publishing, verify your package:
 
 ```bash
 # Check if package exists
-npm view @sv-prj-helper/ui
+npm view @big0290/sv-prj-helper-ui
 
 # Install in a test project
-npm install @sv-prj-helper/ui
+npm install @big0290/sv-prj-helper-ui
 ```
 
 ## Troubleshooting
@@ -86,11 +86,11 @@ npm install @sv-prj-helper/ui
 npm config get registry
 
 # Check GitHub Packages registry
-npm config get @sv-prj-helper:registry
+npm config get @big0290:registry
 
 # Re-authenticate
-npm logout --scope=@sv-prj-helper --registry=https://npm.pkg.github.com
-npm login --scope=@sv-prj-helper --registry=https://npm.pkg.github.com
+npm logout --scope=@big0290 --registry=https://npm.pkg.github.com
+npm login --scope=@big0290 --registry=https://npm.pkg.github.com
 ```
 
 ### Permission Denied
@@ -101,13 +101,13 @@ npm login --scope=@sv-prj-helper --registry=https://npm.pkg.github.com
 ### Package Not Found
 - Verify the package was published: check GitHub → Packages tab
 - Ensure consumers have the correct `.npmrc` configuration
-- Check that the package name is exactly `@sv-prj-helper/ui`
+- Check that the package name is exactly `@big0290/sv-prj-helper-ui`
 
 ## Package Information
 
-- **Name**: `@sv-prj-helper/ui`
+- **Name**: `@big0290/sv-prj-helper-ui`
 - **Registry**: `https://npm.pkg.github.com`
-- **Scope**: `@sv-prj-helper`
+- **Scope**: `@big0290`
 - **Current Version**: `0.1.0`
 
 ## Next Steps
@@ -123,15 +123,15 @@ For users installing your package:
 
 ```bash
 # In their project root
-echo "@sv-prj-helper:registry=https://npm.pkg.github.com" >> .npmrc
-npm install @sv-prj-helper/ui
+echo "@big0290:registry=https://npm.pkg.github.com" >> .npmrc
+npm install @big0290/sv-prj-helper-ui
 ```
 
 ```svelte
 <!-- In their Svelte component -->
 <script>
-  import { Button, Card, Input } from '@sv-prj-helper/ui';
-  import '@sv-prj-helper/ui/styles';
+  import { Button, Card, Input } from '@big0290/sv-prj-helper-ui';
+  import '@big0290/sv-prj-helper-ui/styles';
 </script>
 
 <Card>

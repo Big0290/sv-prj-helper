@@ -1,10 +1,10 @@
 {
-  "name": "@sv-prj-helper/ui",
+  "name": "@big0290/sv-prj-helper-ui",
   "version": "0.1.0",
   "description": "Modern Svelte 5 UI library with glassmorphism design and full accessibility",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sv-prj-helper/ui.git"
+    "url": "git+https://github.com/Big0290/sv-prj-helper.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

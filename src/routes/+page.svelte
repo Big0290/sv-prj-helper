@@ -156,8 +156,8 @@
 									<Button variant="primary">Primary Button</Button>
 									<Button variant="secondary">Secondary Button</Button>
 									<div class="input-demo">
-										<label>Email Address</label>
-										<input type="email" placeholder="Enter your email" class="demo-input" />
+										<label for="demo-email">Email Address</label>
+										<input id="demo-email" type="email" placeholder="Enter your email" class="demo-input" />
 									</div>
 								</Stack>
 							</Stack>

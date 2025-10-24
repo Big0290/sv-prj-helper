@@ -17,6 +17,8 @@
 		onChange
 	}: Props = $props();
 
+	const triggerId = `date-picker-${Math.random().toString(36).substr(2, 9)}`;
+
 	let isOpen = $state(false);
 	let currentMonth = $state(value || new Date());
 
@@ -53,8 +55,8 @@
 </script>
 
 <div class="date-picker">
-	{#if label}<label class="label">{label}</label>{/if}
-	<button type="button" class="trigger" onclick={() => (isOpen = !isOpen)}>
+	{#if label}<label class="label" for={triggerId}>{label}</label>{/if}
+	<button type="button" id={triggerId} class="trigger" onclick={() => (isOpen = !isOpen)} aria-label={label || 'Open date picker'}>
 		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 			<rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
 			<path d="M16 2v4M8 2v4M3 10h18" />

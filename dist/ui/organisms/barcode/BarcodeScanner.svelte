@@ -454,8 +454,8 @@
 			
 			<!-- Type Selector -->
 			<div class="generator-section">
-				<label class="generator-label">Type</label>
-				<div class="type-selector-grid">
+				<span class="generator-label">Type</span>
+				<div class="type-selector-grid" role="radiogroup" aria-label="Barcode type selection">
 					<button 
 						type="button"
 						class="type-btn"
@@ -550,7 +550,7 @@
 
 			<!-- Options -->
 			<div class="generator-section">
-				<label class="generator-label">Options</label>
+				<span class="generator-label">Options</span>
 				{#if generatorType === 'qrcode'}
 					<div class="options-grid">
 						<div class="option-group">

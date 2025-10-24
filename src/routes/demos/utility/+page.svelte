@@ -3,6 +3,8 @@
 		Heading, Text, Box, Flex, Link, Portal, ScrollArea, FocusTrap, VisuallyHidden,
 		InfiniteScroll, ContextMenu, Popover, Dropdown, Button, Card
 	} from '$lib/ui';
+  import Input from '$lib/ui/atoms/Input.svelte';
+  import Input from '$lib/ui/atoms/Input.svelte';
 	import '../../../lib/styles/theme.css';
 
 	let showPortal = $state(false);
@@ -63,10 +65,12 @@
 								</Flex>
 							</Card>
 						</div>
-						<div 
-							style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9998;"
+						<button 
+							type="button"
+							style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9998; border: none; cursor: pointer;"
 							onclick={() => showPortal = false}
-						></div>
+							aria-label="Close portal"
+						></button>
 					</Portal>
 				{/if}
 			</Box>

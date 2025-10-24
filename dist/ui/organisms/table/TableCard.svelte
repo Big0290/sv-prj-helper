@@ -25,21 +25,31 @@
 		</div>
 	{:else}
 		{#each rows as row}
-			<div 
-				class="table-card" 
-				class:clickable={!!onRowClick}
-				onclick={() => onRowClick?.(row)}
-				onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onRowClick?.(row); }}}
-				role={onRowClick ? 'button' : undefined}
-				tabindex={onRowClick ? 0 : undefined}
-			>
-				{#each columns as column}
-					<div class="card-row">
-						<span class="card-label">{column.label}</span>
-						<span class="card-value">{row[column.key] ?? '-'}</span>
-					</div>
-				{/each}
-			</div>
+			{#if onRowClick}
+				<div 
+					class="table-card clickable" 
+					onclick={() => onRowClick?.(row)}
+					onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onRowClick?.(row); }}}
+					role="button"
+					tabindex="0"
+				>
+					{#each columns as column}
+						<div class="card-row">
+							<span class="card-label">{column.label}</span>
+							<span class="card-value">{row[column.key] ?? '-'}</span>
+						</div>
+					{/each}
+				</div>
+			{:else}
+				<div class="table-card">
+					{#each columns as column}
+						<div class="card-row">
+							<span class="card-label">{column.label}</span>
+							<span class="card-value">{row[column.key] ?? '-'}</span>
+						</div>
+					{/each}
+				</div>
+			{/if}
 		{/each}
 	{/if}
 </div>

@@ -98,7 +98,7 @@
 
 		<!-- Main Content -->
 		<main class="main">
-			<slot />
+			{@render children()}
 		</main>
 	</div>
 </ThemeProvider>
@@ -130,24 +130,7 @@
 		flex-shrink: 0;
 	}
 
-	.brand-link {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		text-decoration: none;
-		color: var(--text-primary);
-		font-weight: 600;
-		font-size: 1.125rem;
-		transition: color 0.2s ease;
-	}
 
-	.brand-link:hover {
-		color: var(--color-primary);
-	}
-
-	.brand-link svg {
-		color: var(--color-primary);
-	}
 
 	.nav-links {
 		display: flex;
@@ -184,11 +167,7 @@
 		flex-shrink: 0;
 	}
 
-	.github-btn {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-	}
+
 
 	.mobile-menu-btn {
 		display: none;

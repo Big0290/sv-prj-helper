@@ -26,7 +26,7 @@
 	}: Props = $props();
 
 	let activeTab = $state<'write' | 'preview'>('write');
-	let textareaEl: HTMLTextAreaElement;
+	let textareaEl = $state<HTMLTextAreaElement>();
 
 	// Configure marked for safe rendering
 	marked.setOptions({

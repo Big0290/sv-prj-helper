@@ -27,7 +27,7 @@
 	let css = $state(initialCss);
 	let js = $state(initialJs);
 	let activeTab = $state<'html' | 'css' | 'js'>('html');
-	let previewFrame: HTMLIFrameElement;
+	let previewFrame = $state<HTMLIFrameElement>();
 	let consoleOutput = $state<Array<{type: string, message: string}>>([]);
 	let showConsole = $state(false);
 	let iframeContent = $derived(generateIframeContent());

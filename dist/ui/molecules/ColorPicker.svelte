@@ -11,6 +11,8 @@
 		onChange
 	}: Props = $props();
 
+	const inputId = `color-input-${Math.random().toString(36).substr(2, 9)}`;
+
 	const presets = ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#ec4899', '#000000', '#ffffff'];
 
 	function handleChange(e: Event) {
@@ -30,15 +32,35 @@
 </script>
 
 <div class="color-picker">
-	{#if label}<label class="label">{label}</label>{/if}
+	{#if label}<label class="label" for={inputId}>{label}</label>{/if}
 	<div class="picker-wrapper">
-		<input type="color" value={value} onchange={handleChange} />
+		<input 
+			id={inputId}
+			type="color" 
+			value={value} 
+			onchange={handleChange} 
+			aria-label={label || 'Color picker'}
+		/>
 		<div class="preview" style="background-color: {value}"></div>
-		<input type="text" value={value} class="hex-input" pattern="^#[0-9A-Fa-f]{6}$" oninput={handleHexInput} />
+		<input 
+			type="text" 
+			value={value} 
+			class="hex-input" 
+			pattern="^#[0-9A-Fa-f]{6}$" 
+			oninput={handleHexInput}
+			aria-label="Hex color value"
+		/>
 	</div>
 	<div class="presets">
 		{#each presets as preset}
-			<button type="button" class="preset" style="background-color: {preset}" onclick={() => { value = preset; onChange?.(value); }}></button>
+			<button 
+				type="button" 
+				class="preset" 
+				style="background-color: {preset}" 
+				onclick={() => { value = preset; onChange?.(value); }}
+				aria-label="Select color {preset}"
+				title="Select color {preset}"
+			></button>
 		{/each}
 	</div>
 </div>

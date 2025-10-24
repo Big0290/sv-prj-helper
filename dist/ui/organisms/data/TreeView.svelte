@@ -1,4 +1,6 @@
 <script lang="ts">
+	import TreeView from './TreeView.svelte';
+	
 	export interface TreeNode {
 		id: string;
 		label: string;
@@ -35,7 +37,7 @@
 			</button>
 			{#if node.children && expanded[node.id]}
 				<div class="children">
-					<svelte:self nodes={node.children} {onNodeClick} />
+					<TreeView nodes={node.children} {onNodeClick} />
 				</div>
 			{/if}
 		</div>

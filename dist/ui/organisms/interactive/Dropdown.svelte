@@ -29,7 +29,12 @@
 	}
 </script>
 
-<div class="dropdown" onkeydown={handleKeydown}>
+<div 
+	class="dropdown" 
+	onkeydown={handleKeydown}
+	role="application"
+	aria-label="Dropdown menu"
+>
 	<button type="button" class="dropdown-trigger" onclick={toggleDropdown} aria-expanded={open} aria-haspopup="true">
 		{@render trigger()}
 	</button>

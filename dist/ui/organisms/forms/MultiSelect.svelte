@@ -25,6 +25,8 @@
 		onSelect
 	}: Props = $props();
 
+	const selectId = `multi-select-${Math.random().toString(36).substr(2, 9)}`;
+
 	let isOpen = $state(false);
 	let searchQuery = $state('');
 
@@ -61,9 +63,18 @@
 </script>
 
 <div class="multi-select">
-	{#if label}<label class="label">{label}</label>{/if}
+	{#if label}<label class="label" for={selectId}>{label}</label>{/if}
 	
-	<div class="select-trigger" onclick={() => (isOpen = !isOpen)}>
+	<button 
+		type="button"
+		id={selectId}
+		class="select-trigger" 
+		onclick={() => (isOpen = !isOpen)}
+		onkeydown={(e) => e.key === 'Enter' && (isOpen = !isOpen)}
+		aria-expanded={isOpen}
+		aria-haspopup="listbox"
+		aria-label={label || 'Multi-select dropdown'}
+	>
 		<div class="selected-items">
 			{#if selected.length === 0}
 				<span class="placeholder">{placeholder}</span>
@@ -73,11 +84,18 @@
 					{#if opt}
 						<span class="chip">
 							{opt.label}
-							<button type="button" onclick={(e) => { e.stopPropagation(); remove(value); }} aria-label="Remove">
+							<span 
+								class="chip-remove"
+								onclick={(e) => { e.stopPropagation(); remove(value); }} 
+								onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); remove(value); }}}
+								role="button"
+								tabindex="0"
+								aria-label="Remove {opt.label}"
+							>
 								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 									<path d="M18 6L6 18M6 6l12 12" />
 								</svg>
-							</button>
+							</span>
 						</span>
 					{/if}
 				{/each}
@@ -86,7 +104,7 @@
 		<svg class="chevron" class:open={isOpen} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 			<path d="M6 9l6 6 6-6" />
 		</svg>
-	</div>
+	</button>
 
 	{#if isOpen}
 		<div class="dropdown">
@@ -132,7 +150,7 @@
 	.selected-items { flex: 1; display: flex; flex-wrap: wrap; gap: var(--spacing-2); }
 	.placeholder { color: var(--color-neutral-400); font-size: var(--font-size-sm); }
 	.chip { display: flex; align-items: center; gap: var(--spacing-1); padding: var(--spacing-1) var(--spacing-2); background: var(--color-primary-100); color: var(--color-primary-700); border-radius: var(--radius-sm); font-size: var(--font-size-xs); }
-	.chip button { display: flex; background: none; border: none; padding: 0; cursor: pointer; color: currentColor; }
+	.chip-remove { display: flex; background: none; border: none; padding: 0; cursor: pointer; color: currentColor; }
 	.chevron { flex-shrink: 0; transition: transform var(--transition-fast); }
 	.chevron.open { transform: rotate(180deg); }
 	.dropdown { position: absolute; top: 100%; left: 0; right: 0; margin-top: var(--spacing-1); background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--radius-md); box-shadow: var(--shadow-lg); z-index: 100; max-height: 300px; overflow: hidden; }

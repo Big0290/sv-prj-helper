@@ -77,7 +77,12 @@
 	}
 </script>
 
-<div class="context-menu-wrapper" oncontextmenu={handleContextMenu}>
+<div 
+	class="context-menu-wrapper" 
+	oncontextmenu={handleContextMenu}
+	role="application"
+	aria-label="Context menu area"
+>
 	{@render children()}
 </div>
 

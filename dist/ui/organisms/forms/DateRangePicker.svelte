@@ -11,6 +11,9 @@
 		label,
 		onRange
 	}: Props = $props();
+
+	const startId = `date-start-${Math.random().toString(36).substr(2, 9)}`;
+	const endId = `date-end-${Math.random().toString(36).substr(2, 9)}`;
 	
 	function handleStartChange(e: Event) {
 		const input = e.target as HTMLInputElement;
@@ -26,11 +29,25 @@
 </script>
 
 <div class="date-range">
-	{#if label}<label class="label">{label}</label>{/if}
+	{#if label}<label class="label" for={startId}>{label}</label>{/if}
 	<div class="range-inputs">
-		<input type="date" value={start?.toISOString().split('T')[0]} onchange={handleStartChange} class="date-input" />
+		<input 
+			id={startId}
+			type="date" 
+			value={start?.toISOString().split('T')[0]} 
+			onchange={handleStartChange} 
+			class="date-input"
+			aria-label="Start date"
+		/>
 		<span class="separator">to</span>
-		<input type="date" value={end?.toISOString().split('T')[0]} onchange={handleEndChange} class="date-input" />
+		<input 
+			id={endId}
+			type="date" 
+			value={end?.toISOString().split('T')[0]} 
+			onchange={handleEndChange} 
+			class="date-input"
+			aria-label="End date"
+		/>
 	</div>
 </div>
 

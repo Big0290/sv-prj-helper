@@ -1,3 +1,4 @@
+import TreeView from './TreeView.svelte';
 declare const TreeView: import("svelte").Component<{
     nodes: TreeNode[];
     onNodeClick?: (node: TreeNode) => void;
