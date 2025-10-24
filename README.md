@@ -14,8 +14,31 @@ A modern, accessible Svelte 5 UI component library with purpleish iOS26-inspired
 
 ## Installation
 
+### From GitHub Packages
+
+First, configure npm to use GitHub Packages for the `@sv-prj-helper` scope:
+
+```bash
+# Create or update .npmrc in your project root
+echo "@sv-prj-helper:registry=https://npm.pkg.github.com" >> .npmrc
+```
+
+Then install the package:
+
 ```bash
 npm install @sv-prj-helper/ui
+```
+
+### Authentication
+
+For private repositories, you'll need to authenticate with GitHub:
+
+```bash
+# Login to GitHub Packages
+npm login --scope=@sv-prj-helper --registry=https://npm.pkg.github.com
+
+# Or set your GitHub token
+npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_TOKEN
 ```
 
 ## Usage

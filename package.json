@@ -2,6 +2,13 @@
   "name": "@sv-prj-helper/ui",
   "version": "0.1.0",
   "description": "Modern Svelte 5 UI library with glassmorphism design and full accessibility",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sv-prj-helper/ui.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -23,7 +30,9 @@
     "package": "svelte-kit sync && svelte-package",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "prepublishOnly": "npm run build",
+    "release": "npm version patch && git push && git push --tags"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",
