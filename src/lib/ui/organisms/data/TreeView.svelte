@@ -1,13 +1,17 @@
-<script lang="ts">
-	import TreeView from './TreeView.svelte';
-	
-	export interface TreeNode {
+<script module lang="ts">
+export interface TreeNode {
 		id: string;
 		label: string;
 		icon?: string;
 		children?: TreeNode[];
 		expanded?: boolean;
 	}
+</script>
+
+<script lang="ts">
+	import TreeView from './TreeView.svelte';
+	
+	
 	interface Props {
 		nodes: TreeNode[];
 		onNodeClick?: (node: TreeNode) => void;

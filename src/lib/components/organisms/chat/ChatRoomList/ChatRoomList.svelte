@@ -1,5 +1,5 @@
-<script lang="ts">
-	export interface ChatRoom {
+<script module lang="ts">
+export interface ChatRoom {
 		id: string;
 		name: string;
 		avatar?: string;
@@ -9,6 +9,10 @@
 		isOnline?: boolean;
 		isTyping?: boolean;
 	}
+</script>
+
+<script lang="ts">
+	
 
 	import type { ChatRoomListProps } from './ChatRoomList.types.js';
 

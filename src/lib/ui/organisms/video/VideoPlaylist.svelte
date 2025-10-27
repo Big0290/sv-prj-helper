@@ -1,11 +1,15 @@
-<script lang="ts">
-	export interface VideoItem {
+<script module lang="ts">
+export interface VideoItem {
 		id: string;
 		title: string;
 		src: string;
 		thumbnail?: string;
 		duration?: number;
 	}
+</script>
+
+<script lang="ts">
+	
 
 	interface Props {
 		videos: VideoItem[];

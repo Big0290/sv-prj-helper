@@ -1,11 +1,15 @@
-<script lang="ts">
-	export interface NavItem {
+<script module lang="ts">
+export interface NavItem {
 		id: string;
 		label: string;
 		icon: string;
 		badge?: number;
 		onClick?: () => void;
 	}
+</script>
+
+<script lang="ts">
+	
 
 	interface Props {
 		items: NavItem[];

@@ -15,7 +15,7 @@
 	
 	let videoElement = $state<HTMLVideoElement>();
 	let isHovering = $state(false);
-	let hoverTimeout: number;
+	let hoverTimeout: NodeJS.Timeout | undefined;
 	
 	function handleMouseEnter() {
 		if (!enableHoverPreview) return;
@@ -83,7 +83,7 @@
 			onClick();
 		}
 	}}
-	{...onClick ? { role: 'button', tabindex: '0', 'aria-label': `Play video: ${title}` } : {}}
+	{...onClick ? { role: 'button', tabindex: 0, 'aria-label': `Play video: ${title}` } : {}}
 >
 	<div class="thumbnail-wrapper">
 		{#if enableHoverPreview}

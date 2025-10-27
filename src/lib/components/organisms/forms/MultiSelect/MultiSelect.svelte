@@ -1,9 +1,13 @@
-<script lang="ts">
-	export interface SelectOption {
+<script module lang="ts">
+export interface SelectOption {
 		value: string;
 		label: string;
 		disabled?: boolean;
 	}
+</script>
+
+<script lang="ts">
+	
 
 	import type { MultiSelectProps } from './MultiSelect.types.js';
 

@@ -1,15 +1,21 @@
 <script module lang="ts">
-	export interface Column {
+export interface Column {
 		key: string;
 		label: string;
 		sortable?: boolean;
 		width?: string;
 	}
 
-	export interface Row {
+export interface Row {
 		id: string | number;
 		[key: string]: any;
 	}
+</script>
+
+<script module lang="ts">
+	
+
+	
 </script>
 
 <script lang="ts">

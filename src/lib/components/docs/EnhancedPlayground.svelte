@@ -284,14 +284,14 @@
 									{#if prop.type.includes('boolean')}
 										<Checkbox 
 											checked={propValues[prop.name] || false}
-											onchange={(e) => handlePropChange(prop.name, e.target.checked)}
+											onchange={(e) => handlePropChange(prop.name, (e.target as HTMLInputElement).checked)}
 										/>
 									{:else if prop.type.includes('|') && !prop.type.includes('number')}
 										{@const options = getUnionOptions(prop.type)}
 										{#if options.length > 0}
 											<Select 
 												value={propValues[prop.name] || ''}
-												onchange={(e) => handlePropChange(prop.name, e.target.value)}
+												onchange={(e) => handlePropChange(prop.name, (e.target as HTMLInputElement).value)}
 											>
 												<option value="">Default</option>
 												{#each options as option}
@@ -301,7 +301,7 @@
 										{:else}
 											<Input 
 												value={propValues[prop.name] || ''}
-												oninput={(e) => handlePropChange(prop.name, e.target.value)}
+												oninput={(e) => handlePropChange(prop.name, (e.target as HTMLInputElement).value)}
 												placeholder={prop.description}
 												size="sm"
 											/>
@@ -310,14 +310,14 @@
 										<Input 
 											type="number"
 											value={propValues[prop.name] || 0}
-											oninput={(e) => handlePropChange(prop.name, parseInt(e.target.value) || 0)}
+											oninput={(e) => handlePropChange(prop.name, parseInt((e.target as HTMLInputElement).value) || 0)}
 											placeholder={prop.description}
 											size="sm"
 										/>
 									{:else}
 										<Input 
 											value={propValues[prop.name] || ''}
-											oninput={(e) => handlePropChange(prop.name, e.target.value)}
+											oninput={(e) => handlePropChange(prop.name, (e.target as HTMLInputElement).value)}
 											placeholder={prop.description}
 											size="sm"
 										/>

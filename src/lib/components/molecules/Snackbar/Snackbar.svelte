@@ -11,7 +11,7 @@
 		onClose
 	 }: SnackbarProps = $props();
 
-	let timeoutId: number | undefined;
+	let timeoutId: NodeJS.Timeout | undefined | undefined;
 
 	$effect(() => {
 		if (isOpen && duration > 0) {

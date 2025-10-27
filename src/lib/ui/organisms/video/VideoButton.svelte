@@ -23,7 +23,7 @@
 	let showModal = $state(false);
 	let previewVideoElement = $state<HTMLVideoElement>();
 	let isHovering = $state(false);
-	let hoverTimeout: number;
+	let hoverTimeout: NodeJS.Timeout | undefined;
 
 	function handleClick() {
 		if (variant === 'modal') {

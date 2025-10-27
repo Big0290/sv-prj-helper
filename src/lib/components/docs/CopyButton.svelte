@@ -20,7 +20,7 @@
 	}: Props = $props();
 
 	let copied = $state(false);
-	let copyTimeout: number | undefined = $state();
+	let copyTimeout: NodeJS.Timeout | undefined | undefined = $state();
 
 	async function copyToClipboard() {
 		if (!navigator.clipboard) {

@@ -1,15 +1,5 @@
 <script lang="ts">
-	import type { SelectProps } from './Select.types.js';>;
-		disabled?: boolean;
-		required?: boolean;
-		error?: string;
-		label?: string;
-		helperText?: string;
-		id?: string;
-		name?: string;
-		placeholder?: string;
-		onchange?: (e: Event) => void;
-	}
+	import type { SelectProps } from './Select.types.js';
 
 	let { value = $bindable(''),
 		options,

@@ -1,11 +1,5 @@
 <script lang="ts">
-	import type { SimpleTableProps } from './SimpleTable.types.js';>;
-		rows: Array<Record<string, any>>;
-		striped?: boolean;
-		hoverable?: boolean;
-		compact?: boolean;
-		className?: string;
-	}
+	import type { SimpleTableProps } from './SimpleTable.types.js';
 
 	let { columns,
 		rows,

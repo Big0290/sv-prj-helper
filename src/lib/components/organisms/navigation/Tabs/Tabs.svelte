@@ -1,10 +1,14 @@
-<script lang="ts">
-	export interface Tab {
+<script module lang="ts">
+export interface Tab {
 		id: string;
 		label: string;
 		icon?: string;
 		disabled?: boolean;
 	}
+</script>
+
+<script lang="ts">
+	
 
 	import type { TabsProps } from './Tabs.types.js';
 

@@ -1,10 +1,14 @@
-<script lang="ts">
-	export interface BreadcrumbItem {
+<script module lang="ts">
+export interface BreadcrumbItem {
 		label: string;
 		href?: string;
 		icon?: string;
 		disabled?: boolean;
 	}
+</script>
+
+<script lang="ts">
+	
 
 	import type { BreadcrumbProps } from './Breadcrumb.types.js';
 

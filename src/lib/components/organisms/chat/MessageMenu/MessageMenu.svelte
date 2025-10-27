@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { MessageMenuProps } from './MessageMenu.types.js';
+
 	interface MenuItem {
 		id: string;
 		label: string;
@@ -7,16 +9,13 @@
 		disabled?: boolean;
 	}
 
-	import type { MessageMenuProps } from './MessageMenu.types.js';;
-	}
-
 	let {
 		open = false,
 		onClose,
 		onItemClick,
 		items = [],
 		position = { x: 0, y: 0 }
-	}: Props = $props();
+	}: MessageMenuProps = $props();
 
 	const defaultItems: MenuItem[] = [
 		{ id: 'reply', label: 'Reply', icon: 'reply' },

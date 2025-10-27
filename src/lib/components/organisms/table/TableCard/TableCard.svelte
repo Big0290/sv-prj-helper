@@ -1,9 +1,5 @@
 <script lang="ts">
-	import type { TableCardProps } from './TableCard.types.js';>;
-		rows: Array<Record<string, any>>;
-		onRowClick?: (row: Record<string, any>) => void;
-		className?: string;
-	}
+	import type { TableCardProps } from './TableCard.types.js';
 
 	let { columns,
 		rows,

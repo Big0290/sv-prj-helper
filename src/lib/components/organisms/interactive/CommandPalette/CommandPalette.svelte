@@ -1,5 +1,5 @@
-<script lang="ts">
-	export interface CommandItem {
+<script module lang="ts">
+export interface CommandItem {
 		id: string;
 		label: string;
 		description?: string;
@@ -8,6 +8,10 @@
 		category?: string;
 		action: () => void;
 	}
+</script>
+
+<script lang="ts">
+	
 
 	import type { CommandPaletteProps } from './CommandPalette.types.js';
 

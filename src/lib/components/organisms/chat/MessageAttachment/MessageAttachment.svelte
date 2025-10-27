@@ -1,5 +1,5 @@
-<script lang="ts">
-	export interface Attachment {
+<script module lang="ts">
+export interface Attachment {
 		id: string;
 		name: string;
 		size: number;
@@ -7,6 +7,10 @@
 		url: string;
 		thumbnail?: string;
 	}
+</script>
+
+<script lang="ts">
+	
 
 	import type { MessageAttachmentProps } from './MessageAttachment.types.js';
 

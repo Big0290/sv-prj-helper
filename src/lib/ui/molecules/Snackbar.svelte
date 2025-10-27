@@ -21,7 +21,7 @@
 		onClose
 	}: Props = $props();
 
-	let timeoutId: number | undefined;
+	let timeoutId: number;
 
 	$effect(() => {
 		if (isOpen && duration > 0) {

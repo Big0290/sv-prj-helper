@@ -64,7 +64,7 @@
 	<div class="search-section">
 		<Input
 			value={searchQuery}
-			onchange={(e) => onSearchChange(e.target.value)}
+			onchange={(e) => onSearchChange((e.target as HTMLInputElement).value)}
 			placeholder="Search examples by title, component, or use case..."
 			type="search"
 		/>
@@ -151,7 +151,7 @@
 			<Text size="sm" weight="medium">Component:</Text>
 			<select 
 				value={selectedComponent}
-				onchange={(e) => onComponentChange(e.target.value)}
+				onchange={(e) => onComponentChange((e.target as HTMLInputElement).value)}
 				class="component-select"
 			>
 				<option value="all">All Components</option>
