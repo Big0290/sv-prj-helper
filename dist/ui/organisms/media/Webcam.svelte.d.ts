@@ -11,3 +11,4 @@ interface Props {
 declare const Webcam: import("svelte").Component<Props, {}, "">;
 type Webcam = ReturnType<typeof Webcam>;
 export default Webcam;
+//# sourceMappingURL=Webcam.svelte.d.ts.map

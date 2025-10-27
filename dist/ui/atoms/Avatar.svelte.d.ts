@@ -8,3 +8,4 @@ interface Props {
 declare const Avatar: import("svelte").Component<Props, {}, "">;
 type Avatar = ReturnType<typeof Avatar>;
 export default Avatar;
+//# sourceMappingURL=Avatar.svelte.d.ts.map

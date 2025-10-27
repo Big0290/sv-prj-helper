@@ -8,3 +8,4 @@ interface Props {
 declare const VirtualList: import("svelte").Component<Props, {}, "">;
 type VirtualList = ReturnType<typeof VirtualList>;
 export default VirtualList;
+//# sourceMappingURL=VirtualList.svelte.d.ts.map

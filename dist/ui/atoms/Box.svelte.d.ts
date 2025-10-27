@@ -17,3 +17,4 @@ interface Props {
 declare const Box: import("svelte").Component<Props, {}, "">;
 type Box = ReturnType<typeof Box>;
 export default Box;
+//# sourceMappingURL=Box.svelte.d.ts.map

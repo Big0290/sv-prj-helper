@@ -9,3 +9,4 @@ interface Props {
 declare const DatePicker: import("svelte").Component<Props, {}, "value">;
 type DatePicker = ReturnType<typeof DatePicker>;
 export default DatePicker;
+//# sourceMappingURL=DatePicker.svelte.d.ts.map

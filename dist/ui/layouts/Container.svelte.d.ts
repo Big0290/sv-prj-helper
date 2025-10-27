@@ -7,3 +7,4 @@ interface Props {
 declare const Container: import("svelte").Component<Props, {}, "">;
 type Container = ReturnType<typeof Container>;
 export default Container;
+//# sourceMappingURL=Container.svelte.d.ts.map

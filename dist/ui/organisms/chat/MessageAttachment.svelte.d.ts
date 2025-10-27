@@ -14,3 +14,4 @@ interface Props {
 declare const MessageAttachment: import("svelte").Component<Props, {}, "">;
 type MessageAttachment = ReturnType<typeof MessageAttachment>;
 export default MessageAttachment;
+//# sourceMappingURL=MessageAttachment.svelte.d.ts.map

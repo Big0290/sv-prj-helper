@@ -6,3 +6,4 @@ interface Props {
 declare const VoiceRecorder: import("svelte").Component<Props, {}, "">;
 type VoiceRecorder = ReturnType<typeof VoiceRecorder>;
 export default VoiceRecorder;
+//# sourceMappingURL=VoiceRecorder.svelte.d.ts.map

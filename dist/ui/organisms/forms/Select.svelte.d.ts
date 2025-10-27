@@ -18,3 +18,4 @@ interface Props {
 declare const Select: import("svelte").Component<Props, {}, "value">;
 type Select = ReturnType<typeof Select>;
 export default Select;
+//# sourceMappingURL=Select.svelte.d.ts.map

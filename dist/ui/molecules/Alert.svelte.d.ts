@@ -9,3 +9,4 @@ interface Props {
 declare const Alert: import("svelte").Component<Props, {}, "">;
 type Alert = ReturnType<typeof Alert>;
 export default Alert;
+//# sourceMappingURL=Alert.svelte.d.ts.map

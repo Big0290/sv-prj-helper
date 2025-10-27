@@ -19,3 +19,4 @@ interface Props {
 declare const DataTable: import("svelte").Component<Props, {}, "selectedRows">;
 type DataTable = ReturnType<typeof DataTable>;
 export default DataTable;
+//# sourceMappingURL=DataTable.svelte.d.ts.map

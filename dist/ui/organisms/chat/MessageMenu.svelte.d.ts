@@ -18,3 +18,4 @@ interface Props {
 declare const MessageMenu: import("svelte").Component<Props, {}, "">;
 type MessageMenu = ReturnType<typeof MessageMenu>;
 export default MessageMenu;
+//# sourceMappingURL=MessageMenu.svelte.d.ts.map

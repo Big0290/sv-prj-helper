@@ -13,3 +13,4 @@ interface Props {
 declare const Text: import("svelte").Component<Props, {}, "">;
 type Text = ReturnType<typeof Text>;
 export default Text;
+//# sourceMappingURL=Text.svelte.d.ts.map

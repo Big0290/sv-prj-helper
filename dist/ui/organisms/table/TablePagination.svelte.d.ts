@@ -13,3 +13,4 @@ interface Props {
 declare const TablePagination: import("svelte").Component<Props, {}, "currentPage" | "itemsPerPage">;
 type TablePagination = ReturnType<typeof TablePagination>;
 export default TablePagination;
+//# sourceMappingURL=TablePagination.svelte.d.ts.map

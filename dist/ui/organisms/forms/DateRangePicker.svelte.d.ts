@@ -7,3 +7,4 @@ interface Props {
 declare const DateRangePicker: import("svelte").Component<Props, {}, "start" | "end">;
 type DateRangePicker = ReturnType<typeof DateRangePicker>;
 export default DateRangePicker;
+//# sourceMappingURL=DateRangePicker.svelte.d.ts.map

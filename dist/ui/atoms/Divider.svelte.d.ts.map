@@ -1,0 +1,1 @@
+{"version":3,"file":"Divider.svelte.d.ts","sourceRoot":"","sources":["../../../src/lib/ui/atoms/Divider.svelte.ts"],"names":[],"mappings":"AAGC,UAAU,KAAK;IACd,WAAW,CAAC,EAAE,YAAY,GAAG,UAAU,CAAC;IACxC,OAAO,CAAC,EAAE,GAAG,GAAG,GAAG,GAAG,GAAG,GAAG,GAAG,CAAC;CAChC;AAaF,QAAA,MAAM,OAAO,2CAAwC,CAAC;AACtD,KAAK,OAAO,GAAG,UAAU,CAAC,OAAO,OAAO,CAAC,CAAC;AAC1C,eAAe,OAAO,CAAC"}

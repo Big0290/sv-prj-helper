@@ -8,3 +8,4 @@ interface Props {
 declare const LoadingOverlay: import("svelte").Component<Props, {}, "">;
 type LoadingOverlay = ReturnType<typeof LoadingOverlay>;
 export default LoadingOverlay;
+//# sourceMappingURL=LoadingOverlay.svelte.d.ts.map

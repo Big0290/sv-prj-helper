@@ -1,0 +1,1 @@
+{"version":3,"file":"LoadingOverlay.svelte.d.ts","sourceRoot":"","sources":["../../../../src/lib/components/atoms/LoadingOverlay/LoadingOverlay.svelte.ts"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,mBAAmB,EAAE,MAAM,2BAA2B,CAAC;AAsCrE,QAAA,MAAM,cAAc,yDAAwC,CAAC;AAC7D,KAAK,cAAc,GAAG,UAAU,CAAC,OAAO,cAAc,CAAC,CAAC;AACxD,eAAe,cAAc,CAAC"}

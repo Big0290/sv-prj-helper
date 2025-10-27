@@ -13,3 +13,4 @@ interface Props {
 declare const Image: import("svelte").Component<Props, {}, "">;
 type Image = ReturnType<typeof Image>;
 export default Image;
+//# sourceMappingURL=Image.svelte.d.ts.map

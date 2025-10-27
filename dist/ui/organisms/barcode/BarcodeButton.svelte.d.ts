@@ -9,3 +9,4 @@ interface Props {
 declare const BarcodeButton: import("svelte").Component<Props, {}, "">;
 type BarcodeButton = ReturnType<typeof BarcodeButton>;
 export default BarcodeButton;
+//# sourceMappingURL=BarcodeButton.svelte.d.ts.map

@@ -1,2 +1,6 @@
-// Re-export all components from the UI system for backward compatibility
+// Re-export all components from both old and new structures for backward compatibility
 export * from './ui/index.js';
+// Documentation system exports
+export * from './docs/index.js';
+// New component structure (will gradually replace the above)
+// export * from './components/index.js';

@@ -13,3 +13,4 @@ interface Props {
 declare const VideoCard: import("svelte").Component<Props, {}, "">;
 type VideoCard = ReturnType<typeof VideoCard>;
 export default VideoCard;
+//# sourceMappingURL=VideoCard.svelte.d.ts.map

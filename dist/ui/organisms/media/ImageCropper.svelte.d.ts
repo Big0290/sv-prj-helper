@@ -8,3 +8,4 @@ interface Props {
 declare const ImageCropper: import("svelte").Component<Props, {}, "">;
 type ImageCropper = ReturnType<typeof ImageCropper>;
 export default ImageCropper;
+//# sourceMappingURL=ImageCropper.svelte.d.ts.map

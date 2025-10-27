@@ -20,3 +20,4 @@ interface Props {
 declare const Timeline: import("svelte").Component<Props, {}, "">;
 type Timeline = ReturnType<typeof Timeline>;
 export default Timeline;
+//# sourceMappingURL=Timeline.svelte.d.ts.map

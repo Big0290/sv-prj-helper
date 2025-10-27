@@ -9,3 +9,4 @@ interface Props {
 declare const Toast: import("svelte").Component<Props, {}, "">;
 type Toast = ReturnType<typeof Toast>;
 export default Toast;
+//# sourceMappingURL=Toast.svelte.d.ts.map

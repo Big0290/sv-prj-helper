@@ -16,3 +16,4 @@ interface Props {
 declare const OnlineUsersList: import("svelte").Component<Props, {}, "">;
 type OnlineUsersList = ReturnType<typeof OnlineUsersList>;
 export default OnlineUsersList;
+//# sourceMappingURL=OnlineUsersList.svelte.d.ts.map

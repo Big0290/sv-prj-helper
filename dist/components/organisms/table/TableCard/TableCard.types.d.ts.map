@@ -1,0 +1,1 @@
+{"version":3,"file":"TableCard.types.d.ts","sourceRoot":"","sources":["../../../../../src/lib/components/organisms/table/TableCard/TableCard.types.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,cAAc;IAC/B,OAAO,EAAE,KAAK,CAAC;QAAE,GAAG,EAAE,MAAM,CAAC;QAAC,KAAK,EAAE,MAAM,CAAA;KAC1C,CAAA,CAAA;CAAA;AAED,MAAM,WAAW,eAAe;CAE/B;AAED,MAAM,WAAW,cAAc;IAC7B,OAAO,EAAE,EAAE,CAAC;CACb"}

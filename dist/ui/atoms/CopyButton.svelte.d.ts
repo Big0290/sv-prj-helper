@@ -7,3 +7,4 @@ interface Props {
 declare const CopyButton: import("svelte").Component<Props, {}, "">;
 type CopyButton = ReturnType<typeof CopyButton>;
 export default CopyButton;
+//# sourceMappingURL=CopyButton.svelte.d.ts.map

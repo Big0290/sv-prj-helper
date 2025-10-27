@@ -17,3 +17,4 @@ interface Props {
 declare const CommandPalette: import("svelte").Component<Props, {}, "isOpen">;
 type CommandPalette = ReturnType<typeof CommandPalette>;
 export default CommandPalette;
+//# sourceMappingURL=CommandPalette.svelte.d.ts.map

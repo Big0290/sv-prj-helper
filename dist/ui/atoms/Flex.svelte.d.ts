@@ -13,3 +13,4 @@ interface Props {
 declare const Flex: import("svelte").Component<Props, {}, "">;
 type Flex = ReturnType<typeof Flex>;
 export default Flex;
+//# sourceMappingURL=Flex.svelte.d.ts.map

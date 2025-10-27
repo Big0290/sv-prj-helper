@@ -5,3 +5,4 @@ declare const TreeView: import("svelte").Component<{
 }, {}, "">;
 type TreeView = ReturnType<typeof TreeView>;
 export default TreeView;
+//# sourceMappingURL=TreeView.svelte.d.ts.map

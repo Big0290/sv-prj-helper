@@ -1,0 +1,1 @@
+{"version":3,"file":"useTheme.svelte.d.ts","sourceRoot":"","sources":["../../../src/lib/ui/hooks/useTheme.svelte.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,YAAY;IAC5B,OAAO,EAAE,MAAM,OAAO,GAAG,MAAM,CAAC;IAChC,MAAM,EAAE,MAAM,IAAI,CAAC;IACnB,GAAG,EAAE,CAAC,KAAK,EAAE,OAAO,GAAG,MAAM,GAAG,QAAQ,KAAK,IAAI,CAAC;CAClD;AAED,wBAAgB,QAAQ,IAAI,YAAY,CAQvC"}

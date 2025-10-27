@@ -13,13 +13,39 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "svelte": "./dist/index.js",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js",
+      "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
-    "./styles": "./dist/styles.css"
+    "./styles": {
+      "import": "./dist/styles/theme.css",
+      "default": "./dist/styles/theme.css"
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "svelte": "./dist/ui/index.js",
+      "import": "./dist/ui/index.js",
+      "default": "./dist/ui/index.js"
+    },
+    "./docs": {
+      "types": "./dist/docs/index.d.ts",
+      "import": "./dist/docs/index.js",
+      "default": "./dist/docs/index.js"
+    },
+    "./hooks": {
+      "types": "./dist/hooks/index.d.ts",
+      "import": "./dist/hooks/index.js",
+      "default": "./dist/hooks/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
@@ -27,18 +53,45 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run package",
-    "package": "svelte-kit sync && svelte-package",
+    "build:lib": "node scripts/build-lib.js",
+    "validate:build": "node scripts/validate-build.js",
+    "package": "svelte-kit sync && svelte-package --input src/lib && npm run package:optimize",
+    "package:optimize": "node scripts/optimize-package.js",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:lib": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.lib.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "prepublishOnly": "npm run build",
-    "release": "npm version patch && git push && git push --tags"
+    "prepublishOnly": "npm run build:lib && npm run validate:build",
+    "release": "npm run release:patch",
+    "release:patch": "node scripts/release.js patch",
+    "release:minor": "node scripts/release.js minor",
+    "release:major": "node scripts/release.js major",
+    "release:script": "node scripts/release.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "version": "npm run changelog && git add CHANGELOG.md",
+    "validate:release": "node scripts/validate-release.js",
+    "docs:generate": "node scripts/docs-cli.js generate",
+    "docs:validate": "node scripts/docs-cli.js validate",
+    "docs:list": "node scripts/docs-cli.js list",
+    "docs:help": "node scripts/docs-cli.js help",
+    "component:generate": "node scripts/component-generator.js",
+    "component:validate": "node scripts/docs-validator.js",
+    "component:test": "node scripts/test-utils.js",
+    "test:generate": "node scripts/test-utils.js generate",
+    "test:a11y": "node scripts/test-utils.js a11y",
+    "test:coverage": "node scripts/test-utils.js coverage",
+    "dev:tools": "node scripts/dev-tools.js",
+    "dev:status": "node scripts/dev-tools.js status",
+    "dev:setup": "node scripts/dev-tools.js setup"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/package": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@types/prismjs": "^1.26.5",
+    "@types/qrcode": "^1.5.6",
+    "conventional-changelog-cli": "^5.0.0",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
     "typescript": "^5.0.0",

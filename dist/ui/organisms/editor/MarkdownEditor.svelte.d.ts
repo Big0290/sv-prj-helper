@@ -12,3 +12,4 @@ interface Props {
 declare const MarkdownEditor: import("svelte").Component<Props, {}, "value">;
 type MarkdownEditor = ReturnType<typeof MarkdownEditor>;
 export default MarkdownEditor;
+//# sourceMappingURL=MarkdownEditor.svelte.d.ts.map

@@ -10,3 +10,4 @@ interface Props {
 declare const VideoButton: import("svelte").Component<Props, {}, "">;
 type VideoButton = ReturnType<typeof VideoButton>;
 export default VideoButton;
+//# sourceMappingURL=VideoButton.svelte.d.ts.map

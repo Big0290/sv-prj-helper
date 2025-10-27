@@ -15,3 +15,4 @@ interface Props {
 declare const VideoPlaylist: import("svelte").Component<Props, {}, "currentIndex">;
 type VideoPlaylist = ReturnType<typeof VideoPlaylist>;
 export default VideoPlaylist;
+//# sourceMappingURL=VideoPlaylist.svelte.d.ts.map

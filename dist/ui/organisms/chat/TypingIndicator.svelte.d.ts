@@ -8,3 +8,4 @@ interface Props {
 declare const TypingIndicator: import("svelte").Component<Props, {}, "">;
 type TypingIndicator = ReturnType<typeof TypingIndicator>;
 export default TypingIndicator;
+//# sourceMappingURL=TypingIndicator.svelte.d.ts.map

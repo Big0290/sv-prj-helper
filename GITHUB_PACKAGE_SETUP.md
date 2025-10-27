@@ -1,104 +1,282 @@
-# GitHub Package Setup Complete! 🎉
+# GitHub Package Setup Guide
 
-Your UI library is now configured as a GitHub Package and ready to be published and installed in other projects.
+This guide explains how to set up and use the SV Project Helper UI Library as a GitHub Package.
 
-## What's Been Set Up
+## Package Information
 
-### ✅ Package Configuration
-- **Package name**: `@big0290/sv-prj-helper-ui`
-- **Registry**: GitHub Packages (`https://npm.pkg.github.com`)
-- **Repository**: `https://github.com/Big0290/sv-prj-helper`
-- **Version**: `0.1.0`
-- **Build output**: `dist/` directory with all components and types
+- **Package Name**: `@big0290/sv-prj-helper-ui`
+- **Registry**: GitHub Package Registry
+- **Repository**: https://github.com/Big0290/sv-prj-helper
 
-### ✅ Files Created/Updated
-- `.npmrc` - Registry configuration for GitHub Packages
-- `package.json` - Updated with repository and publishConfig
-- `.github/workflows/publish.yml` - Automated publishing workflow
-- `INSTALLATION.md` - User installation guide
-- `PUBLISHING.md` - Your publishing guide
-- `README.md` - Updated with GitHub Packages installation instructions
+## Installation
 
-### ✅ Package Contents (267 files, 643.5 kB)
-- All UI components with TypeScript definitions
-- Theme CSS files
-- Hooks and utilities
-- Complete documentation
+### Prerequisites
 
-## Next Steps
+1. **GitHub Personal Access Token**: You need a GitHub Personal Access Token with `read:packages` permission.
+2. **NPM Configuration**: Configure npm to use GitHub Package Registry for this scope.
 
-### 1. Push to GitHub
+### Step 1: Create GitHub Personal Access Token
+
+1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
+2. Click "Generate new token (classic)"
+3. Select the following scopes:
+   - `read:packages` (to download packages)
+   - `write:packages` (if you need to publish)
+4. Copy the generated token
+
+### Step 2: Configure NPM
+
+Create or update your `.npmrc` file in your project root or home directory:
+
 ```bash
-git add .
-git commit -m "Configure for GitHub Packages"
-git push origin main
+# For project-specific configuration (.npmrc in project root)
+@big0290:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+
+# For global configuration (~/.npmrc)
+@big0290:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
 ```
 
-### 2. Publish Your Package
+Replace `YOUR_GITHUB_TOKEN` with your actual GitHub Personal Access Token.
 
-**Option A: Manual Publishing**
+### Step 3: Install the Package
+
 ```bash
-npm login --scope=@big0290 --registry=https://npm.pkg.github.com
-npm publish
-```
-
-**Option B: Automated via GitHub Release**
-```bash
-# Create a release on GitHub, or use CLI:
-gh release create v0.1.0 --title "v0.1.0" --notes "Initial release"
-```
-
-### 3. Test Installation
-
-Create a test project and try installing:
-```bash
-mkdir test-project && cd test-project
-npm init -y
-echo "@big0290:registry=https://npm.pkg.github.com" >> .npmrc
 npm install @big0290/sv-prj-helper-ui
 ```
 
-## Usage in Other Projects
+## Usage
 
-### Installation
-```bash
-echo "@big0290:registry=https://npm.pkg.github.com" >> .npmrc
-npm install @big0290/sv-prj-helper-ui
+### Basic Import
+
+```javascript
+// Import all components
+import { Button, Input, Card } from '@big0290/sv-prj-helper-ui';
+
+// Import styles
+import '@big0290/sv-prj-helper-ui/styles';
 ```
 
-### Import Components
+### TypeScript Support
+
+The package includes full TypeScript definitions:
+
+```typescript
+import type { ButtonProps } from '@big0290/sv-prj-helper-ui';
+import { Button } from '@big0290/sv-prj-helper-ui';
+
+const MyComponent = () => {
+  const buttonProps: ButtonProps = {
+    variant: 'primary',
+    size: 'md'
+  };
+  
+  return <Button {...buttonProps}>Click me</Button>;
+};
+```
+
+### Svelte 5 Usage
+
 ```svelte
-<script>
-  import { Button, Card, Input, Alert } from '@big0290/sv-prj-helper-ui';
+<script lang="ts">
+  import { Button, Input, Card } from '@big0290/sv-prj-helper-ui';
   import '@big0290/sv-prj-helper-ui/styles';
+  
+  let inputValue = $state('');
 </script>
 
 <Card>
-  <Alert variant="info">Welcome to SV Project Helper UI!</Alert>
-  <Input label="Email" type="email" />
-  <Button variant="primary">Get Started</Button>
+  <Input bind:value={inputValue} placeholder="Enter text" />
+  <Button onclick={() => console.log(inputValue)}>
+    Submit
+  </Button>
 </Card>
 ```
 
-## Key Features Available
+## Available Exports
 
-- **50+ Components**: Atoms, molecules, organisms
-- **Full TypeScript**: Complete type definitions
-- **Accessibility**: WCAG 2.1 AA compliant
-- **Glassmorphism Design**: Purple-themed modern UI
-- **Svelte 5 Native**: Uses latest runes and snippets
-- **Dark Mode**: Automatic system preference detection
+### Components
 
-## Package Stats
-- **Size**: 131.3 kB (compressed)
-- **Components**: 267 files
-- **Dependencies**: CodeMirror, ZXing, JSBarcode, QRCode, Marked, PrismJS
+```javascript
+// Atoms
+import { 
+  Button, Input, Text, Heading, Badge, Avatar, 
+  Checkbox, Radio, Switch, Slider, Progress 
+} from '@big0290/sv-prj-helper-ui';
 
-## Support & Documentation
+// Molecules  
+import { 
+  Card, Alert, Tooltip, Menu, Accordion, 
+  Breadcrumb, Pagination, Rating 
+} from '@big0290/sv-prj-helper-ui';
 
-- **Installation Guide**: `INSTALLATION.md`
-- **Publishing Guide**: `PUBLISHING.md`
-- **Component Docs**: Available in your demo routes
-- **GitHub**: Repository packages tab will show published versions
+// Organisms
+import { 
+  DataTable, Chat, Webcam, BarcodeScanner,
+  VideoPlayer, MediaGallery 
+} from '@big0290/sv-prj-helper-ui';
+```
 
-Your UI library is now ready to be shared and used across multiple projects! 🚀
+### UI System
+
+```javascript
+// Import from UI system
+import { Button, Text, Card } from '@big0290/sv-prj-helper-ui/ui';
+```
+
+### Hooks
+
+```javascript
+// Import hooks
+import { useTheme, useToast, useDialog } from '@big0290/sv-prj-helper-ui/hooks';
+```
+
+### Documentation Tools
+
+```javascript
+// Import documentation components
+import { 
+  CodeEditor, LivePreview, ComponentPlayground 
+} from '@big0290/sv-prj-helper-ui/docs';
+```
+
+## Styling
+
+### CSS Custom Properties
+
+The library uses CSS custom properties for theming:
+
+```css
+:root {
+  --primary-color: #8b5cf6;
+  --secondary-color: #06b6d4;
+  --background-color: #ffffff;
+  --text-color: #1f2937;
+  /* ... more variables */
+}
+```
+
+### Dark Mode
+
+Dark mode is automatically detected using `prefers-color-scheme`:
+
+```css
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #111827;
+    --text-color: #f9fafb;
+    /* ... dark mode variables */
+  }
+}
+```
+
+### Custom Themes
+
+You can override the default theme by defining your own CSS custom properties:
+
+```css
+/* Your custom theme */
+:root {
+  --primary-color: #ef4444;  /* Red theme */
+  --glass-bg: rgba(239, 68, 68, 0.1);
+  --glass-border: rgba(239, 68, 68, 0.2);
+}
+```
+
+## Troubleshooting
+
+### Authentication Issues
+
+If you get authentication errors:
+
+1. Verify your GitHub token has the correct permissions
+2. Check that your `.npmrc` file is correctly configured
+3. Ensure the token hasn't expired
+
+### Package Not Found
+
+If npm can't find the package:
+
+1. Verify the package name and scope: `@big0290/sv-prj-helper-ui`
+2. Check that the registry is correctly set for the `@big0290` scope
+3. Ensure you have access to the repository
+
+### TypeScript Issues
+
+If you encounter TypeScript issues:
+
+1. Ensure you're using TypeScript 5.0 or later
+2. Check that your `tsconfig.json` includes the package types
+3. Import types explicitly when needed
+
+### Build Issues
+
+If the package doesn't work in your build:
+
+1. Ensure your bundler supports ES modules
+2. Check that Svelte 5 is properly configured
+3. Verify that CSS imports are handled correctly
+
+## Version Management
+
+### Checking Versions
+
+```bash
+# Check installed version
+npm list @big0290/sv-prj-helper-ui
+
+# Check available versions
+npm view @big0290/sv-prj-helper-ui versions --json
+```
+
+### Updating
+
+```bash
+# Update to latest version
+npm update @big0290/sv-prj-helper-ui
+
+# Install specific version
+npm install @big0290/sv-prj-helper-ui@1.2.3
+```
+
+## Development
+
+### Local Development
+
+To work with the package locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/Big0290/sv-prj-helper.git
+cd sv-prj-helper
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build the package
+npm run build
+```
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and type checking
+5. Submit a pull request
+
+## Support
+
+For issues and questions:
+
+1. Check the [GitHub Issues](https://github.com/Big0290/sv-prj-helper/issues)
+2. Review the documentation
+3. Create a new issue if needed
+
+## License
+
+This package is licensed under the MIT License. See the LICENSE file for details.

@@ -10,3 +10,4 @@ interface Props {
 declare const Radio: import("svelte").Component<Props, {}, "group">;
 type Radio = ReturnType<typeof Radio>;
 export default Radio;
+//# sourceMappingURL=Radio.svelte.d.ts.map

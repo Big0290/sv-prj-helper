@@ -13,3 +13,4 @@ interface Props {
 declare const BottomNavigation: import("svelte").Component<Props, {}, "active">;
 type BottomNavigation = ReturnType<typeof BottomNavigation>;
 export default BottomNavigation;
+//# sourceMappingURL=BottomNavigation.svelte.d.ts.map

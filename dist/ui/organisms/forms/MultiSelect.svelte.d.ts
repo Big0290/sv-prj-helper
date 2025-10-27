@@ -15,3 +15,4 @@ interface Props {
 declare const MultiSelect: import("svelte").Component<Props, {}, "selected">;
 type MultiSelect = ReturnType<typeof MultiSelect>;
 export default MultiSelect;
+//# sourceMappingURL=MultiSelect.svelte.d.ts.map

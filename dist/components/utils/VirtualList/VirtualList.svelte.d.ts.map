@@ -1,0 +1,1 @@
+{"version":3,"file":"VirtualList.svelte.d.ts","sourceRoot":"","sources":["../../../../src/lib/components/utils/VirtualList/VirtualList.svelte.ts"],"names":[],"mappings":"AAKA,OAAO,KAAK,EAAE,gBAAgB,EAAE,MAAM,wBAAwB,CAAC;AAsC/D,QAAA,MAAM,WAAW,sDAAwC,CAAC;AAC1D,KAAK,WAAW,GAAG,UAAU,CAAC,OAAO,WAAW,CAAC,CAAC;AAClD,eAAe,WAAW,CAAC"}

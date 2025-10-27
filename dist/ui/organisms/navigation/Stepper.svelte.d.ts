@@ -17,3 +17,4 @@ interface Props {
 declare const Stepper: import("svelte").Component<Props, {}, "currentStep">;
 type Stepper = ReturnType<typeof Stepper>;
 export default Stepper;
+//# sourceMappingURL=Stepper.svelte.d.ts.map

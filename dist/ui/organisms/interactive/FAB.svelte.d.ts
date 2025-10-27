@@ -11,3 +11,4 @@ interface Props {
 declare const FAB: import("svelte").Component<Props, {}, "">;
 type FAB = ReturnType<typeof FAB>;
 export default FAB;
+//# sourceMappingURL=FAB.svelte.d.ts.map

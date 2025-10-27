@@ -8,3 +8,4 @@ interface Props {
 declare const Code: import("svelte").Component<Props, {}, "">;
 type Code = ReturnType<typeof Code>;
 export default Code;
+//# sourceMappingURL=Code.svelte.d.ts.map

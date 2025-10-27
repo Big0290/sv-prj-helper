@@ -7,3 +7,4 @@ interface Props {
 declare const ThemeProvider: import("svelte").Component<Props, {}, "theme">;
 type ThemeProvider = ReturnType<typeof ThemeProvider>;
 export default ThemeProvider;
+//# sourceMappingURL=ThemeProvider.svelte.d.ts.map

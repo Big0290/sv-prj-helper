@@ -10,3 +10,4 @@ interface Props {
 declare const Sidebar: import("svelte").Component<Props, {}, "isOpen">;
 type Sidebar = ReturnType<typeof Sidebar>;
 export default Sidebar;
+//# sourceMappingURL=Sidebar.svelte.d.ts.map

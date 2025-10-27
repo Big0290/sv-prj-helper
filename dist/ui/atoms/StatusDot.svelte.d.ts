@@ -7,3 +7,4 @@ interface Props {
 declare const StatusDot: import("svelte").Component<Props, {}, "">;
 type StatusDot = ReturnType<typeof StatusDot>;
 export default StatusDot;
+//# sourceMappingURL=StatusDot.svelte.d.ts.map

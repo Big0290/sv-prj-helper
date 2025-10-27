@@ -14,3 +14,4 @@ interface Props {
 declare const Popover: import("svelte").Component<Props, {}, "isOpen">;
 type Popover = ReturnType<typeof Popover>;
 export default Popover;
+//# sourceMappingURL=Popover.svelte.d.ts.map

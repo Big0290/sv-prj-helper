@@ -17,3 +17,4 @@ interface Props {
 declare const ContextMenu: import("svelte").Component<Props, {}, "">;
 type ContextMenu = ReturnType<typeof ContextMenu>;
 export default ContextMenu;
+//# sourceMappingURL=ContextMenu.svelte.d.ts.map

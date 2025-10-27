@@ -11,3 +11,4 @@ interface Props {
 declare const ConfirmDialog: import("svelte").Component<Props, {}, "isOpen">;
 type ConfirmDialog = ReturnType<typeof ConfirmDialog>;
 export default ConfirmDialog;
+//# sourceMappingURL=ConfirmDialog.svelte.d.ts.map

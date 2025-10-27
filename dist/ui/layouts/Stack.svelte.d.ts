@@ -10,3 +10,4 @@ interface Props {
 declare const Stack: import("svelte").Component<Props, {}, "">;
 type Stack = ReturnType<typeof Stack>;
 export default Stack;
+//# sourceMappingURL=Stack.svelte.d.ts.map

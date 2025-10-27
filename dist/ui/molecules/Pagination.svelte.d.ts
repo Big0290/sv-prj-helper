@@ -8,3 +8,4 @@ interface Props {
 declare const Pagination: import("svelte").Component<Props, {}, "currentPage">;
 type Pagination = ReturnType<typeof Pagination>;
 export default Pagination;
+//# sourceMappingURL=Pagination.svelte.d.ts.map

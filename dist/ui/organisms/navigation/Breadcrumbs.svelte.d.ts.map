@@ -1,0 +1,1 @@
+{"version":3,"file":"Breadcrumbs.svelte.d.ts","sourceRoot":"","sources":["../../../../src/lib/ui/organisms/navigation/Breadcrumbs.svelte.ts"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,OAAO,EAAE,MAAM,QAAQ,CAAC;AAGrC,UAAU,KAAK;IACd,QAAQ,EAAE,OAAO,CAAC;CAClB;AAkBF,QAAA,MAAM,WAAW,2CAAwC,CAAC;AAC1D,KAAK,WAAW,GAAG,UAAU,CAAC,OAAO,WAAW,CAAC,CAAC;AAClD,eAAe,WAAW,CAAC"}

@@ -16,3 +16,4 @@ interface Props {
 declare const UserProfile: import("svelte").Component<Props, {}, "">;
 type UserProfile = ReturnType<typeof UserProfile>;
 export default UserProfile;
+//# sourceMappingURL=UserProfile.svelte.d.ts.map

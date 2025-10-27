@@ -11,3 +11,4 @@ interface Props {
 declare const TableRowActions: import("svelte").Component<Props, {}, "">;
 type TableRowActions = ReturnType<typeof TableRowActions>;
 export default TableRowActions;
+//# sourceMappingURL=TableRowActions.svelte.d.ts.map

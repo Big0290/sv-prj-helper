@@ -9,6 +9,24 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "bundler"
-	}
+		"moduleResolution": "bundler",
+		"declaration": true,
+		"declarationMap": true,
+		"emitDeclarationOnly": false,
+		"noEmit": false,
+		"target": "ES2020",
+		"module": "ESNext",
+		"lib": ["ES2020", "DOM", "DOM.Iterable"]
+	},
+	"include": [
+		"src/lib/**/*",
+		"src/app.d.ts"
+	],
+	"exclude": [
+		"src/routes/**/*",
+		"**/*.test.*",
+		"**/*.spec.*",
+		"node_modules/**/*",
+		"dist/**/*"
+	]
 }

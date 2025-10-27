@@ -7,3 +7,4 @@ interface Props {
 declare const ImageGallery: import("svelte").Component<Props, {}, "">;
 type ImageGallery = ReturnType<typeof ImageGallery>;
 export default ImageGallery;
+//# sourceMappingURL=ImageGallery.svelte.d.ts.map

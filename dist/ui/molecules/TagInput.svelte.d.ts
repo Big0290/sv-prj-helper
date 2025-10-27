@@ -10,3 +10,4 @@ interface Props {
 declare const TagInput: import("svelte").Component<Props, {}, "tags">;
 type TagInput = ReturnType<typeof TagInput>;
 export default TagInput;
+//# sourceMappingURL=TagInput.svelte.d.ts.map

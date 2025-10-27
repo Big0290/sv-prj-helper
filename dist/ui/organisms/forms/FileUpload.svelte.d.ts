@@ -8,3 +8,4 @@ interface Props {
 declare const FileUpload: import("svelte").Component<Props, {}, "">;
 type FileUpload = ReturnType<typeof FileUpload>;
 export default FileUpload;
+//# sourceMappingURL=FileUpload.svelte.d.ts.map

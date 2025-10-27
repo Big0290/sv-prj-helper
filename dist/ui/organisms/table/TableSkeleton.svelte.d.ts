@@ -5,3 +5,4 @@ interface Props {
 declare const TableSkeleton: import("svelte").Component<Props, {}, "">;
 type TableSkeleton = ReturnType<typeof TableSkeleton>;
 export default TableSkeleton;
+//# sourceMappingURL=TableSkeleton.svelte.d.ts.map

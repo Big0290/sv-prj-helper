@@ -15,3 +15,4 @@ interface Props {
 declare const Tabs: import("svelte").Component<Props, {}, "activeTab">;
 type Tabs = ReturnType<typeof Tabs>;
 export default Tabs;
+//# sourceMappingURL=Tabs.svelte.d.ts.map

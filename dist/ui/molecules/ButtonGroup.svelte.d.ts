@@ -8,3 +8,4 @@ interface Props {
 declare const ButtonGroup: import("svelte").Component<Props, {}, "">;
 type ButtonGroup = ReturnType<typeof ButtonGroup>;
 export default ButtonGroup;
+//# sourceMappingURL=ButtonGroup.svelte.d.ts.map

@@ -8,3 +8,4 @@ interface Props {
 declare const AudioButton: import("svelte").Component<Props, {}, "">;
 type AudioButton = ReturnType<typeof AudioButton>;
 export default AudioButton;
+//# sourceMappingURL=AudioButton.svelte.d.ts.map

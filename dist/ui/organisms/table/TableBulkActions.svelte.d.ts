@@ -13,3 +13,4 @@ interface Props {
 declare const TableBulkActions: import("svelte").Component<Props, {}, "">;
 type TableBulkActions = ReturnType<typeof TableBulkActions>;
 export default TableBulkActions;
+//# sourceMappingURL=TableBulkActions.svelte.d.ts.map

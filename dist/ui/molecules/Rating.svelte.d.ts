@@ -9,3 +9,4 @@ interface Props {
 declare const Rating: import("svelte").Component<Props, {}, "value">;
 type Rating = ReturnType<typeof Rating>;
 export default Rating;
+//# sourceMappingURL=Rating.svelte.d.ts.map

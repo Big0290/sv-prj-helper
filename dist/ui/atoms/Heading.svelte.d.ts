@@ -11,3 +11,4 @@ interface Props {
 declare const Heading: import("svelte").Component<Props, {}, "">;
 type Heading = ReturnType<typeof Heading>;
 export default Heading;
+//# sourceMappingURL=Heading.svelte.d.ts.map

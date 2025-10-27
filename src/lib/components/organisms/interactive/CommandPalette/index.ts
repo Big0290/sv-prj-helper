@@ -1,0 +1,2 @@
+export { default as CommandPalette } from './CommandPalette.svelte';
+export type { CommandPaletteProps, CommandPaletteEvents, CommandPaletteSlots } from './CommandPalette.types.js';

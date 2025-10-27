@@ -1,0 +1,1 @@
+{"version":3,"file":"TableBulkActions.svelte.d.ts","sourceRoot":"","sources":["../../../../../src/lib/components/organisms/table/TableBulkActions/TableBulkActions.svelte.ts"],"names":[],"mappings":"AAIA,OAAO,KAAK,EAAE,qBAAqB,EAAE,MAAM,6BAA6B,CAAC;AAsDzE,QAAA,MAAM,gBAAgB,2DAAwC,CAAC;AAC/D,KAAK,gBAAgB,GAAG,UAAU,CAAC,OAAO,gBAAgB,CAAC,CAAC;AAC5D,eAAe,gBAAgB,CAAC"}

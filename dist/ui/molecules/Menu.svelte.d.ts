@@ -10,3 +10,4 @@ interface Props {
 declare const Menu: import("svelte").Component<Props, {}, "open">;
 type Menu = ReturnType<typeof Menu>;
 export default Menu;
+//# sourceMappingURL=Menu.svelte.d.ts.map

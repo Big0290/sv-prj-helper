@@ -8,3 +8,4 @@ interface Props {
 declare const InfiniteScroll: import("svelte").Component<Props, {}, "">;
 type InfiniteScroll = ReturnType<typeof InfiniteScroll>;
 export default InfiniteScroll;
+//# sourceMappingURL=InfiniteScroll.svelte.d.ts.map

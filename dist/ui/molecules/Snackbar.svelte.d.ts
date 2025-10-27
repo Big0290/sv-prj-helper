@@ -11,3 +11,4 @@ interface Props {
 declare const Snackbar: import("svelte").Component<Props, {}, "isOpen">;
 type Snackbar = ReturnType<typeof Snackbar>;
 export default Snackbar;
+//# sourceMappingURL=Snackbar.svelte.d.ts.map

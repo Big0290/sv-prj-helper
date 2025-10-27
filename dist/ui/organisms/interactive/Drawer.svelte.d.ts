@@ -10,3 +10,4 @@ interface Props {
 declare const Drawer: import("svelte").Component<Props, {}, "isOpen">;
 type Drawer = ReturnType<typeof Drawer>;
 export default Drawer;
+//# sourceMappingURL=Drawer.svelte.d.ts.map

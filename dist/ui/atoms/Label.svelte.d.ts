@@ -10,3 +10,4 @@ interface Props {
 declare const Label: import("svelte").Component<Props, {}, "">;
 type Label = ReturnType<typeof Label>;
 export default Label;
+//# sourceMappingURL=Label.svelte.d.ts.map

@@ -16,3 +16,4 @@ interface Props {
 declare const TableToolbar: import("svelte").Component<Props, {}, "searchValue">;
 type TableToolbar = ReturnType<typeof TableToolbar>;
 export default TableToolbar;
+//# sourceMappingURL=TableToolbar.svelte.d.ts.map

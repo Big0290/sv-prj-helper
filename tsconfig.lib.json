@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "outDir": "./dist",
+    "rootDir": "./src/lib",
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "skipLibCheck": true,
+    "noErrorTruncation": false
+  },
+  "include": [
+    "src/lib/index.ts",
+    "src/lib/ui/index.ts",
+    "src/lib/docs/index.ts",
+    "src/lib/hooks/index.ts",
+    "src/lib/styles/**/*"
+  ],
+  "exclude": [
+    "src/lib/**/*.test.*",
+    "src/lib/**/*.spec.*",
+    "src/lib/**/stories/**",
+    "src/lib/**/demo/**",
+    "src/lib/components/**/*"
+  ]
+}

@@ -14,3 +14,4 @@ interface Props {
 declare const MessageReaction: import("svelte").Component<Props, {}, "">;
 type MessageReaction = ReturnType<typeof MessageReaction>;
 export default MessageReaction;
+//# sourceMappingURL=MessageReaction.svelte.d.ts.map

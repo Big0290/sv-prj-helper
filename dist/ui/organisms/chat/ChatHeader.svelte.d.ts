@@ -11,3 +11,4 @@ interface Props {
 declare const ChatHeader: import("svelte").Component<Props, {}, "">;
 type ChatHeader = ReturnType<typeof ChatHeader>;
 export default ChatHeader;
+//# sourceMappingURL=ChatHeader.svelte.d.ts.map

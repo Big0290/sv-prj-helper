@@ -9,3 +9,4 @@ interface Props {
 declare const ScrollArea: import("svelte").Component<Props, {}, "">;
 type ScrollArea = ReturnType<typeof ScrollArea>;
 export default ScrollArea;
+//# sourceMappingURL=ScrollArea.svelte.d.ts.map

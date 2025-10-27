@@ -20,3 +20,4 @@ interface Props {
 declare const Textarea: import("svelte").Component<Props, {}, "value">;
 type Textarea = ReturnType<typeof Textarea>;
 export default Textarea;
+//# sourceMappingURL=Textarea.svelte.d.ts.map

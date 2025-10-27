@@ -48,3 +48,4 @@ export declare function useCodeEditorTabs(initialTabs?: Omit<EditorTab, 'isDirty
     setActiveTab: (id: string) => void;
     markDirty: (id: string, dirty: boolean) => void;
 };
+//# sourceMappingURL=useCodeEditor.d.ts.map

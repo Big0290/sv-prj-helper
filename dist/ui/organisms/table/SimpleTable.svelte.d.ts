@@ -12,3 +12,4 @@ interface Props {
 declare const SimpleTable: import("svelte").Component<Props, {}, "">;
 type SimpleTable = ReturnType<typeof SimpleTable>;
 export default SimpleTable;
+//# sourceMappingURL=SimpleTable.svelte.d.ts.map

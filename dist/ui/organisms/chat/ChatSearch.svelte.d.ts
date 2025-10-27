@@ -17,3 +17,4 @@ interface Props {
 declare const ChatSearch: import("svelte").Component<Props, {}, "query">;
 type ChatSearch = ReturnType<typeof ChatSearch>;
 export default ChatSearch;
+//# sourceMappingURL=ChatSearch.svelte.d.ts.map

@@ -21,3 +21,4 @@ declare const CodeEditor: import("svelte").Component<Props, {
 }, "value">;
 type CodeEditor = ReturnType<typeof CodeEditor>;
 export default CodeEditor;
+//# sourceMappingURL=CodeEditor.svelte.d.ts.map

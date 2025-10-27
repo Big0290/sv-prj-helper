@@ -5,3 +5,4 @@ interface Props {
 declare const Divider: import("svelte").Component<Props, {}, "">;
 type Divider = ReturnType<typeof Divider>;
 export default Divider;
+//# sourceMappingURL=Divider.svelte.d.ts.map

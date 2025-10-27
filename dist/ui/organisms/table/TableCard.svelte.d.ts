@@ -10,3 +10,4 @@ interface Props {
 declare const TableCard: import("svelte").Component<Props, {}, "">;
 type TableCard = ReturnType<typeof TableCard>;
 export default TableCard;
+//# sourceMappingURL=TableCard.svelte.d.ts.map
