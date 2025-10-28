@@ -1,4 +1,8 @@
-# 0.2.0 (2025-10-28)
+# [0.3.0](https://github.com/Big0290/sv-prj-helper/compare/v0.2.0...v0.3.0) (2025-10-28)
+
+
+
+# [0.2.0](https://github.com/Big0290/sv-prj-helper/compare/6f45b0444e78171c076f55f6861908baff62ae61...v0.2.0) (2025-10-28)
 
 
 ### Bug Fixes
