@@ -1,36 +1,18 @@
-# Changelog
+# 0.2.0 (2025-10-28)
 
-All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### Bug Fixes
 
-## [Unreleased]
+* **typescript:** Resolve TypeScript errors across component library ([03934e7](https://github.com/Big0290/sv-prj-helper/commit/03934e7612d28b488d37a8267605de6b06452ac1))
+* **ui:** Remove duplicate import for Input component ([6f45b04](https://github.com/Big0290/sv-prj-helper/commit/6f45b0444e78171c076f55f6861908baff62ae61))
+* update package-lock.json to sync with package.json dependencies ([7e67db1](https://github.com/Big0290/sv-prj-helper/commit/7e67db1dc25c263aaf8c223cf78983ac4fc94c07))
 
-### Added
-- Initial component library structure
-- Comprehensive documentation system
-- Interactive component playground
-- GitHub package publishing workflow
-- Semantic versioning and automated changelog generation
 
-### Changed
-- Reorganized component structure for better maintainability
-- Improved TypeScript definitions and exports
-- Enhanced build system for optimal packaging
+### Features
 
-### Fixed
-- Component import/export paths
-- TypeScript compilation issues
-- Package distribution configuration
+* **component-library:** Add initial distribution of atomic components ([94de9a2](https://github.com/Big0290/sv-prj-helper/commit/94de9a224630ed233d8e450fa199bbcf853ed215))
+* **components:** Add line-clamp compatibility script and update component styles ([038eb8b](https://github.com/Big0290/sv-prj-helper/commit/038eb8b19cdfb71edc800d7b260c48e7079ba827))
+* **project-structure:** Refactor project imports and add utility scripts ([c17da38](https://github.com/Big0290/sv-prj-helper/commit/c17da381ddfb764142d57f2f8a471826a531fb8e))
 
-## [0.1.0] - 2024-10-27
 
-### Added
-- Initial release of SV Project Helper UI Library
-- Core component set with glassmorphism design
-- Full accessibility support (WCAG 2.1 AA)
-- Svelte 5 runes and snippets support
-- TypeScript definitions
-- Dark mode support
-- Responsive design system
+
