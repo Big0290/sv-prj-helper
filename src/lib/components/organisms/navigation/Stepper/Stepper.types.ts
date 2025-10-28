@@ -1,5 +1,15 @@
 import type { Snippet } from 'svelte';
 
+export interface Step {
+  id?: string;
+  label: string;
+  title?: string;
+  description?: string;
+  status?: 'upcoming' | 'current' | 'complete' | 'error';
+  disabled?: boolean;
+  icon?: string;
+}
+
 export interface StepperProps {
 steps: Step[];
 		currentStep?: number;

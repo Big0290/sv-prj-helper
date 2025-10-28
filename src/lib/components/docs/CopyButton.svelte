@@ -77,14 +77,13 @@
 	});
 </script>
 
-<Button 
-	{variant}
-	{size}
-	onclick={copyToClipboard}
-	disabled={copied}
-	class={`copy-button ${className}`}
-	title={copied ? successLabel : `${label} to clipboard`}
->
+<div class="copy-button {className}" title={copied ? successLabel : `${label} to clipboard`}>
+	<Button 
+		{variant}
+		{size}
+		onclick={copyToClipboard}
+		disabled={copied}
+	>
 	{#if copied}
 		<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="copy-icon">
 			<polyline points="20 6 9 17 4 12"></polyline>
@@ -97,7 +96,8 @@
 		</svg>
 		{label}
 	{/if}
-</Button>
+	</Button>
+</div>
 
 <style>
 	:global(.copy-button) {

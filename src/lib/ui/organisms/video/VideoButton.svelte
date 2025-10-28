@@ -146,6 +146,7 @@
 		aria-modal="true"
 		tabindex="-1"
 	>
+		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<div
 			class="modal-content"
 			onclick={(e) => e.stopPropagation()}
@@ -311,12 +312,14 @@
 		text-overflow: ellipsis;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
+		line-clamp: 2;
 		-webkit-box-orient: vertical;
 	}
 
 	.video-button.sm .title-text {
 		font-size: var(--font-size-sm);
 		-webkit-line-clamp: 1;
+		line-clamp: 1;
 	}
 
 	.video-button.lg .title-text {

@@ -206,7 +206,7 @@ export interface VideoItem {
 					<div class="item-info">
 						<span class="item-title">{video.title}</span>
 						{#if video.duration}
-							<span class="item-duration">{formatDuration(video.duration)}</span>
+							<span class="item-duration">{video.duration}</span>
 						{/if}
 					</div>
 					{#if index === currentIndex}

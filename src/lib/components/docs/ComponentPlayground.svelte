@@ -112,7 +112,7 @@
 
 <div class="playground">
 	<div class="playground-header">
-		<Flex justify="space-between" align="center" wrap>
+		<Flex justify="space-between" align="center" wrap="wrap">
 			<div class="example-selector">
 				{#if examples.length > 1}
 					<Text size="sm" weight="medium">Example:</Text>
@@ -203,19 +203,17 @@
 									{#if options.length > 0}
 										<Select 
 											value={propValues[prop.name] || ''}
+											options={[
+												{ value: '', label: 'Select...' },
+												...options.map(opt => ({ value: opt, label: opt }))
+											]}
 											onchange={(e) => handlePropChange(prop.name, (e.target as HTMLInputElement).value)}
-										>
-											<option value="">Select...</option>
-											{#each options as option}
-												<option value={option}>{option}</option>
-											{/each}
-										</Select>
+										/>
 									{:else}
 										<Input 
 											value={propValues[prop.name] || ''}
 											oninput={(e) => handlePropChange(prop.name, (e.target as HTMLInputElement).value)}
 											placeholder={prop.description}
-											size="sm"
 										/>
 									{/if}
 								{:else if prop.type.includes('number')}
@@ -224,14 +222,12 @@
 										value={propValues[prop.name] || 0}
 										oninput={(e) => handlePropChange(prop.name, parseInt((e.target as HTMLInputElement).value) || 0)}
 										placeholder={prop.description}
-										size="sm"
 									/>
 								{:else}
 									<Input 
 										value={propValues[prop.name] || ''}
 										oninput={(e) => handlePropChange(prop.name, (e.target as HTMLInputElement).value)}
 										placeholder={prop.description}
-										size="sm"
 									/>
 								{/if}
 								
@@ -296,8 +292,8 @@
 		flex-direction: column;
 	}
 
-	.preview-container,
-	.code-container {
+	:global(.preview-container),
+	:global(.code-container) {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
@@ -325,7 +321,7 @@
 		background: var(--bg-primary);
 	}
 
-	.props-panel {
+	:global(.props-panel) {
 		margin-top: 1rem;
 	}
 

@@ -163,7 +163,7 @@
 									<span>{item.senderName}</span>
 									<span>•</span>
 								{/if}
-								<span>{formatDate(item.timestamp)}</span>
+								<span>{item.timestamp ? formatDate(item.timestamp) : ''}</span>
 								{#if item.size}
 									<span>•</span>
 									<span>{formatSize(item.size)}</span>

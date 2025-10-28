@@ -91,7 +91,7 @@
 {/if}
 
 <style>
-	.table-of-contents {
+	:global(.table-of-contents) {
 		position: sticky;
 		top: 100px;
 		max-height: calc(100vh - 120px);
@@ -102,7 +102,7 @@
 		padding: 1rem;
 	}
 
-	.toc-title {
+	:global(.toc-title) {
 		margin-bottom: 1rem;
 		padding-bottom: 0.5rem;
 		border-bottom: 1px solid var(--border-color);
@@ -173,26 +173,26 @@
 	}
 
 	/* Scrollbar styling */
-	.table-of-contents::-webkit-scrollbar {
+	:global(.table-of-contents::-webkit-scrollbar) {
 		width: 4px;
 	}
 
-	.table-of-contents::-webkit-scrollbar-track {
+	:global(.table-of-contents::-webkit-scrollbar-track) {
 		background: var(--bg-secondary);
 		border-radius: 2px;
 	}
 
-	.table-of-contents::-webkit-scrollbar-thumb {
+	:global(.table-of-contents::-webkit-scrollbar-thumb) {
 		background: var(--border-color);
 		border-radius: 2px;
 	}
 
-	.table-of-contents::-webkit-scrollbar-thumb:hover {
+	:global(.table-of-contents::-webkit-scrollbar-thumb:hover) {
 		background: var(--text-secondary);
 	}
 
 	@media (max-width: 1024px) {
-		.table-of-contents {
+		:global(.table-of-contents) {
 			position: static;
 			max-height: none;
 		}

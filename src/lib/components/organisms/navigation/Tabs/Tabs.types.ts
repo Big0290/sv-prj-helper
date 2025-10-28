@@ -1,5 +1,13 @@
 import type { Snippet } from 'svelte';
 
+export interface Tab {
+  id: string;
+  label: string;
+  content?: string;
+  disabled?: boolean;
+  icon?: string;
+}
+
 export interface TabsProps {
 tabs: Tab[];
 		activeTab?: string;

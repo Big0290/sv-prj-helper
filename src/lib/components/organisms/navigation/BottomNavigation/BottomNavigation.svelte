@@ -1,17 +1,5 @@
-<script module lang="ts">
-export interface NavItem {
-		id: string;
-		label: string;
-		icon: string;
-		badge?: number;
-		onClick?: () => void;
-	}
-</script>
-
 <script lang="ts">
-	
-
-	import type { BottomNavigationProps } from './BottomNavigation.types.js';
+	import type { BottomNavigationProps, NavItem } from './BottomNavigation.types.js';
 
 	let { items,
 		active = $bindable(items[0]?.id),
@@ -39,7 +27,7 @@ export interface NavItem {
 					<path d={item.icon} />
 				</svg>
 				{#if item.badge}
-					<span class="badge">{item.badge > 99 ? '99+' : item.badge}</span>
+					<span class="badge">{typeof item.badge === 'number' && item.badge > 99 ? '99+' : item.badge}</span>
 				{/if}
 			</div>
 			<span class="label">{item.label}</span>

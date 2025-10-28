@@ -9,25 +9,27 @@
 
 	let { code, showError = true }: Props = $props();
 
-	let previewContainer: HTMLDivElement;
+	let previewContainer: HTMLDivElement | undefined = $state();
 	let error: string | null = $state(null);
 	let loading = $state(false);
 
 	// Compile and render the Svelte code
-	$effect(async () => {
+	$effect(() => {
 		if (!code.trim()) return;
 		
-		loading = true;
-		error = null;
+		(async () => {
+			loading = true;
+			error = null;
 
-		try {
-			await renderPreview(code);
-		} catch (err) {
+			try {
+				await renderPreview(code);
+			} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to render preview';
 			console.error('Preview error:', err);
-		} finally {
-			loading = false;
-		}
+			} finally {
+				loading = false;
+			}
+		})();
 	});
 
 	async function renderPreview(svelteCode: string) {

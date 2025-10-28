@@ -1,16 +1,5 @@
-<script module lang="ts">
-export interface Step {
-		label: string;
-		description?: string;
-		icon?: string;
-		status?: 'complete' | 'current' | 'upcoming' | 'error';
-	}
-</script>
-
 <script lang="ts">
-	
-
-	import type { StepperProps } from './Stepper.types.js';
+	import type { StepperProps, Step } from './Stepper.types.js';
 
 	let { steps,
 		currentStep = $bindable(0),

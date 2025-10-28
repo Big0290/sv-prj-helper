@@ -139,7 +139,7 @@
 		flex-direction: column;
 	}
 
-	.preview-container {
+	:global(.preview-container) {
 		flex: 1;
 		display: flex;
 		flex-direction: column;

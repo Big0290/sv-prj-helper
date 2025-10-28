@@ -87,9 +87,9 @@
 								</td>
 								<td>
 									{#if isRequired(item)}
-										<Badge variant="error" size="xs">Required</Badge>
+										<Badge variant="error" size="sm">Required</Badge>
 									{:else}
-										<Badge variant="secondary" size="xs">Optional</Badge>
+										<Badge variant="info" size="sm">Optional</Badge>
 									{/if}
 								</td>
 								<td>
@@ -140,7 +140,7 @@
 		width: 100%;
 	}
 
-	.table-container {
+	:global(.table-container) {
 		padding: 0;
 		overflow: hidden;
 	}
