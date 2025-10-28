@@ -1,16 +1,5 @@
-<script module lang="ts">
-export interface Reaction {
-		emoji: string;
-		count: number;
-		userReacted: boolean;
-		users?: string[];
-	}
-</script>
-
 <script lang="ts">
-	
-
-	import type { MessageReactionProps } from './MessageReaction.types.js';
+	import type { MessageReactionProps, Reaction } from './MessageReaction.types.js';
 
 	let { reactions = [],
 		showPicker = false,
@@ -58,7 +47,7 @@ export interface Reaction {
 				type="button"
 				class="reaction-bubble"
 				class:reacted={reaction.userReacted}
-				onclick={() => handleReactionClick(reaction.emoji, reaction.userReacted)}
+				onclick={() => handleReactionClick(reaction.emoji, reaction.userReacted || false)}
 				title={getTooltipText(reaction)}
 			>
 				<span class="emoji">{reaction.emoji}</span>

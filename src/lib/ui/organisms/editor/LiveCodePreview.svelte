@@ -137,6 +137,17 @@
 		}
 	});
 
+	function updatePreview() {
+		if (previewFrame) {
+			const doc = previewFrame.contentDocument;
+			if (doc) {
+				doc.open();
+				doc.write(iframeContent);
+				doc.close();
+			}
+		}
+	}
+
 	function clearConsole() {
 		consoleOutput = [];
 	}

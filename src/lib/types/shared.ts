@@ -3,12 +3,15 @@ export interface BreadcrumbItem {
   label: string;
   href?: string;
   disabled?: boolean;
+  icon?: string;
 }
 
 export interface Message {
   id: string;
   content: string;
   author: string;
+  sender?: string;
+  avatar?: string;
   timestamp: Date;
   type?: 'text' | 'image' | 'file';
 }
@@ -18,6 +21,9 @@ export interface ChatRoom {
   name: string;
   lastMessage?: Message;
   unreadCount?: number;
+  avatar?: string;
+  isOnline?: boolean;
+  lastMessageTime?: Date;
 }
 
 export interface SearchResult {

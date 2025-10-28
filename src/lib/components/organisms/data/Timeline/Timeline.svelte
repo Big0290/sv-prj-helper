@@ -99,7 +99,7 @@ export interface TimelineItem {
 					{/if}
 					{#if item.content}
 						<div class="timeline-custom">
-							{@render item.content()}
+							{item.content}
 						</div>
 					{/if}
 				</div>

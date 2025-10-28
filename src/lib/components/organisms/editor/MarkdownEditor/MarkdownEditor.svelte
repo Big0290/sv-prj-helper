@@ -45,8 +45,8 @@
 		// Set cursor position after insertion
 		setTimeout(() => {
 			const newPos = start + before.length + selectedText.length;
-			textareaEl.setSelectionRange(newPos, newPos);
-			textareaEl.focus();
+			textareaEl?.setSelectionRange(newPos, newPos);
+			textareaEl?.focus();
 		}, 0);
 		
 		onValueChange?.(value);
@@ -63,8 +63,8 @@
 		
 		setTimeout(() => {
 			const newPos = lineStart + text.length;
-			textareaEl.setSelectionRange(newPos, newPos);
-			textareaEl.focus();
+			textareaEl?.setSelectionRange(newPos, newPos);
+			textareaEl?.focus();
 		}, 0);
 		
 		onValueChange?.(value);

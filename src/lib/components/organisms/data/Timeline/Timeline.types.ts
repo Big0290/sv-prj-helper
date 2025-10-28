@@ -1,5 +1,16 @@
 import type { Snippet } from 'svelte';
 
+export interface TimelineItem {
+  id: string;
+  title: string;
+  description?: string;
+  content?: string;
+  timestamp: Date;
+  type?: string;
+  variant?: string;
+  icon?: string;
+}
+
 export interface TimelineProps {
 items: TimelineItem[];
 		variant?: 'default' | 'compact' | 'detailed' | 'alternating';

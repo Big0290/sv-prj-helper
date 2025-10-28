@@ -1,5 +1,12 @@
 import type { Snippet } from 'svelte';
 
+export interface Reaction {
+  emoji: string;
+  count: number;
+  userReacted: boolean;
+  users?: string[];
+}
+
 export interface MessageReactionProps {
 reactions?: Reaction[];
 		showPicker?: boolean;

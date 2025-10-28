@@ -1,5 +1,13 @@
 import type { Snippet } from 'svelte';
 
+export interface CarouselItem {
+  id: string;
+  title?: string;
+  content: string;
+  description?: string;
+  image?: string;
+}
+
 export interface CarouselProps {
 items: CarouselItem[];
 		activeIndex?: number;

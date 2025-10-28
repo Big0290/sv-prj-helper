@@ -1,7 +1,18 @@
 import type { Snippet } from 'svelte';
 
+export interface Message {
+  id: string;
+  content: string;
+  author: string;
+  sender?: string;
+  senderName?: string;
+  avatar?: string;
+  timestamp: Date;
+  type?: 'text' | 'image' | 'file';
+}
+
 export interface ChatProps {
-messages?: Message[];
+	messages?: Message[];
 		placeholder?: string;
 		currentUser?: string;
 		showTypingIndicator?: boolean;

@@ -50,8 +50,8 @@
 							  type === 'upca' ? 'UPC' : 'EAN13';
 				
 				// Calculate barcode height proportionally
-				const height = type === 'qrcode' ? size : Math.floor(size * 0.4);
-				const width = type === 'qrcode' ? 2 : Math.floor(size / 100);
+				const height = Math.floor(size * 0.4);
+				const width = Math.floor(size / 100);
 				
 				JsBarcode(canvas, value, {
 					format: format,

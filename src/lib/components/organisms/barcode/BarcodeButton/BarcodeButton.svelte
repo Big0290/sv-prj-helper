@@ -1,5 +1,5 @@
 <script lang="ts">
-	import BarcodeModal from './BarcodeModal.svelte';
+	import BarcodeModal from '../BarcodeModal/BarcodeModal.svelte';
 
 	import type { BarcodeButtonProps } from './BarcodeButton.types.js';
 

@@ -37,7 +37,16 @@
 	{/if}
 	<div class="input-container">
 		<input
-			{...{ type, placeholder, disabled, readonly, required, name, autocomplete, maxlength, minlength, pattern }}
+			{type}
+			{placeholder}
+			{disabled}
+			{readonly}
+			{required}
+			{name}
+			{maxlength}
+			{minlength}
+			{pattern}
+			autocomplete={autocomplete as any}
 			bind:value
 			id={inputId}
 			class="input"

@@ -1,4 +1,5 @@
 import type { Snippet } from 'svelte';
+import type { BreadcrumbItem } from '../../../types/shared.js';
 
 export interface BreadcrumbProps {
 items: BreadcrumbItem[];

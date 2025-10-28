@@ -20,7 +20,7 @@
 	
 	let mediaRecorder: MediaRecorder | null = null;
 	let audioChunks: Blob[] = [];
-	let recordingInterval: number;
+	let recordingInterval: ReturnType<typeof setInterval> | null = null;
 	let audioElement = $state<HTMLAudioElement>();
 
 	async function startRecording() {
@@ -58,7 +58,7 @@
 	function pauseRecording() {
 		if (mediaRecorder && isRecording) {
 			mediaRecorder.pause();
-			clearInterval(recordingInterval);
+			if (recordingInterval) clearInterval(recordingInterval);
 			isPaused = true;
 		}
 	}
@@ -79,7 +79,7 @@
 	function stopRecording() {
 		if (mediaRecorder && isRecording) {
 			mediaRecorder.stop();
-			clearInterval(recordingInterval);
+			if (recordingInterval) clearInterval(recordingInterval);
 			isRecording = false;
 			isPaused = false;
 		}

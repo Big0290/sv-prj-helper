@@ -1,5 +1,13 @@
 import type { Snippet } from 'svelte';
 
+export interface PinnedMessage {
+  id: string;
+  content: string;
+  author: string;
+  senderName?: string;
+  timestamp: Date;
+}
+
 export interface PinnedMessagesProps {
 messages?: PinnedMessage[];
 		onMessageClick?: (messageId: string) => void;

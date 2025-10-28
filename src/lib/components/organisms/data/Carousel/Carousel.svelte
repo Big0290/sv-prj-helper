@@ -121,7 +121,7 @@ export interface CarouselItem {
 						</div>
 					{/if}
 					<div class="carousel-content">
-						{@render item.content()}
+						{item.content}
 					</div>
 				</div>
 			{/each}

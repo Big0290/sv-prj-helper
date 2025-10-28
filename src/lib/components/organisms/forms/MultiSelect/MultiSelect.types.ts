@@ -1,5 +1,11 @@
 import type { Snippet } from 'svelte';
 
+export interface SelectOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
+
 export interface MultiSelectProps {
 options: SelectOption[];
 		selected?: string[];

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import CodeEditor from './CodeEditor.svelte';
-	import Button from '../../atoms/Button.svelte';
+	import CodeEditor from '../CodeEditor/CodeEditor.svelte';
+	import Button from '$lib/ui/atoms/Button.svelte';
 	import { onMount } from 'svelte';
 
 	import type { LiveCodePreviewProps } from './LiveCodePreview.types.js';
@@ -13,7 +13,7 @@
 		showPreview = $bindable(true),
 		autoRun = true,
 		minHeight = '500px'
-	}: Props = $props();
+	}: LiveCodePreviewProps = $props();
 
 	let html = $state(initialHtml);
 	let css = $state(initialCss);
@@ -128,6 +128,17 @@
 			return () => clearTimeout(timeoutId);
 		}
 	});
+
+	function updatePreview() {
+		if (previewFrame) {
+			const doc = previewFrame.contentDocument;
+			if (doc) {
+				doc.open();
+				doc.write(iframeContent);
+				doc.close();
+			}
+		}
+	}
 
 	function clearConsole() {
 		consoleOutput = [];

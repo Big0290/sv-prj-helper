@@ -28,7 +28,7 @@ export interface ChatRoom {
 		searchQuery
 			? rooms.filter(room => 
 				room.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				room.lastMessage?.toLowerCase().includes(searchQuery.toLowerCase())
+				room.lastMessage?.content?.toLowerCase().includes(searchQuery.toLowerCase())
 			)
 			: rooms
 	);

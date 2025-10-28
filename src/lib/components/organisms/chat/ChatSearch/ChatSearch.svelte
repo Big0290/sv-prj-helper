@@ -119,10 +119,10 @@
 					>
 						<div class="result-header">
 							<span class="sender-name">{result.senderName}</span>
-							<span class="timestamp">{formatTime(result.timestamp)}</span>
+							<span class="timestamp">{result.timestamp ? formatTime(result.timestamp) : ''}</span>
 						</div>
 						<div class="result-text">
-							{@html highlightMatch(result.messageText, query)}
+							{@html highlightMatch(result.messageText || '', query)}
 						</div>
 					</button>
 				{/each}
@@ -352,6 +352,7 @@
 		line-height: 1.5;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
+		line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}

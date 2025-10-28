@@ -107,7 +107,7 @@
 							<span class="sender-name">{message.senderName}</span>
 							<span class="timestamp">{formatDate(message.timestamp)}</span>
 						</div>
-						<p class="message-text">{message.text}</p>
+						<p class="message-text">{message.content}</p>
 					</button>
 					{#if onUnpin}
 						<button
@@ -269,12 +269,14 @@
 		line-height: 1.5;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
+		line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
 
 	.expanded .message-text {
 		-webkit-line-clamp: 3;
+		line-clamp: 3;
 	}
 
 	.unpin-btn {
