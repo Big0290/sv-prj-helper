@@ -206,8 +206,7 @@
 							{#each section.items as item}
 								<Link 
 									href={item.path} 
-									class="nav-item"
-									class:active={currentPath === item.path}
+									class={`nav-item ${currentPath === item.path ? 'active' : ''}`}
 									onclick={closeSidebar}
 								>
 									<Text size="sm">{item.title}</Text>

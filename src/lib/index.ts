@@ -8,4 +8,5 @@ export * from './docs/index.js';
 // export * from './types/index.js';
 
 // New component structure (will gradually replace the above)
+// Temporarily disabled to avoid conflicts - use direct imports for now
 // export * from './components/index.js';
