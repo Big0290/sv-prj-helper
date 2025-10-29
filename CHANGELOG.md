@@ -1,3 +1,17 @@
+# [0.4.0](https://github.com/Big0290/sv-prj-helper/compare/v0.3.0...v0.4.0) (2025-10-29)
+
+
+### Bug Fixes
+
+* Improve null safety and layout consistency in BlogPlatformExample and ProjectManagementExample ([63e37c3](https://github.com/Big0290/sv-prj-helper/commit/63e37c3fcf03c1b20315d39f2b8514e16981c7bb))
+
+
+### Features
+
+* **components:** Enhance DraggableGrid and KanbanBoard with improved rendering and styling ([3cd941b](https://github.com/Big0290/sv-prj-helper/commit/3cd941bd27e605bb61c59966a9ef3121574fc8be))
+
+
+
 # [0.3.0](https://github.com/Big0290/sv-prj-helper/compare/v0.2.0...v0.3.0) (2025-10-28)
 
 
