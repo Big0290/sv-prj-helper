@@ -257,6 +257,8 @@
 		box-shadow: var(--glass-shadow);
 		min-width: 280px;
 		max-width: 400px;
+		box-sizing: border-box;
+		overflow: hidden;
 	}
 
 	.money-counter.disabled {
@@ -323,13 +325,17 @@
 	.counter-wrapper {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		gap: var(--spacing-3);
 		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.increment-button {
 		width: 48px;
 		height: 48px;
+		min-width: 48px;
+		min-height: 48px;
 		border-radius: var(--radius-full);
 		border: none;
 		background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
@@ -341,6 +347,9 @@
 		transition: all var(--transition-base);
 		box-shadow: var(--glass-shadow);
 		flex-shrink: 0;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
 	}
 
 	.increment-button:hover:not(:disabled) {
@@ -350,7 +359,7 @@
 	}
 
 	.increment-button:active:not(:disabled) {
-		transform: translateY(0);
+		transform: translateY(0) scale(0.98);
 	}
 
 	.increment-button:disabled {
@@ -368,6 +377,7 @@
 
 	.count-input {
 		flex: 1;
+		min-width: 0;
 		height: 48px;
 		padding: var(--spacing-2) var(--spacing-4);
 		font-size: var(--font-size-xl);
@@ -381,6 +391,8 @@
 		-webkit-backdrop-filter: blur(var(--glass-blur));
 		box-shadow: var(--glass-shadow);
 		transition: all var(--transition-base);
+		box-sizing: border-box;
+		margin: 0;
 	}
 
 	.count-input:focus {
