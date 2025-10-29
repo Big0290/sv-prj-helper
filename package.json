@@ -44,7 +44,8 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "prepublishOnly": "npm run build",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0",
+    "validate:release": "node scripts/release/validate-release.js"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",

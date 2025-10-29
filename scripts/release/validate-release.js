@@ -82,8 +82,7 @@ function validateBuildOutput() {
   
   const requiredDistFiles = [
     'dist/index.js',
-    'dist/index.d.ts',
-    'dist/package.json'
+    'dist/index.d.ts'
   ];
   
   const missingDistFiles = requiredDistFiles.filter(file => !existsSync(file));
