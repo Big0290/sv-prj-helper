@@ -139,6 +139,7 @@ export { default as Drawer } from './organisms/interactive/Drawer.svelte'
 export { default as Dropdown } from './organisms/interactive/Dropdown.svelte'
 export { default as FAB } from './organisms/interactive/FAB.svelte'
 export { default as Modal } from './organisms/interactive/Modal.svelte'
+export { default as MoneyCounter } from './organisms/interactive/MoneyCounter.svelte'
 export { default as Popover } from './organisms/interactive/Popover.svelte'
 
 // Media Systems
@@ -195,3 +196,4 @@ export type { NavItem } from './organisms/navigation/BottomNavigation.svelte'
 export type { VideoItem } from './organisms/video/VideoPlaylist.svelte'
 export type { Attachment } from './organisms/chat/MessageAttachment.svelte'
 export type { Column, Row } from './organisms/table/DataTable.svelte'
+export type { MoneyCounterProps } from './organisms/interactive/MoneyCounter.svelte'
