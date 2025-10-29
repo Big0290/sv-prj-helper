@@ -152,7 +152,10 @@
         onkeydown={(e) => handleKeyDown(e, localItems.indexOf(item))}
         style="min-height: {minItemHeight};"
       >
-        {#if children}{@render children()}{/if}
+        <div class="item-content">
+          <span class="item-id">{item.id}</span>
+          <pre>{JSON.stringify(item.data, null, 2)}</pre>
+        </div>
       </div>
     {/each}
   </div>
@@ -249,6 +252,23 @@
   .grid-item:focus-visible {
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: var(--focus-ring-offset);
+  }
+
+  .item-content {
+    padding: var(--spacing-4);
+  }
+
+  .item-id {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-500);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .item-content pre {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-700);
+    margin: var(--spacing-2) 0 0;
+    overflow-x: auto;
   }
 
   @media (max-width: 768px) {

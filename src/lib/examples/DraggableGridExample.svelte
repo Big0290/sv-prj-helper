@@ -67,7 +67,7 @@
     </label>
 
     <Button onclick={addItem}>Add Item</Button>
-    <Button onclick={clearItems} variant="outline">Clear All</Button>
+    <Button onclick={clearItems} variant="ghost">Clear All</Button>
   </div>
 
   <DraggableGrid
@@ -78,18 +78,7 @@
     on:reorder={handleReorder}
     gap="4"
     minItemHeight="150px"
-  >
-    {#snippet render({ item, index })}
-      <div class="grid-item-content">
-        <div class="item-header">
-          <Badge>{item.data.category}</Badge>
-          <span class="item-index">#{index + 1}</span>
-        </div>
-        <h3 class="item-title">{item.data.title}</h3>
-        <div class="item-color" style="background: {item.data.color}"></div>
-      </div>
-    {/snippet}
-  </DraggableGrid>
+  />
 
   <p class="keyboard-hint">💡 Tip: Use arrow keys to navigate and move items</p>
 </div>
@@ -129,39 +118,6 @@
     border-radius: var(--radius-md);
     background: var(--color-neutral-50);
     font-size: var(--font-size-sm);
-  }
-
-  .grid-item-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-3);
-    height: 100%;
-  }
-
-  .item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .item-index {
-    font-size: var(--font-size-xs);
-    color: var(--color-neutral-500);
-    font-weight: var(--font-weight-medium);
-  }
-
-  .item-title {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    margin: 0;
-    color: var(--color-neutral-900);
-  }
-
-  .item-color {
-    width: 100%;
-    height: 40px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--glass-shadow-sm);
   }
 
   .keyboard-hint {

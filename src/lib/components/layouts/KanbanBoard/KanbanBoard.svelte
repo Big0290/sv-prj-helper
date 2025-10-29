@@ -25,7 +25,7 @@
     showAddColumn?: boolean
     allowAddCards?: boolean
     disabled?: boolean
-    children?: Snippet
+    render?: Snippet
   }
 
   let {
@@ -36,7 +36,7 @@
     showAddColumn = false,
     allowAddCards = false,
     disabled = false,
-    children,
+    render,
   }: Props = $props()
 
   const dispatch = createEventDispatcher()
@@ -134,7 +134,12 @@
             tabindex={disabled ? -1 : 0}
             aria-label={`Card: ${card.title}`}
           >
-            {#if children}{@render children()}{/if}
+            <div class="card-content">
+              <h4 class="card-title">{card.title}</h4>
+              {#if card.description}
+                <p class="card-description">{card.description}</p>
+              {/if}
+            </div>
           </div>
         {:else}
           <div class="empty-state">
@@ -290,6 +295,24 @@
 
   .card-padding-lg {
     padding: var(--spacing-6);
+  }
+
+  .card-content {
+    width: 100%;
+  }
+
+  .card-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    margin: 0 0 var(--spacing-2);
+    color: var(--color-neutral-900);
+  }
+
+  .card-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-600);
+    margin: 0;
+    line-height: 1.5;
   }
 
   .add-column-btn {

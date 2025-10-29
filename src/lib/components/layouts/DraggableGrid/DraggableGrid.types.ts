@@ -12,7 +12,7 @@ export interface DraggableGridProps<T = unknown> {
   gap?: '0' | '1' | '2' | '3' | '4' | '6' | '8'
   minItemHeight?: string
   disabled?: boolean
-  children: Snippet<{ item: DraggableItem<T>; index: number }>
+  children?: Snippet
 }
 
 export interface DraggableGridEvents<T = unknown> {
