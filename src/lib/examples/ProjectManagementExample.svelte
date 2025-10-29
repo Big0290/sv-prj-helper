@@ -285,6 +285,7 @@
             class="kanban-column"
             ondragover={handleDragOver}
             ondrop={(e) => handleDrop(e, column.id as Task['status'])}
+            role="region"
           >
             <div class="column-header">
               <Heading as="h3" size="6">{column.title}</Heading>
@@ -293,48 +294,50 @@
 
             <div class="column-tasks">
               {#each getTasksByStatus(column.id as Task['status']) as task}
-                <Card
+                <div
                   class="task-card"
                   draggable="true"
-                  ondragstart={(e) => handleDragStart(e, task.id)}
+                  ondragstart={(e: DragEvent) => handleDragStart(e, task.id)}
                   onclick={() => openTaskModal(task)}
+                  onkeydown={(e) => e.key === 'Enter' && openTaskModal(task)}
+                  role="button"
+                  tabindex="0"
                 >
-                  <Stack gap="2">
-                    <Flex justify="space-between" align="start">
-                      <Badge variant={getPriorityColor(task.priority)} size="sm">
-                        {task.priority}
-                      </Badge>
-                      <Menu trigger={null}>
-                        <Button variant="ghost" size="sm" onclick={(e) => e.stopPropagation()} ariaLabel="Task options">
-                          ⋯
-                        </Button>
-                        <MenuItem onclick={() => openTaskModal(task)} icon={editIcon}>Edit Task</MenuItem>
-                        <MenuItem danger onclick={() => deleteTask(task.id)} icon={trashIcon}>Delete Task</MenuItem>
-                      </Menu>
-                    </Flex>
+                  <Card>
+                    <Stack gap="2">
+                      <Flex justify="space-between" align="start">
+                        <Badge variant={getPriorityColor(task.priority)} size="sm">
+                          {task.priority}
+                        </Badge>
+                        <button type="button" onclick={(e) => e.stopPropagation()} aria-label="Task options">⋯</button>
+                      </Flex>
 
-                    <Heading as="h4" size="6">{task.title}</Heading>
-                    <Text size="xs" color="var(--text-secondary)">{task.description}</Text>
+                      <Heading as="h4" size="6">{task.title}</Heading>
+                      <Text size="xs" color="var(--text-secondary)">{task.description}</Text>
 
-                    {#if task.dueDate}
-                      <Text size="xs" color={task.dueDate < new Date() ? 'var(--color-error)' : 'var(--color-warning)'}>
-                        {formatDate(task.dueDate)}
-                      </Text>
-                    {/if}
-
-                    <Flex justify="space-between" align="center">
-                      {#if task.assignee}
-                        <Avatar initials={task.assignee.avatar} size="sm" />
+                      {#if task.dueDate}
+                        <Text
+                          size="xs"
+                          color={task.dueDate < new Date() ? 'var(--color-error)' : 'var(--color-warning)'}
+                        >
+                          {formatDate(task.dueDate)}
+                        </Text>
                       {/if}
-                      {#if task.comments.length > 0}
-                        <Flex gap="1" align="center">
-                          <Icon html={commentsIcon} />
-                          <Text size="xs">{task.comments.length}</Text>
-                        </Flex>
-                      {/if}
-                    </Flex>
-                  </Stack>
-                </Card>
+
+                      <Flex justify="space-between" align="center">
+                        {#if task.assignee}
+                          <Avatar initials={task.assignee.avatar} size="sm" />
+                        {/if}
+                        {#if task.comments.length > 0}
+                          <Flex gap="1" align="center">
+                            <Icon html={commentsIcon} />
+                            <Text size="xs">{task.comments.length}</Text>
+                          </Flex>
+                        {/if}
+                      </Flex>
+                    </Stack>
+                  </Card>
+                </div>
               {/each}
             </div>
           </div>
@@ -350,42 +353,41 @@
         <!-- View/Edit Mode -->
         <div>
           <Text weight="semibold" size="sm">Title</Text>
-          <Input bind:value={selectedTask.title} placeholder="Task title..." style="margin-top: 0.5rem; width: 100%;" />
+          <div style="margin-top: 0.5rem; width: 100%;">
+            <Input bind:value={selectedTask.title} placeholder="Task title..." />
+          </div>
         </div>
 
         <div>
           <Text weight="semibold" size="sm">Description</Text>
-          <Textarea
-            bind:value={selectedTask.description}
-            placeholder="Task description..."
-            rows="4"
-            style="margin-top: 0.5rem; width: 100%;"
-          />
+          <div style="margin-top: 0.5rem; width: 100%;">
+            <Textarea bind:value={selectedTask.description} placeholder="Task description..." rows={4} />
+          </div>
         </div>
 
         <Grid cols="2" gap="4">
           <div>
             <Text weight="semibold" size="sm">Priority</Text>
-            <Select
-              value={selectedTask.priority}
-              onchange={(e) => (selectedTask.priority = e.detail.value)}
-              options={[
-                { label: 'Low', value: 'low' },
-                { label: 'Medium', value: 'medium' },
-                { label: 'High', value: 'high' },
-              ]}
-              style="margin-top: 0.5rem; width: 100%;"
-            />
+            <div style="margin-top: 0.5rem; width: 100%;">
+              <Select
+                value={selectedTask?.priority}
+                options={[
+                  { label: 'Low', value: 'low' },
+                  { label: 'Medium', value: 'medium' },
+                  { label: 'High', value: 'high' },
+                ]}
+              />
+            </div>
           </div>
 
           <div>
             <Text weight="semibold" size="sm">Status</Text>
-            <Select
-              value={selectedTask.status}
-              onchange={(e) => (selectedTask.status = e.detail.value)}
-              options={columns.map((col) => ({ label: col.title, value: col.id }))}
-              style="margin-top: 0.5rem; width: 100%;"
-            />
+            <div style="margin-top: 0.5rem; width: 100%;">
+              <Select
+                value={selectedTask?.status}
+                options={columns.map((col) => ({ label: col.title, value: col.id }))}
+              />
+            </div>
           </div>
         </Grid>
 
@@ -394,49 +396,52 @@
         <!-- Create Mode -->
         <div>
           <Text weight="semibold" size="sm">Title</Text>
-          <Input bind:value={newTask.title} placeholder="Task title..." style="margin-top: 0.5rem; width: 100%;" />
+          <div style="margin-top: 0.5rem; width: 100%;">
+            <Input bind:value={newTask.title} placeholder="Task title..." />
+          </div>
         </div>
 
         <div>
           <Text weight="semibold" size="sm">Description</Text>
-          <Textarea
-            bind:value={newTask.description}
-            placeholder="Task description..."
-            rows="4"
-            style="margin-top: 0.5rem; width: 100%;"
-          />
+          <div style="margin-top: 0.5rem; width: 100%;">
+            <Textarea bind:value={newTask.description} placeholder="Task description..." rows={4} />
+          </div>
         </div>
 
         <Grid cols="2" gap="4">
           <div>
             <Text weight="semibold" size="sm">Priority</Text>
-            <Select
-              bind:value={newTask.priority}
-              options={[
-                { label: 'Low', value: 'low' },
-                { label: 'Medium', value: 'medium' },
-                { label: 'High', value: 'high' },
-              ]}
-              style="margin-top: 0.5rem; width: 100%;"
-            />
+            <div style="margin-top: 0.5rem; width: 100%;">
+              <Select
+                bind:value={newTask.priority}
+                options={[
+                  { label: 'Low', value: 'low' },
+                  { label: 'Medium', value: 'medium' },
+                  { label: 'High', value: 'high' },
+                ]}
+              />
+            </div>
           </div>
 
           <div>
             <Text weight="semibold" size="sm">Due Date</Text>
-            <Input bind:value={newTask.dueDate} type="date" style="margin-top: 0.5rem; width: 100%;" />
+            <div style="margin-top: 0.5rem; width: 100%;">
+              <input type="date" bind:value={newTask.dueDate} style="width: 100%;" />
+            </div>
           </div>
         </Grid>
 
         <div>
           <Text weight="semibold" size="sm">Assign To</Text>
-          <Select
-            bind:value={newTask.assigneeId}
-            options={[
-              { label: 'Unassigned', value: '' },
-              ...teamMembers.map((member) => ({ label: member.name, value: member.id })),
-            ]}
-            style="margin-top: 0.5rem; width: 100%;"
-          />
+          <div style="margin-top: 0.5rem; width: 100%;">
+            <Select
+              bind:value={newTask.assigneeId}
+              options={[
+                { label: 'Unassigned', value: '' },
+                ...teamMembers.map((member) => ({ label: member.name, value: member.id })),
+              ]}
+            />
+          </div>
         </div>
       {/if}
 

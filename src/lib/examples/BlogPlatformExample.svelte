@@ -209,7 +209,7 @@
     })
   )
 
-  const postComments = $derived(selectedPost ? comments.filter((c) => c.postId === selectedPost.id) : [])
+  const postComments = $derived(selectedPost ? comments.filter((c) => c.postId === selectedPost?.id) : [])
 
   // Icons
   const heartIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
@@ -290,7 +290,7 @@
           <Card class="post-detail">
             <Button variant="ghost" size="sm" onclick={closePost}>← Back to posts</Button>
 
-            <div style="margin-top: 1rem;">
+            <div style="margin-top: 1rem; width: 100%;">
               <Stack gap="4">
                 <div class="post-header">
                   <Image
@@ -301,27 +301,29 @@
                     class="post-hero-image"
                   />
 
-                  <Stack gap="3" style="margin-top: 2rem;">
-                    <Flex gap="2" align="center">
-                      <Badge variant="info" size="sm">{selectedPost.category}</Badge>
-                      <Text size="sm" color="var(--text-secondary)">{selectedPost.readTime}</Text>
-                      <Text size="sm" color="var(--text-secondary)">•</Text>
-                      <Text size="sm" color="var(--text-secondary)">{formatDate(selectedPost.publishedAt)}</Text>
-                    </Flex>
+                  <div style="margin-top: 2rem;">
+                    <Stack gap="3">
+                      <Flex gap="2" align="center">
+                        <Badge variant="info" size="sm">{selectedPost.category}</Badge>
+                        <Text size="sm" color="var(--text-secondary)">{selectedPost.readTime}</Text>
+                        <Text size="sm" color="var(--text-secondary)">•</Text>
+                        <Text size="sm" color="var(--text-secondary)">{formatDate(selectedPost.publishedAt)}</Text>
+                      </Flex>
 
-                    <Heading as="h1" size="2">{selectedPost.title}</Heading>
+                      <Heading as="h1" size="2">{selectedPost.title}</Heading>
 
-                    <Flex gap="2" align="center">
-                      <Avatar src={selectedPost.author.avatar} alt={selectedPost.author.name} size="sm" />
-                      <Text weight="medium">{selectedPost.author.name}</Text>
-                    </Flex>
-                  </Stack>
+                      <Flex gap="2" align="center">
+                        <Avatar src={selectedPost.author.avatar} alt={selectedPost.author.name} size="sm" />
+                        <Text weight="medium">{selectedPost.author.name}</Text>
+                      </Flex>
+                    </Stack>
+                  </div>
                 </div>
 
                 <Divider />
 
                 <div class="post-content">
-                  <Text style="line-height: 1.8; font-size: 1.125rem;">
+                  <Text size="lg">
                     {selectedPost.content}
                   </Text>
                 </div>
@@ -359,12 +361,9 @@
                   <!-- Comment Form -->
                   <Card variant="outlined" class="comment-form">
                     <Stack gap="3">
-                      <Textarea
-                        bind:value={commentText}
-                        placeholder="Write a comment..."
-                        rows="4"
-                        class="comment-input"
-                      />
+                      <div class="comment-input-wrapper">
+                        <Textarea bind:value={commentText} placeholder="Write a comment..." rows={4} />
+                      </div>
                       <Flex justify="end" gap="2">
                         <Button
                           variant="ghost"
@@ -381,32 +380,36 @@
                   </Card>
 
                   <!-- Comments List -->
-                  <Stack gap="3" class="comments-list">
-                    {#each postComments as comment}
-                      <Card variant="outlined" class="comment-card">
-                        <Flex gap="3" align="start">
-                          <Avatar initials={comment.avatar} size="md" />
-                          <div style="flex: 1;">
-                            <Stack gap="2">
-                              <Flex justify="space-between" align="center">
-                                <Text weight="semibold" size="sm">{comment.author}</Text>
-                                <Text size="xs" color="var(--text-secondary)">{formatDate(comment.createdAt)}</Text>
-                              </Flex>
-                              <Text size="sm">{comment.content}</Text>
-                              <Button variant="ghost" size="sm" style="width: fit-content;">
-                                <Icon html={heartIcon} />
-                                {comment.likes}
-                              </Button>
-                            </Stack>
-                          </div>
-                        </Flex>
-                      </Card>
-                    {/each}
-                  </Stack>
+                  <div class="comments-list-wrapper">
+                    <Stack gap="3">
+                      {#each postComments as comment}
+                        <Card variant="outlined" class="comment-card">
+                          <Flex gap="3" align="start">
+                            <Avatar initials={comment.avatar} size="md" />
+                            <div style="flex: 1; margin-right: 0.5rem;">
+                              <Stack gap="2">
+                                <Flex justify="space-between" align="center">
+                                  <Text weight="semibold" size="sm">{comment.author}</Text>
+                                  <Text size="xs" color="var(--text-secondary)">{formatDate(comment.createdAt)}</Text>
+                                </Flex>
+                                <Text size="sm">{comment.content}</Text>
+                                <Button variant="ghost" size="sm">
+                                  <Icon html={heartIcon} />
+                                  {comment.likes}
+                                </Button>
+                              </Stack>
+                            </div>
+                          </Flex>
+                        </Card>
+                      {/each}
+                    </Stack>
+                  </div>
                 </div>
+
+                <Divider />
               </Stack>
-            </div></Card
-          >
+            </div>
+          </Card>
         {:else}
           <!-- Posts Grid -->
           <Stack gap="4">
@@ -422,7 +425,7 @@
                       <Image src={post.image} alt={post.title} width={400} height={250} class="post-thumbnail" />
                     </div>
 
-                    <div style="grid-column: span 2;">
+                    <div>
                       <Stack gap="3">
                         <Flex gap="2" align="center">
                           <Badge variant="info" size="sm">{post.category}</Badge>
@@ -432,7 +435,7 @@
                         <Heading as="h3" size="4">{post.title}</Heading>
                         <Text color="var(--text-secondary)">{post.excerpt}</Text>
 
-                        <Flex justify="space-between" align="center" style="margin-top: auto;">
+                        <Flex justify="space-between" align="center">
                           <Flex gap="2" align="center">
                             <Avatar src={post.author.avatar} alt={post.author.name} size="sm" />
                             <Text size="sm">{post.author.name}</Text>
@@ -459,10 +462,14 @@
 
             {#if filteredPosts.length === 0}
               <Card>
-                <Stack gap="3" align="center" style="padding: 3rem;">
-                  <Heading as="h3" size="5">No posts found</Heading>
-                  <Text color="var(--text-secondary)" align="center">Try adjusting your search or category filter</Text>
-                </Stack>
+                <div style="padding: 3rem;">
+                  <Stack gap="3" align="center">
+                    <Heading as="h3" size="5">No posts found</Heading>
+                    <Text color="var(--text-secondary)" align="center"
+                      >Try adjusting your search or category filter</Text
+                    >
+                  </Stack>
+                </div>
               </Card>
             {/if}
           </Stack>
@@ -478,23 +485,18 @@
         <label>
           <Text weight="semibold" size="sm">Post Title</Text>
         </label>
-        <Input
-          bind:value={newPostTitle}
-          placeholder="Enter your post title..."
-          style="margin-top: 0.5rem; width: 100%;"
-        />
+        <div style="margin-top: 0.5rem; width: 100%;">
+          <Input bind:value={newPostTitle} placeholder="Enter your post title..." />
+        </div>
       </div>
 
       <div>
         <label>
           <Text weight="semibold" size="sm">Excerpt</Text>
         </label>
-        <Textarea
-          bind:value={newPostExcerpt}
-          placeholder="Brief description of your post..."
-          rows="2"
-          style="margin-top: 0.5rem; width: 100%;"
-        />
+        <div style="margin-top: 0.5rem; width: 100%;">
+          <Textarea bind:value={newPostExcerpt} placeholder="Brief description of your post..." rows={2} />
+        </div>
       </div>
 
       <Grid cols="2" gap="4">
@@ -502,28 +504,26 @@
           <label>
             <Text weight="semibold" size="sm">Category</Text>
           </label>
-          <Select
-            bind:value={newPostCategory}
-            options={[
-              { label: 'Development', value: 'Development' },
-              { label: 'Design', value: 'Design' },
-              { label: 'Backend', value: 'Backend' },
-              { label: 'Frontend', value: 'Frontend' },
-            ]}
-            style="margin-top: 0.5rem; width: 100%;"
-          />
+          <div style="margin-top: 0.5rem; width: 100%;">
+            <Select
+              bind:value={newPostCategory}
+              options={[
+                { label: 'Development', value: 'Development' },
+                { label: 'Design', value: 'Design' },
+                { label: 'Backend', value: 'Backend' },
+                { label: 'Frontend', value: 'Frontend' },
+              ]}
+            />
+          </div>
         </div>
 
         <div>
           <label>
             <Text weight="semibold" size="sm">Featured Image URL</Text>
           </label>
-          <Input
-            bind:value={newPostImage}
-            placeholder="https://..."
-            type="url"
-            style="margin-top: 0.5rem; width: 100%;"
-          />
+          <div style="margin-top: 0.5rem; width: 100%;">
+            <Input bind:value={newPostImage} placeholder="https://..." type="url" />
+          </div>
         </div>
       </Grid>
 
@@ -531,11 +531,9 @@
         <label>
           <Text weight="semibold" size="sm">Tags</Text>
         </label>
-        <Input
-          bind:value={newPostTags}
-          placeholder="JavaScript, Svelte, Web Development (comma separated)"
-          style="margin-top: 0.5rem; width: 100%;"
-        />
+        <div style="margin-top: 0.5rem; width: 100%;">
+          <Input bind:value={newPostTags} placeholder="JavaScript, Svelte, Web Development (comma separated)" />
+        </div>
       </div>
 
       <div>
