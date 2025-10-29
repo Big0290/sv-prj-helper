@@ -1,3 +1,26 @@
+<script module lang="ts">
+	export interface MoneyCounterProps {
+		/** The denomination value (e.g., 0.05 for 5 cents) */
+		denomination?: number;
+		/** Display label for the denomination (e.g., "5¢") */
+		denominationLabel?: string;
+		/** Initial count value */
+		count?: number;
+		/** Currency code (e.g., "CDN", "USD") */
+		currency?: 'CDN' | 'USD';
+		/** Whether the component is disabled */
+		disabled?: boolean;
+		/** Minimum count value */
+		min?: number;
+		/** Maximum count value */
+		max?: number;
+		/** Callback when count changes */
+		onChange?: (count: number, total: number) => void;
+		/** Callback when currency changes */
+		onCurrencyChange?: (currency: 'CDN' | 'USD') => void;
+	}
+</script>
+
 <script lang="ts">
 	interface Props {
 		/** The denomination value (e.g., 0.05 for 5 cents) */
@@ -19,8 +42,6 @@
 		/** Callback when currency changes */
 		onCurrencyChange?: (currency: 'CDN' | 'USD') => void;
 	}
-
-	export type { Props as MoneyCounterProps };
 
 	let {
 		denomination = 0.05,
@@ -382,6 +403,7 @@
 
 	.count-input[type='number'] {
 		-moz-appearance: textfield;
+		appearance: textfield;
 	}
 
 	/* Quick Adjustments */
