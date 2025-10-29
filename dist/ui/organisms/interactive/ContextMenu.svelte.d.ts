@@ -1,4 +1,3 @@
-import type { Snippet } from 'svelte';
 export interface ContextMenuItem {
     id: string;
     label: string;
@@ -9,6 +8,7 @@ export interface ContextMenuItem {
     divider?: boolean;
     action?: () => void;
 }
+import type { Snippet } from 'svelte';
 interface Props {
     children: Snippet;
     items: ContextMenuItem[];

@@ -19,6 +19,7 @@ export { default as Progress } from './atoms/Progress.svelte'
 // Layout Primitives
 export { default as Box } from './atoms/Box.svelte'
 export { default as Flex } from './atoms/Flex.svelte'
+export { default as GlassCard } from './atoms/GlassCard.svelte'
 
 // Typography
 export { default as Text } from './atoms/Text.svelte'

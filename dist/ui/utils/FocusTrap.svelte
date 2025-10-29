@@ -73,6 +73,7 @@
 				}
 			};
 		}
+		return () => {}; // Return empty cleanup function when not active
 	});
 </script>
 

@@ -1,12 +1,28 @@
-// Re-export all components from both old and new structures for backward compatibility
+// ===== MAIN LIBRARY EXPORTS =====
+// All UI components, hooks, and utilities
 export * from './ui/index.js';
 
-// Documentation system exports
-export * from './docs/index.js';
+// ===== ADDITIONAL HOOKS =====
+// Legacy hooks not included in UI system
+export * from './hooks/index.js';
 
-// Types exports (commented out to avoid conflicts)
-// export * from './types/index.js';
+// ===== ADDITIONAL SHARED TYPES =====
+// Export types that are not already exported by UI components
+export type {
+  BreadcrumbItem,
+  Message,
+  ChatRoom,
+  SearchResult,
+  Reaction,
+  User,
+  PinnedMessage,
+  CommandItem,
+  ContextMenuItem,
+  MediaItem,
+  Step,
+  Tab,
+  Action
+} from './types/shared.js';
 
-// New component structure (will gradually replace the above)
-// Temporarily disabled to avoid conflicts - use direct imports for now
-// export * from './components/index.js';
+// ===== STYLES =====
+// CSS theme exports are handled via package.json exports field

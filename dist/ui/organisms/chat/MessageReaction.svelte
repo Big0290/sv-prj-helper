@@ -1,10 +1,14 @@
-<script lang="ts">
-	export interface Reaction {
+<script module lang="ts">
+export interface Reaction {
 		emoji: string;
 		count: number;
 		userReacted: boolean;
 		users?: string[];
 	}
+</script>
+
+<script lang="ts">
+	
 
 	interface Props {
 		reactions?: Reaction[];

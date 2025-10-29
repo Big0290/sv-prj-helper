@@ -1,0 +1,5 @@
+# Placeholder for component analyzers
+# Will contain:
+# - ComponentAnalyzer.ts
+# - TypeExtractor.ts  
+# - StyleAnalyzer.ts

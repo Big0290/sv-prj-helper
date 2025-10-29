@@ -49,6 +49,7 @@ export interface CarouselItem {
 			intervalId = window.setInterval(next, interval);
 			return () => clearInterval(intervalId);
 		}
+		return () => {}; // Return empty cleanup function when not active
 	});
 
 	function next() {

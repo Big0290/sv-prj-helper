@@ -1,7 +1,5 @@
-<script lang="ts">
-	import type { Snippet } from 'svelte';
-
-	export interface TimelineItem {
+<script module lang="ts">
+export interface TimelineItem {
 		id: string;
 		title: string;
 		description?: string;
@@ -10,6 +8,12 @@
 		variant?: 'default' | 'success' | 'warning' | 'error' | 'info';
 		content?: Snippet;
 	}
+</script>
+
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	
 
 	interface Props {
 		items: TimelineItem[];

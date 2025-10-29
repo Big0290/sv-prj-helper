@@ -1,6 +1,6 @@
 interface Props {
     value?: string;
-    language?: 'javascript' | 'typescript' | 'python' | 'html' | 'css' | 'json' | 'markdown' | 'plaintext';
+    language?: 'javascript' | 'typescript' | 'python' | 'html' | 'css' | 'json' | 'markdown' | 'svelte' | 'plaintext';
     theme?: 'light' | 'dark';
     readOnly?: boolean;
     lineNumbers?: boolean;

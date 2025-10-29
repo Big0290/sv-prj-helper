@@ -1,0 +1,42 @@
+{
+  "name": "llm-docs-generator",
+  "version": "1.0.0",
+  "description": "LLM-optimized documentation generator for SV Project Helper UI Library",
+  "type": "module",
+  "main": "index.ts",
+  "bin": {
+    "generate-llm-docs": "./cli.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx cli.ts",
+    "generate": "node generate.js generate",
+    "generate:watch": "node generate.js watch",
+    "generate:validate": "node generate.js validate",
+    "generate:dry-run": "node generate.js dry-run",
+    "cli": "tsx cli.ts",
+    "test": "echo \"Tests will be implemented in later tasks\"",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/typescript-estree": "^8.46.2",
+    "acorn": "^8.15.0",
+    "acorn-typescript": "^1.4.13",
+    "svelte": "^5.43.0",
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0"
+  },
+  "keywords": [
+    "documentation",
+    "llm",
+    "svelte",
+    "typescript",
+    "component-library"
+  ],
+  "author": "SV Project Helper",
+  "license": "MIT"
+}

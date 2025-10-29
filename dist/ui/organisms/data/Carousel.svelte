@@ -1,13 +1,17 @@
-<script lang="ts">
-	import type { Snippet } from 'svelte';
-
-	export interface CarouselItem {
+<script module lang="ts">
+export interface CarouselItem {
 		id: string;
 		content: Snippet;
 		image?: string;
 		title?: string;
 		description?: string;
 	}
+</script>
+
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	
 
 	interface Props {
 		items: CarouselItem[];
@@ -45,6 +49,7 @@
 			intervalId = window.setInterval(next, interval);
 			return () => clearInterval(intervalId);
 		}
+		return () => {}; // Return empty cleanup function when not active
 	});
 
 	function next() {

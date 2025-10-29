@@ -1,10 +1,43 @@
+# System files
 .DS_Store
-node_modules
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
+
+# Build outputs
 /build
+/dist
 /.svelte-kit
 /package
+
+# Library build artifacts
+*.tsbuildinfo
+.turbo/
+
+# Environment files
 .env
 .env.*
 !.env.example
+
+# IDE and editor files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+
+# Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*

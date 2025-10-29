@@ -1,7 +1,5 @@
-<script lang="ts">
-	import type { Snippet } from 'svelte';
-
-	export interface ContextMenuItem {
+<script module lang="ts">
+export interface ContextMenuItem {
 		id: string;
 		label: string;
 		icon?: string;
@@ -11,6 +9,12 @@
 		divider?: boolean;
 		action?: () => void;
 	}
+</script>
+
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	
 
 	interface Props {
 		children: Snippet;

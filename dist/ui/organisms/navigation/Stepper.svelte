@@ -1,10 +1,14 @@
-<script lang="ts">
-	export interface Step {
+<script module lang="ts">
+export interface Step {
 		label: string;
 		description?: string;
 		icon?: string;
 		status?: 'complete' | 'current' | 'upcoming' | 'error';
 	}
+</script>
+
+<script lang="ts">
+	
 
 	interface Props {
 		steps: Step[];

@@ -1,0 +1,33 @@
+{
+  "sourceDirectory": "src/lib",
+  "outputPath": "LLM.md",
+  "componentDirectories": [
+    "src/lib/ui/atoms",
+    "src/lib/ui/molecules",
+    "src/lib/ui/organisms",
+    "src/lib/ui/layouts",
+    "src/lib/ui/utils",
+    "src/lib/ui/hooks",
+    "src/lib/ui/theme"
+  ],
+  "includePatterns": [
+    "**/*.svelte",
+    "**/*.ts",
+    "**/*.js",
+    "**/*.css"
+  ],
+  "excludePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.svelte-kit/**",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/*.d.ts"
+  ],
+  "tsConfigPath": "tsconfig.json",
+  "themePath": "src/lib/styles/theme.css",
+  "verbose": false,
+  "showProgress": true,
+  "maxFileSize": 1048576,
+  "analysisTimeout": 30000
+}

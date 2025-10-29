@@ -5,6 +5,9 @@ interface Props {
     disabled?: boolean;
     loading?: boolean;
     type?: 'button' | 'submit' | 'reset';
+    href?: string;
+    target?: '_blank' | '_self' | '_parent' | '_top';
+    rel?: string;
     ariaLabel?: string;
     onclick?: (e: MouseEvent) => void;
     children: Snippet;

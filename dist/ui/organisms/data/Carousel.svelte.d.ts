@@ -1,4 +1,3 @@
-import type { Snippet } from 'svelte';
 export interface CarouselItem {
     id: string;
     content: Snippet;
@@ -6,6 +5,7 @@ export interface CarouselItem {
     title?: string;
     description?: string;
 }
+import type { Snippet } from 'svelte';
 interface Props {
     items: CarouselItem[];
     activeIndex?: number;

@@ -21,7 +21,7 @@
 		onClose
 	}: Props = $props();
 
-	let timeoutId: number | undefined;
+	let timeoutId: number;
 
 	$effect(() => {
 		if (isOpen && duration > 0) {
@@ -32,6 +32,7 @@
 
 			return () => clearTimeout(timeoutId);
 		}
+		return () => {}; // Return empty cleanup function when not active
 	});
 
 	function handleClose() {

@@ -1,0 +1,31 @@
+{
+  "sourceDirectory": "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/src/lib/ui",
+  "outputPath": "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/LLM.md",
+  "componentDirectories": [
+    "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/src/lib/ui/atoms",
+    "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/src/lib/ui/molecules",
+    "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/src/lib/ui/organisms",
+    "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/src/lib/ui/layouts",
+    "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/src/lib/ui/utils",
+    "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/src/lib/ui/hooks",
+    "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/src/lib/ui/theme"
+  ],
+  "includePatterns": [
+    "**/*.svelte",
+    "**/*.ts",
+    "**/*.js",
+    "**/*.css"
+  ],
+  "excludePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.svelte-kit/**",
+    "**/*.test.*",
+    "**/*.spec.*"
+  ],
+  "themePath": "/Users/jonathanmorand/Documents/ProjectsFolder/Svelte_Folder/sv-prj-helper/src/lib/styles/theme.css",
+  "verbose": true,
+  "showProgress": true,
+  "maxFileSize": 1048576,
+  "analysisTimeout": 30000
+}

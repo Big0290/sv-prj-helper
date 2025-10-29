@@ -87,6 +87,7 @@
 				window.removeEventListener('scroll', updatePosition, true);
 			};
 		}
+		return () => {}; // Return empty cleanup function when not active
 	});
 
 	$effect(() => {

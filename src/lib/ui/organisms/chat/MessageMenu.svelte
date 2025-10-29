@@ -68,6 +68,7 @@
 			document.addEventListener('mousedown', handleClickOutside);
 			return () => document.removeEventListener('mousedown', handleClickOutside);
 		}
+		return () => {}; // Return empty cleanup function when not active
 	});
 </script>
 

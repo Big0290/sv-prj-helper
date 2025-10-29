@@ -1,7 +1,5 @@
-<script lang="ts">
-	import type { Snippet } from 'svelte';
-
-	export interface Message {
+<script module lang="ts">
+export interface Message {
 		id: string;
 		content: string;
 		sender: 'user' | 'other';
@@ -9,6 +7,12 @@
 		avatar?: string;
 		senderName?: string;
 	}
+</script>
+
+<script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	
 
 	interface Props {
 		messages?: Message[];

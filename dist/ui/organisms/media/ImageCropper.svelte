@@ -111,6 +111,7 @@
 				window.removeEventListener('mouseup', handleMouseUp);
 			};
 		}
+		return () => {}; // Return empty cleanup function when not active
 	});
 </script>
 

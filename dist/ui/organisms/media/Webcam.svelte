@@ -180,7 +180,7 @@
 			playsinline
 			muted
 			class:mirrored={mirrored && facingMode === 'user'}
-			onloadedmetadata={() => console.log('Video ready:', videoEl.videoWidth, 'x', videoEl.videoHeight)}
+			onloadedmetadata={() => console.log('Video ready:', videoEl?.videoWidth, 'x', videoEl?.videoHeight)}
 		></video>
 		
 		{#if isRecording}

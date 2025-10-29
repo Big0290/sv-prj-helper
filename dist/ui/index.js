@@ -17,6 +17,7 @@ export { default as Progress } from './atoms/Progress.svelte';
 // Layout Primitives
 export { default as Box } from './atoms/Box.svelte';
 export { default as Flex } from './atoms/Flex.svelte';
+export { default as GlassCard } from './atoms/GlassCard.svelte';
 // Typography
 export { default as Text } from './atoms/Text.svelte';
 export { default as Heading } from './atoms/Heading.svelte';
@@ -55,6 +56,7 @@ export { default as Card } from './molecules/Card.svelte';
 export { default as StatsCard } from './molecules/StatsCard.svelte';
 export { default as EmptyState } from './molecules/EmptyState.svelte';
 export { default as Accordion } from './molecules/Accordion.svelte';
+export { default as StaticCodeExample } from './molecules/StaticCodeExample.svelte';
 // ===== ORGANISMS - Complex Components =====
 // Chat System
 export { default as Chat } from './organisms/chat/Chat.svelte';
@@ -138,6 +140,8 @@ export { default as QuickScan } from './organisms/barcode/QuickScan.svelte';
 export { default as Container } from './layouts/Container.svelte';
 export { default as Grid } from './layouts/Grid.svelte';
 export { default as Stack } from './layouts/Stack.svelte';
+export { default as KanbanBoard } from './layouts/KanbanBoard.svelte';
+export { default as DraggableGrid } from './layouts/DraggableGrid.svelte';
 // ===== UTILS - Utility Components =====
 export { default as DragAndDrop } from './utils/DragAndDrop.svelte';
 export { default as FocusTrap } from './utils/FocusTrap.svelte';

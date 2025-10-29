@@ -9,13 +9,17 @@ export default defineConfig({
   build: {
     // Optimize for library distribution
     sourcemap: true,
-    minify: 'esbuild',
     target: 'es2020',
+    lib: {
+      entry: 'src/lib/index.ts',
+      formats: ['es']
+    },
     rollupOptions: {
       // External dependencies that shouldn't be bundled
       external: [
         'svelte',
         'svelte/internal',
+        'svelte/store',
         '@codemirror/autocomplete',
         '@codemirror/basic-setup',
         '@codemirror/commands',
@@ -36,24 +40,11 @@ export default defineConfig({
         'prismjs',
         'qrcode',
         'svelte-dnd-action',
-      ],
-      output: {
-        // Preserve module structure for better tree-shaking
-        preserveModules: true,
-        preserveModulesRoot: 'src/lib',
-        // Use ES modules format
-        format: 'es',
-        // Generate source maps
-        sourcemap: true,
-        // Optimize chunk naming
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        // Ensure proper exports
-        exports: 'named',
-      },
-    },
+        'chart.js'
+      ]
+    }
   },
   optimizeDeps: {
     exclude: ['svelte'],
-  },
+  }
 })

@@ -10,7 +10,7 @@ interface Props {
     helperText?: string;
     id?: string;
     name?: string;
-    autocomplete?: string;
+    autocomplete?: 'on' | 'off' | 'name' | 'email' | 'username' | 'current-password' | 'new-password' | string;
     maxlength?: number;
     minlength?: number;
     pattern?: string;

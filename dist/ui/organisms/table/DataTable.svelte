@@ -1,15 +1,15 @@
 <script module lang="ts">
-	export interface Column {
-		key: string;
-		label: string;
-		sortable?: boolean;
-		width?: string;
-	}
+export interface Column {
+	key: string;
+	label: string;
+	sortable?: boolean;
+	width?: string;
+}
 
-	export interface Row {
-		id: string | number;
-		[key: string]: any;
-	}
+export interface Row {
+	id: string | number;
+	[key: string]: any;
+}
 </script>
 
 <script lang="ts">
@@ -38,8 +38,8 @@
 		if (!sortKey) return rows;
 
 		return [...rows].sort((a, b) => {
-			const aVal = a[sortKey];
-			const bVal = b[sortKey];
+			const aVal = a[sortKey!];
+			const bVal = b[sortKey!];
 
 			if (aVal === bVal) return 0;
 			

@@ -7,6 +7,9 @@
 		disabled?: boolean;
 		loading?: boolean;
 		type?: 'button' | 'submit' | 'reset';
+		href?: string;
+		target?: '_blank' | '_self' | '_parent' | '_top';
+		rel?: string;
 		ariaLabel?: string;
 		onclick?: (e: MouseEvent) => void;
 		children: Snippet;
@@ -18,6 +21,9 @@
 		disabled = false,
 		loading = false,
 		type = 'button',
+		href,
+		target,
+		rel,
 		ariaLabel,
 		onclick,
 		children
@@ -26,23 +32,49 @@
 	const classes = $derived(
 		`btn btn-${variant} btn-${size} ${disabled || loading ? 'btn-disabled' : ''}`
 	);
+
+	// Determine if this should be a link or button
+	const isLink = $derived(!!href && !disabled && !loading);
+	
+	// Set default rel for external links
+	const linkRel = $derived(() => {
+		if (target === '_blank' && !rel) {
+			return 'noopener noreferrer';
+		}
+		return rel;
+	});
 </script>
 
-<button
-	{type}
-	class={classes}
-	disabled={disabled || loading}
-	aria-label={ariaLabel}
-	aria-busy={loading}
-	onclick={onclick}
->
-	{#if loading}
-		<span class="btn-spinner" aria-hidden="true"></span>
-	{/if}
-	<span class:btn-content-loading={loading}>
-		{@render children()}
-	</span>
-</button>
+{#if isLink}
+	<a
+		{href}
+		{target}
+		rel={linkRel()}
+		class={classes}
+		aria-label={ariaLabel}
+		onclick={onclick}
+	>
+		<span>
+			{@render children()}
+		</span>
+	</a>
+{:else}
+	<button
+		{type}
+		class={classes}
+		disabled={disabled || loading}
+		aria-label={ariaLabel}
+		aria-busy={loading}
+		onclick={onclick}
+	>
+		{#if loading}
+			<span class="btn-spinner" aria-hidden="true"></span>
+		{/if}
+		<span class:btn-content-loading={loading}>
+			{@render children()}
+		</span>
+	</button>
+{/if}
 
 <style>
 	.btn {
@@ -60,6 +92,8 @@
 		-webkit-backdrop-filter: blur(var(--glass-blur));
 		border: 1px solid var(--glass-border);
 		user-select: none;
+		text-decoration: none;
+		box-sizing: border-box;
 	}
 
 	/* Sizes */

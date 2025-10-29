@@ -1,4 +1,3 @@
-import type { Snippet } from 'svelte';
 export interface TimelineItem {
     id: string;
     title: string;
@@ -8,6 +7,7 @@ export interface TimelineItem {
     variant?: 'default' | 'success' | 'warning' | 'error' | 'info';
     content?: Snippet;
 }
+import type { Snippet } from 'svelte';
 interface Props {
     items: TimelineItem[];
     variant?: 'default' | 'compact' | 'detailed' | 'alternating';

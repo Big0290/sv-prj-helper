@@ -106,15 +106,63 @@
   --focus-ring-offset: 2px;
 }
 
-/* Dark mode support */
+  /* Light theme semantic colors */
+  --bg-primary: var(--color-neutral-50);
+  --bg-secondary: var(--color-neutral-100);
+  --bg-tertiary: var(--color-neutral-200);
+  --text-primary: var(--color-neutral-900);
+  --text-secondary: var(--color-neutral-600);
+  --text-tertiary: var(--color-neutral-400);
+  --border-color: var(--color-neutral-200);
+  --border-color-hover: var(--color-neutral-300);
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  /* Dark theme glassmorphism */
+  --glass-bg: rgba(168, 85, 247, 0.08);
+  --glass-bg-hover: rgba(168, 85, 247, 0.12);
+  --glass-bg-active: rgba(168, 85, 247, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(99, 33, 170, 0.4);
+  --glass-shadow-lg: 0 16px 48px 0 rgba(99, 33, 170, 0.5);
+
+  /* Dark theme semantic colors */
+  --bg-primary: var(--color-neutral-900);
+  --bg-secondary: var(--color-neutral-800);
+  --bg-tertiary: var(--color-neutral-700);
+  --text-primary: var(--color-neutral-50);
+  --text-secondary: var(--color-neutral-300);
+  --text-tertiary: var(--color-neutral-500);
+  --border-color: var(--color-neutral-700);
+  --border-color-hover: var(--color-neutral-600);
+
+  /* Dark theme specific glass variants */
+  --glass-bg-dark: rgba(168, 85, 247, 0.08);
+  --glass-bg-hover-dark: rgba(168, 85, 247, 0.12);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --text-primary-dark: var(--color-neutral-50);
+  --text-secondary-dark: var(--color-neutral-300);
+}
+
+/* System preference dark mode support */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --glass-bg: rgba(168, 85, 247, 0.08);
     --glass-bg-hover: rgba(168, 85, 247, 0.12);
     --glass-bg-active: rgba(168, 85, 247, 0.18);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 8px 32px 0 rgba(99, 33, 170, 0.4);
     --glass-shadow-lg: 0 16px 48px 0 rgba(99, 33, 170, 0.5);
+
+    --bg-primary: var(--color-neutral-900);
+    --bg-secondary: var(--color-neutral-800);
+    --bg-tertiary: var(--color-neutral-700);
+    --text-primary: var(--color-neutral-50);
+    --text-secondary: var(--color-neutral-300);
+    --text-tertiary: var(--color-neutral-500);
+    --border-color: var(--color-neutral-700);
+    --border-color-hover: var(--color-neutral-600);
   }
 }
 
@@ -131,15 +179,21 @@ body {
   font-family: var(--font-sans);
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
-  color: var(--color-neutral-900);
+  color: var(--text-primary);
   background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: color var(--transition-base), background var(--transition-base);
+}
+
+[data-theme="dark"] body {
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%);
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    color: var(--color-neutral-50);
+  :root:not([data-theme="light"]) body {
+    color: var(--text-primary);
     background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%);
   }
 }
