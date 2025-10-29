@@ -1,3 +1,7 @@
+# [0.5.0](https://github.com/Big0290/sv-prj-helper/compare/v0.4.0...v0.5.0) (2025-10-29)
+
+
+
 # [0.4.0](https://github.com/Big0290/sv-prj-helper/compare/v0.3.0...v0.4.0) (2025-10-29)
 
 
