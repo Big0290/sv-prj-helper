@@ -1,111 +1,62 @@
-import { json, error } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
-
-// Mock component documentation - in a real app this would come from generated documentation
-const mockComponentDocs = {
-	button: {
-		name: 'Button',
-		description: 'A versatile button component with multiple variants and sizes',
-		category: 'atoms',
-		version: '1.0.0',
-		importPath: '@sv-project-helper/ui',
-		props: [
-			{
-				name: 'variant',
-				type: "'primary' | 'secondary' | 'ghost' | 'danger'",
-				defaultValue: 'primary',
-				required: false,
-				description: 'Visual style variant of the button'
-			},
-			{
-				name: 'size',
-				type: "'sm' | 'md' | 'lg'",
-				defaultValue: 'md',
-				required: false,
-				description: 'Size of the button'
-			},
-			{
-				name: 'disabled',
-				type: 'boolean',
-				defaultValue: 'false',
-				required: false,
-				description: 'Whether the button is disabled'
-			},
-			{
-				name: 'loading',
-				type: 'boolean',
-				defaultValue: 'false',
-				required: false,
-				description: 'Shows loading state with spinner'
-			}
-		],
-		events: [
-			{
-				name: 'click',
-				type: 'MouseEvent',
-				description: 'Fired when the button is clicked'
-			}
-		],
-		slots: [
-			{
-				name: 'default',
-				description: 'Button content'
-			}
-		],
-		examples: [
-			{
-				title: 'Basic Usage',
-				description: 'Simple button with different variants',
-				code: `<Button variant="primary">Primary Button</Button>
-<Button variant="secondary">Secondary Button</Button>
-<Button variant="ghost">Ghost Button</Button>`,
-				language: 'svelte'
-			},
-			{
-				title: 'Button Sizes',
-				description: 'Buttons in different sizes',
-				code: `<Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>`,
-				language: 'svelte'
-			},
-			{
-				title: 'Loading State',
-				description: 'Button with loading indicator',
-				code: `<Button loading>Loading...</Button>
-<Button disabled>Disabled</Button>`,
-				language: 'svelte'
-			}
-		],
-		accessibility: {
-			keyboardNavigation: [
-				'Enter and Space keys activate the button',
-				'Tab key moves focus to the button'
-			],
-			ariaAttributes: [
-				'aria-disabled when disabled',
-				'aria-busy when loading'
-			],
-			focusManagement: 'Receives focus and shows visible focus indicator',
-			guidelines: [
-				'Use descriptive button text',
-				'Ensure sufficient color contrast',
-				'Provide alternative text for icon-only buttons'
-			]
-		},
-		relatedComponents: ['Link', 'IconButton']
-	}
-};
+import { json, error, type RequestHandler } from '@sveltejs/kit'
+import { getComponent } from '../../../../../lib/docs/scanner.js'
+import { parseComponent } from '../../../../../lib/docs/parser.js'
+import { generateExamples, generateAccessibilityInfo } from '../../../../../lib/docs/generator.js'
+import type { ComponentDocumentation } from '../../../../../lib/docs/types.js'
 
 export const GET: RequestHandler = async ({ params }) => {
-	const componentName = params.component?.toLowerCase();
-	
-	if (!componentName || !mockComponentDocs[componentName as keyof typeof mockComponentDocs]) {
-		throw error(404, {
-			message: `Component "${params.component}" not found`,
-			error: 'Component documentation not available'
-		});
-	}
-	
-	return json(mockComponentDocs[componentName as keyof typeof mockComponentDocs]);
-};
+  const componentName = params.component
+
+  if (!componentName) {
+    throw error(400, 'Component name is required')
+  }
+
+  try {
+    // Find the component in src/lib/ui
+    const componentInfo = await getComponent(componentName)
+
+    if (!componentInfo) {
+      throw error(404, `Component "${componentName}" not found`)
+    }
+
+    // Parse the component to extract props and info
+    const parsedComponent = await parseComponent(componentInfo)
+
+    if (!parsedComponent) {
+      throw error(500, `Failed to parse component "${componentName}"`)
+    }
+
+    // Generate examples
+    const examples = generateExamples(parsedComponent)
+
+    // Generate accessibility info
+    const accessibility = generateAccessibilityInfo(parsedComponent)
+
+    // Build the documentation object
+    const documentation: ComponentDocumentation = {
+      name: parsedComponent.name,
+      description: `${parsedComponent.name} component from the ${parsedComponent.category} category`,
+      category: parsedComponent.category,
+      importPath: parsedComponent.importPath,
+      props: parsedComponent.props,
+      events: [], // Will be enhanced later if needed
+      slots: parsedComponent.hasChildren ? [{ name: 'default', description: 'Component content' }] : [],
+      examples,
+      accessibility,
+      version: '1.0.0',
+    }
+
+    return json(documentation)
+  } catch (err) {
+    // If it's already a SvelteKit error, re-throw it
+    if (err && typeof err === 'object' && 'status' in err) {
+      throw err
+    }
+
+    // Otherwise, create a generic error
+    throw error(
+      500,
+      `Error loading component "${componentName}": ${err instanceof Error ? err.message : 'Unknown error'}`
+    )
+  }
+}

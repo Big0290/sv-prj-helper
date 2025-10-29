@@ -10,6 +10,7 @@ export * from './Code/index.js';
 export * from './CopyButton/index.js';
 export * from './Divider/index.js';
 export * from './Flex/index.js';
+export * from './GlassCard/index.js';
 export * from './Heading/index.js';
 export * from './Icon/index.js';
 export * from './Image/index.js';

@@ -1,5 +1,5 @@
 :root {
-  /* Purple Color Palette */
+  /* Purple Color Palette - Enhanced for Glassmorphism */
   --color-primary-50: #faf5ff;
   --color-primary-100: #f3e8ff;
   --color-primary-200: #e9d5ff;
@@ -10,6 +10,20 @@
   --color-primary-700: #7e22ce;
   --color-primary-800: #6b21a8;
   --color-primary-900: #581c87;
+
+  /* Purple Opacity Variations for Glass Effects */
+  --color-primary-alpha-5: rgba(168, 85, 247, 0.05);
+  --color-primary-alpha-10: rgba(168, 85, 247, 0.1);
+  --color-primary-alpha-15: rgba(168, 85, 247, 0.15);
+  --color-primary-alpha-20: rgba(168, 85, 247, 0.2);
+  --color-primary-alpha-25: rgba(168, 85, 247, 0.25);
+  --color-primary-alpha-30: rgba(168, 85, 247, 0.3);
+
+  /* Purple Shadow Variations */
+  --color-primary-shadow-light: rgba(99, 33, 170, 0.15);
+  --color-primary-shadow-medium: rgba(99, 33, 170, 0.25);
+  --color-primary-shadow-heavy: rgba(99, 33, 170, 0.35);
+  --color-primary-shadow-intense: rgba(99, 33, 170, 0.45);
 
   /* Neutral Colors */
   --color-neutral-50: #fafafa;
@@ -29,15 +43,43 @@
   --color-error: #ef4444;
   --color-info: #3b82f6;
 
-  /* Glassmorphism */
-  --glass-bg: rgba(168, 85, 247, 0.1);
-  --glass-bg-hover: rgba(168, 85, 247, 0.15);
-  --glass-bg-active: rgba(168, 85, 247, 0.2);
+  /* Enhanced Glassmorphism System */
+  /* Base Glass Backgrounds */
+  --glass-bg: var(--color-primary-alpha-10);
+  --glass-bg-hover: var(--color-primary-alpha-15);
+  --glass-bg-active: var(--color-primary-alpha-20);
+  --glass-bg-subtle: var(--color-primary-alpha-5);
+  --glass-bg-intense: var(--color-primary-alpha-25);
+
+  /* Glass Borders with Gradient Support */
   --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-shadow: 0 8px 32px 0 rgba(99, 33, 170, 0.25);
-  --glass-shadow-lg: 0 16px 48px 0 rgba(99, 33, 170, 0.35);
+  --glass-border-hover: rgba(255, 255, 255, 0.25);
+  --glass-border-focus: rgba(168, 85, 247, 0.4);
+  --glass-border-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+
+  /* Multi-level Glass Shadows */
+  --glass-shadow-xs: 0 2px 8px 0 var(--color-primary-shadow-light);
+  --glass-shadow-sm: 0 4px 16px 0 var(--color-primary-shadow-light);
+  --glass-shadow: 0 8px 32px 0 var(--color-primary-shadow-medium);
+  --glass-shadow-lg: 0 16px 48px 0 var(--color-primary-shadow-heavy);
+  --glass-shadow-xl: 0 24px 64px 0 var(--color-primary-shadow-intense);
+
+  /* Blur Levels for Different Effects */
+  --glass-blur-xs: 4px;
+  --glass-blur-sm: 8px;
   --glass-blur: 12px;
+  --glass-blur-md: 16px;
   --glass-blur-lg: 20px;
+  --glass-blur-xl: 28px;
+
+  /* Glass Overlay Effects */
+  --glass-overlay-light: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --glass-overlay-medium: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --glass-overlay-heavy: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 100%);
+
+  /* Glass Reflection Effects */
+  --glass-reflection: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+  --glass-shimmer: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
 
   /* Typography */
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -87,10 +129,20 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
 
-  /* Transitions */
+  /* Enhanced Transitions for Glassmorphism */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-smooth: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Glass-specific Transitions */
+  --glass-transition: all var(--transition-base);
+  --glass-transition-fast: background-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  --glass-transition-smooth: all var(--transition-smooth);
+  
+  /* Theme Transition for Smooth Mode Switching */
+  --theme-transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
 
   /* Z-index */
   --z-dropdown: 1000;
@@ -106,15 +158,37 @@
   --focus-ring-offset: 2px;
 }
 
-/* Dark mode support */
+/* Enhanced Dark Mode Support */
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Adjusted Glass Backgrounds for Dark Mode */
     --glass-bg: rgba(168, 85, 247, 0.08);
     --glass-bg-hover: rgba(168, 85, 247, 0.12);
     --glass-bg-active: rgba(168, 85, 247, 0.18);
+    --glass-bg-subtle: rgba(168, 85, 247, 0.04);
+    --glass-bg-intense: rgba(168, 85, 247, 0.22);
+
+    /* Dark Mode Glass Borders */
     --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border-hover: rgba(255, 255, 255, 0.15);
+    --glass-border-focus: rgba(168, 85, 247, 0.5);
+    --glass-border-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
+
+    /* Enhanced Dark Mode Shadows */
+    --glass-shadow-xs: 0 2px 8px 0 rgba(99, 33, 170, 0.3);
+    --glass-shadow-sm: 0 4px 16px 0 rgba(99, 33, 170, 0.35);
     --glass-shadow: 0 8px 32px 0 rgba(99, 33, 170, 0.4);
     --glass-shadow-lg: 0 16px 48px 0 rgba(99, 33, 170, 0.5);
+    --glass-shadow-xl: 0 24px 64px 0 rgba(99, 33, 170, 0.6);
+
+    /* Dark Mode Glass Overlays */
+    --glass-overlay-light: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
+    --glass-overlay-medium: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+    --glass-overlay-heavy: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+
+    /* Dark Mode Reflections */
+    --glass-reflection: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    --glass-shimmer: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
   }
 }
 
@@ -135,6 +209,7 @@ body {
   background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: var(--theme-transition);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -175,19 +250,286 @@ body {
   border-width: 0;
 }
 
-/* Glass utility classes */
+/* Enhanced Glassmorphism Utility Classes */
+
+/* Base Glass Effects */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-lg);
+  transition: var(--glass-transition);
 }
 
-.glass-lg {
-  background: var(--glass-bg);
+/* Glass Variants */
+.glass-subtle {
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(var(--glass-blur-sm));
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-sm);
+}
+
+.glass-intense {
+  background: var(--glass-bg-intense);
   backdrop-filter: blur(var(--glass-blur-lg));
   -webkit-backdrop-filter: blur(var(--glass-blur-lg));
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--glass-border-hover);
   box-shadow: var(--glass-shadow-lg);
+}
+
+/* Glass Blur Levels */
+.glass-blur-xs {
+  backdrop-filter: blur(var(--glass-blur-xs));
+  -webkit-backdrop-filter: blur(var(--glass-blur-xs));
+}
+
+.glass-blur-sm {
+  backdrop-filter: blur(var(--glass-blur-sm));
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+}
+
+.glass-blur-md {
+  backdrop-filter: blur(var(--glass-blur-md));
+  -webkit-backdrop-filter: blur(var(--glass-blur-md));
+}
+
+.glass-blur-lg {
+  backdrop-filter: blur(var(--glass-blur-lg));
+  -webkit-backdrop-filter: blur(var(--glass-blur-lg));
+}
+
+.glass-blur-xl {
+  backdrop-filter: blur(var(--glass-blur-xl));
+  -webkit-backdrop-filter: blur(var(--glass-blur-xl));
+}
+
+/* Glass Shadow Levels */
+.glass-shadow-xs {
+  box-shadow: var(--glass-shadow-xs);
+}
+
+.glass-shadow-sm {
+  box-shadow: var(--glass-shadow-sm);
+}
+
+.glass-shadow-md {
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-shadow-lg {
+  box-shadow: var(--glass-shadow-lg);
+}
+
+.glass-shadow-xl {
+  box-shadow: var(--glass-shadow-xl);
+}
+
+/* Glass Border Styles */
+.glass-border-none {
+  border: none;
+}
+
+.glass-border-subtle {
+  border: 1px solid var(--glass-border);
+}
+
+.glass-border-visible {
+  border: 1px solid var(--glass-border-hover);
+}
+
+.glass-border-focus {
+  border: 2px solid var(--glass-border-focus);
+}
+
+/* Glass Interactive States */
+.glass-interactive {
+  cursor: pointer;
+  transition: var(--glass-transition-smooth);
+}
+
+.glass-interactive:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.glass-interactive:active {
+  background: var(--glass-bg-active);
+  transform: translateY(-1px);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-interactive:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--glass-border-focus);
+}
+
+/* Glass Overlay Effects */
+.glass-overlay {
+  position: relative;
+}
+
+.glass-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--glass-overlay-light);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glass-overlay-medium::before {
+  background: var(--glass-overlay-medium);
+}
+
+.glass-overlay-heavy::before {
+  background: var(--glass-overlay-heavy);
+}
+
+/* Glass Reflection Effect */
+.glass-reflection {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-reflection::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: var(--glass-reflection);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Glass Shimmer Animation */
+.glass-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--glass-shimmer);
+  animation: shimmer 2s infinite;
+  z-index: 3;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Glass Morphism Combinations */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  transition: var(--glass-transition);
+}
+
+.glass-panel {
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(var(--glass-blur-md));
+  -webkit-backdrop-filter: blur(var(--glass-blur-md));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow-sm);
+}
+
+.glass-button {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur-sm));
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow-xs);
+  cursor: pointer;
+  transition: var(--glass-transition-fast);
+}
+
+.glass-button:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-sm);
+  transform: translateY(-1px);
+}
+
+.glass-button:active {
+  background: var(--glass-bg-active);
+  transform: translateY(0);
+  box-shadow: var(--glass-shadow-xs);
+}
+
+/* Accessibility-Compliant Contrast Classes */
+.glass-high-contrast {
+  background: var(--glass-bg-intense);
+  border: 2px solid var(--glass-border-hover);
+  color: var(--color-neutral-900);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass-high-contrast {
+    color: var(--color-neutral-50);
+    border-color: var(--glass-border-focus);
+  }
+}
+
+/* Responsive Glass Effects */
+@media (max-width: 768px) {
+  .glass-interactive:hover {
+    transform: translateY(-1px);
+  }
+  
+  .glass-button:hover {
+    transform: none;
+  }
+  
+  .glass-shimmer::before {
+    animation-duration: 3s;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .glass,
+  .glass-interactive,
+  .glass-button {
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  }
+  
+  .glass-interactive:hover,
+  .glass-interactive:active,
+  .glass-button:hover,
+  .glass-button:active {
+    transform: none;
+  }
+  
+  .glass-shimmer::before {
+    animation: none;
+  }
 }

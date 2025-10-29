@@ -125,11 +125,13 @@
     "@codemirror/theme-one-dark": "^6.1.3",
     "@codemirror/view": "^6.38.6",
     "@zxing/library": "^0.21.3",
+    "chart.js": "^4.5.1",
     "glob": "^11.0.3",
     "jsbarcode": "^3.12.1",
     "jsqr": "^1.4.0",
     "marked": "^16.4.1",
     "prismjs": "^1.30.0",
-    "qrcode": "^1.5.4"
+    "qrcode": "^1.5.4",
+    "svelte-dnd-action": "^0.9.66"
   }
 }

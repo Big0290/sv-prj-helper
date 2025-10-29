@@ -1,0 +1,1094 @@
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import { page } from '$app/stores'
+  import { Container, Heading, Text, Stack, Card, Badge, Button, Code, Alert } from '$lib/ui'
+  import EnhancedPlayground from '$lib/components/docs/EnhancedPlayground.svelte'
+
+  let componentName = $derived($page.params.component)
+  let documentation = $state<any>(null);
+  let loading = $state(true);
+  let error = $state<string | null>(null);
+
+  // Fetch component documentation from API
+  async function loadComponentDocs(name: string) {
+    try {
+      loading = true;
+      error = null;
+      
+      const response = await fetch(`/api/docs/components/${name}`);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to load component: ${response.statusText}`);
+      }
+      
+      documentation = await response.json();
+    } catch (err) {
+      error = err instanceof Error ? err.message : 'Unknown error occurred';
+      console.error('Error loading component:', err);
+    } finally {
+      loading = false;
+    }
+  }
+
+  // Load documentation when component name changes
+  $effect(() => {
+    if (componentName) {
+      loadComponentDocs(componentName);
+    }
+  });
+</script>
+
+<svelte:head>
+  <title>{componentName ? `${componentName} Component` : 'Component'} - SV Project Helper</title>
+</svelte:head>
+
+<Container maxWidth="xl">
+  <div class="component-docs-page">
+    {#if loading}
+      <Card>
+        <Stack gap="4" align="center">
+          <Text>Loading component documentation...</Text>
+        </Stack>
+      </Card>
+    {:else if error}
+      <div class="error-state">
+        <Card>
+          <Stack gap="4" align="center">
+            <Text size="lg" color="var(--color-error)">Component Not Found</Text>
+            <Text color="var(--text-secondary)">{error}</Text>
+            <Button variant="primary" href="/docs/components">← Back to Components</Button>
+          </Stack>
+        </Card>
+      </div>
+    {:else if documentation}
+      <!-- Component Header -->
+      <header class="component-header">
+        <Stack gap="4">
+          <div class="breadcrumb">
+            <a href="/docs">Documentation</a>
+            <span>→</span>
+            <a href="/docs/components">Components</a>
+            <span>→</span>
+            <span>{documentation.name}</span>
+          </div>
+
+          <div class="header-content">
+            <div class="header-text">
+              <Heading as="h1" size="1">{documentation.name}</Heading>
+              <Text size="lg" color="var(--text-secondary)">
+                {documentation.description}
+              </Text>
+            </div>
+
+            <div class="header-badges">
+              <Badge variant="info">{documentation.category}</Badge>
+              <Badge variant="default">v{documentation.version}</Badge>
+            </div>
+          </div>
+        </Stack>
+      </header>
+
+      <div class="docs-layout">
+        <!-- Main Content -->
+        <main class="docs-main">
+          <!-- Installation -->
+          <section class="installation-section">
+            <Card>
+              <Stack gap="4">
+                <Heading as="h2" size="3">Installation & Usage</Heading>
+
+                <div>
+                  <Text weight="medium" style="margin-bottom: 0.5rem;">Install the package:</Text>
+                  <Code language="bash" code="npm install @big0290/sv-prj-helper-ui" />
+                </div>
+
+                <div>
+                  <Text weight="medium" style="margin-bottom: 0.5rem;">Import the component:</Text>
+                  <Code
+                    language="javascript"
+                    code={`import { ${documentation.name} } from '${documentation.importPath}';`}
+                  />
+                </div>
+              </Stack>
+            </Card>
+          </section>
+
+          <!-- Examples -->
+          {#if documentation.examples && documentation.examples.length > 0}
+            <section class="examples-section">
+              <div>
+                <Heading as="h2" size="3">Examples</Heading>
+              </div>
+
+              {#each documentation.examples as example, index}
+                <div class="example-item">
+                  {#if index > 0}
+                    <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color);" />
+                  {/if}
+
+                  <div>
+                    <Heading as="h3" size="5" style="margin-bottom: 0.5rem;">{example.title}</Heading>
+                    {#if example.description}
+                      <Text color="var(--text-secondary)" size="sm" style="margin-bottom: 1.5rem;">
+                        {example.description}
+                      </Text>
+                    {/if}
+                  </div>
+
+                  <EnhancedPlayground
+                    componentName={documentation.name}
+                    props={documentation.props}
+                    examples={[example]}
+                    showThemeToggle={true}
+                    showResponsiveControls={true}
+                  />
+                </div>
+              {/each}
+            </section>
+          {/if}
+          {
+            title: 'Basic Usage',
+            description: 'Simple button with different variants',
+            code: `<Button variant="primary">Primary Button</Button>
+<Button variant="secondary">Secondary Button</Button>
+<Button variant="ghost">Ghost Button</Button>
+<Button variant="danger">Danger Button</Button>`,
+            language: 'svelte',
+          },
+          {
+            title: 'Button Sizes',
+            description: 'Buttons in different sizes',
+            code: `<Button size="sm">Small Button</Button>
+<Button size="md">Medium Button</Button>
+<Button size="lg">Large Button</Button>`,
+            language: 'svelte',
+          },
+          {
+            title: 'Button States',
+            description: 'Disabled and loading states',
+            code: `<Button disabled>Disabled Button</Button>
+<Button loading>Loading Button</Button>`,
+            language: 'svelte',
+          },
+          {
+            title: 'Link Button',
+            description: 'Button that acts as a link',
+            code: `<Button href="/docs" variant="primary">
+  Documentation
+</Button>
+<Button href="https://github.com" target="_blank" variant="ghost">
+  GitHub
+</Button>`,
+            language: 'svelte',
+          },
+        ],
+        accessibility: {
+          keyboardNavigation: ['Tab to focus the button', 'Enter or Space to activate'],
+          ariaAttributes: ['aria-disabled when disabled', 'aria-busy when loading'],
+          focusManagement: 'Receives focus and shows focus indicator',
+          guidelines: ['Use descriptive button text', 'Provide aria-label for icon-only buttons'],
+        },
+        relatedComponents: ['Link', 'ButtonGroup'],
+      },
+      badge: {
+        name: 'Badge',
+        category: 'atoms',
+        description:
+          'Small status indicator component with color variants for displaying labels, counts, and status information.',
+        importPath: '@big0290/sv-prj-helper-ui',
+        version: '1.0.0',
+        props: [
+          {
+            name: 'variant',
+            type: "'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info'",
+            defaultValue: 'default',
+            required: false,
+            description: 'Visual style variant of the badge',
+          },
+          {
+            name: 'size',
+            type: "'xs' | 'sm' | 'md' | 'lg'",
+            defaultValue: 'md',
+            required: false,
+            description: 'Size of the badge',
+          },
+          {
+            name: 'rounded',
+            type: 'boolean',
+            defaultValue: 'false',
+            required: false,
+            description: 'Whether the badge has fully rounded corners',
+          },
+          {
+            name: 'outline',
+            type: 'boolean',
+            defaultValue: 'false',
+            required: false,
+            description: 'Whether the badge has an outline style',
+          },
+        ],
+        events: [],
+        slots: [{ name: 'children', description: 'Badge content (text, numbers, icons)' }],
+        examples: [
+          {
+            title: 'Basic Badges',
+            description: 'Badges with different variants',
+            code: `<Badge variant="default">Default</Badge>
+<Badge variant="primary">Primary</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="warning">Warning</Badge>
+<Badge variant="error">Error</Badge>
+<Badge variant="info">Info</Badge>`,
+            language: 'svelte',
+          },
+          {
+            title: 'Badge Sizes',
+            description: 'Badges in different sizes',
+            code: `<Badge size="xs">Extra Small</Badge>
+<Badge size="sm">Small</Badge>
+<Badge size="md">Medium</Badge>
+<Badge size="lg">Large</Badge>`,
+            language: 'svelte',
+          },
+          {
+            title: 'Badge Styles',
+            description: 'Rounded and outline badges',
+            code: `<Badge rounded>Rounded Badge</Badge>
+<Badge outline variant="primary">Outline Badge</Badge>
+<Badge rounded outline variant="success">Rounded Outline</Badge>`,
+            language: 'svelte',
+          },
+          {
+            title: 'Badge with Numbers',
+            description: 'Using badges for counts and notifications',
+            code: `<Badge variant="error">3</Badge>
+<Badge variant="primary">99+</Badge>
+<Badge variant="success">✓</Badge>`,
+            language: 'svelte',
+          },
+        ],
+        accessibility: {
+          keyboardNavigation: [],
+          ariaAttributes: ['role="status" for dynamic content'],
+          focusManagement: 'Not focusable by default',
+          guidelines: [
+            'Use descriptive text',
+            'Ensure sufficient color contrast',
+            'Consider screen reader users for icon-only badges',
+          ],
+        },
+        relatedComponents: ['Chip', 'StatusDot'],
+      },
+      input: {
+        name: 'Input',
+        category: 'atoms',
+        description: 'Form input component with validation, error handling, and various input types.',
+        importPath: '@big0290/sv-prj-helper-ui',
+        version: '1.0.0',
+        props: [
+          {
+            name: 'type',
+            type: "'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'",
+            defaultValue: 'text',
+            required: false,
+            description: 'Input type',
+          },
+          { name: 'value', type: 'string', defaultValue: "''", required: false, description: 'Input value' },
+          {
+            name: 'placeholder',
+            type: 'string',
+            defaultValue: 'undefined',
+            required: false,
+            description: 'Placeholder text',
+          },
+          { name: 'label', type: 'string', defaultValue: 'undefined', required: false, description: 'Input label' },
+          {
+            name: 'error',
+            type: 'string',
+            defaultValue: 'undefined',
+            required: false,
+            description: 'Error message to display',
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            defaultValue: 'false',
+            required: false,
+            description: 'Whether the input is disabled',
+          },
+          {
+            name: 'required',
+            type: 'boolean',
+            defaultValue: 'false',
+            required: false,
+            description: 'Whether the input is required',
+          },
+          {
+            name: 'readonly',
+            type: 'boolean',
+            defaultValue: 'false',
+            required: false,
+            description: 'Whether the input is readonly',
+          },
+        ],
+        events: [
+          { name: 'oninput', type: '(e: Event) => void', description: 'Fired when input value changes' },
+          { name: 'onblur', type: '(e: FocusEvent) => void', description: 'Fired when input loses focus' },
+          { name: 'onfocus', type: '(e: FocusEvent) => void', description: 'Fired when input gains focus' },
+        ],
+        slots: [],
+        examples: [
+          {
+            title: 'Basic Input',
+            code: `<Input label="Name" placeholder="Enter your name" />`,
+            language: 'svelte',
+          },
+          {
+            title: 'Input with Error',
+            code: `<Input 
+  label="Email" 
+  type="email" 
+  error="Please enter a valid email address"
+  value="invalid-email"
+/>`,
+            language: 'svelte',
+          },
+        ],
+        accessibility: {
+          keyboardNavigation: ['Tab to focus', 'Type to enter text'],
+          ariaAttributes: ['aria-invalid when error', 'aria-describedby for error messages'],
+          focusManagement: 'Proper focus indicators and label association',
+        },
+        relatedComponents: ['Textarea', 'Select', 'Checkbox'],
+      },
+      card: {
+        name: 'Card',
+        category: 'molecules',
+        description: 'Container component with glassmorphism styling for grouping related content.',
+        importPath: '@big0290/sv-prj-helper-ui',
+        version: '1.0.0',
+        props: [
+          {
+            name: 'padding',
+            type: "'none' | 'sm' | 'md' | 'lg'",
+            defaultValue: 'md',
+            required: false,
+            description: 'Internal padding of the card',
+          },
+          {
+            name: 'variant',
+            type: "'default' | 'elevated' | 'outlined'",
+            defaultValue: 'default',
+            required: false,
+            description: 'Visual style variant',
+          },
+          {
+            name: 'hover',
+            type: 'boolean',
+            defaultValue: 'false',
+            required: false,
+            description: 'Whether the card has hover effects',
+          },
+        ],
+        events: [
+          {
+            name: 'onclick',
+            type: '(e: MouseEvent) => void',
+            description: 'Fired when the card is clicked (if interactive)',
+          },
+        ],
+        slots: [{ name: 'children', description: 'Card content' }],
+        examples: [
+          {
+            title: 'Basic Card',
+            code: `<Card>
+  <h3>Card Title</h3>
+  <p>This is some card content with glassmorphism styling.</p>
+</Card>`,
+            language: 'svelte',
+          },
+          {
+            title: 'Card Variants',
+            code: `<Card variant="elevated">
+  <p>Elevated card with more shadow</p>
+</Card>
+
+<Card variant="outlined">
+  <p>Outlined card with border</p>
+</Card>`,
+            language: 'svelte',
+          },
+        ],
+        accessibility: {
+          keyboardNavigation: ['Tab to focus if interactive'],
+          ariaAttributes: ['role="region" for landmark cards'],
+          focusManagement: 'Focusable when interactive',
+        },
+        relatedComponents: ['Container', 'Stack'],
+      },
+      text: {
+        name: 'Text',
+        category: 'atoms',
+        description: 'Typography component for body text with size, weight, and color variants.',
+        importPath: '@big0290/sv-prj-helper-ui',
+        version: '1.0.0',
+        props: [
+          {
+            name: 'size',
+            type: "'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl'",
+            defaultValue: 'base',
+            required: false,
+            description: 'Text size',
+          },
+          {
+            name: 'weight',
+            type: "'normal' | 'medium' | 'semibold' | 'bold'",
+            defaultValue: 'normal',
+            required: false,
+            description: 'Font weight',
+          },
+          {
+            name: 'color',
+            type: 'string',
+            defaultValue: 'var(--text-primary)',
+            required: false,
+            description: 'Text color (CSS value)',
+          },
+          {
+            name: 'align',
+            type: "'left' | 'center' | 'right' | 'justify'",
+            defaultValue: 'left',
+            required: false,
+            description: 'Text alignment',
+          },
+          {
+            name: 'truncate',
+            type: 'boolean',
+            defaultValue: 'false',
+            required: false,
+            description: 'Whether to truncate long text with ellipsis',
+          },
+        ],
+        events: [],
+        slots: [{ name: 'children', description: 'Text content' }],
+        examples: [
+          {
+            title: 'Text Sizes',
+            code: `<Text size="xs">Extra small text</Text>
+<Text size="sm">Small text</Text>
+<Text size="base">Base text</Text>
+<Text size="lg">Large text</Text>
+<Text size="xl">Extra large text</Text>`,
+            language: 'svelte',
+          },
+          {
+            title: 'Text Weights',
+            code: `<Text weight="normal">Normal weight</Text>
+<Text weight="medium">Medium weight</Text>
+<Text weight="semibold">Semibold weight</Text>
+<Text weight="bold">Bold weight</Text>`,
+            language: 'svelte',
+          },
+        ],
+        accessibility: {
+          keyboardNavigation: [],
+          ariaAttributes: [],
+          focusManagement: 'Not focusable',
+          guidelines: ['Ensure sufficient color contrast', 'Use semantic HTML when appropriate'],
+        },
+        relatedComponents: ['Heading', 'Code'],
+      },
+      heading: {
+        name: 'Heading',
+        category: 'atoms',
+        description: 'Semantic heading component with size hierarchy and proper HTML heading tags.',
+        importPath: '@big0290/sv-prj-helper-ui',
+        version: '1.0.0',
+        props: [
+          {
+            name: 'as',
+            type: "'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'",
+            defaultValue: 'h2',
+            required: false,
+            description: 'HTML heading tag to render',
+          },
+          {
+            name: 'size',
+            type: "'1' | '2' | '3' | '4' | '5' | '6'",
+            defaultValue: '2',
+            required: false,
+            description: 'Visual size (independent of HTML tag)',
+          },
+          {
+            name: 'color',
+            type: 'string',
+            defaultValue: 'var(--text-primary)',
+            required: false,
+            description: 'Heading color (CSS value)',
+          },
+          {
+            name: 'align',
+            type: "'left' | 'center' | 'right'",
+            defaultValue: 'left',
+            required: false,
+            description: 'Text alignment',
+          },
+        ],
+        events: [],
+        slots: [{ name: 'children', description: 'Heading content' }],
+        examples: [
+          {
+            title: 'Heading Hierarchy',
+            code: `<Heading as="h1" size="1">Main Title</Heading>
+<Heading as="h2" size="2">Section Title</Heading>
+<Heading as="h3" size="3">Subsection Title</Heading>
+<Heading as="h4" size="4">Minor Heading</Heading>`,
+            language: 'svelte',
+          },
+          {
+            title: 'Visual vs Semantic',
+            code: `<!-- Large visual size with semantic h3 -->
+<Heading as="h3" size="1">Visually Large H3</Heading>
+
+<!-- Small visual size with semantic h1 -->
+<Heading as="h1" size="4">Visually Small H1</Heading>`,
+            language: 'svelte',
+          },
+        ],
+        accessibility: {
+          keyboardNavigation: [],
+          ariaAttributes: [],
+          focusManagement: 'Not focusable',
+          guidelines: [
+            'Use proper heading hierarchy',
+            'Separate visual size from semantic meaning',
+            'Ensure headings describe content structure',
+          ],
+        },
+        relatedComponents: ['Text', 'Link'],
+      },
+    }
+
+    return componentDocs[name.toLowerCase()] || null
+  }
+
+  const documentation = $derived(getComponentDocumentation(componentName || ''))
+  const loading = false
+  const error = $derived(!documentation ? `Component "${componentName}" not found` : null)
+</script>
+
+<svelte:head>
+  <title>{componentName ? `${componentName} Component` : 'Component'} - SV Project Helper</title>
+</svelte:head>
+
+<Container maxWidth="xl">
+  <div class="component-docs-page">
+    {#if error}
+      <div class="error-state">
+        <Card>
+          <Stack gap="4" align="center">
+            <Text size="lg" color="var(--color-error)">Component Not Found</Text>
+            <Text color="var(--text-secondary)">{error}</Text>
+            <Button variant="primary" href="/docs/components">← Back to Components</Button>
+          </Stack>
+        </Card>
+      </div>
+    {:else if documentation}
+      <!-- Component Header -->
+      <header class="component-header">
+        <Stack gap="4">
+          <div class="breadcrumb">
+            <a href="/docs">Documentation</a>
+            <span>→</span>
+            <a href="/docs/components">Components</a>
+            <span>→</span>
+            <span>{documentation.name}</span>
+          </div>
+
+          <div class="header-content">
+            <div class="header-text">
+              <Heading as="h1" size="1">{documentation.name}</Heading>
+              <Text size="lg" color="var(--text-secondary)">
+                {documentation.description}
+              </Text>
+            </div>
+
+            <div class="header-badges">
+              <Badge variant="info">{documentation.category}</Badge>
+              <Badge variant="default">v{documentation.version}</Badge>
+            </div>
+          </div>
+        </Stack>
+      </header>
+
+      <div class="docs-layout">
+        <!-- Main Content -->
+        <main class="docs-main">
+          <!-- Installation -->
+          <section class="installation-section">
+            <Card>
+              <Stack gap="4">
+                <Heading as="h2" size="3">Installation & Usage</Heading>
+
+                <div>
+                  <Text weight="medium" style="margin-bottom: 0.5rem;">Install the package:</Text>
+                  <Code language="bash" code="npm install @big0290/sv-prj-helper-ui" />
+                </div>
+
+                <div>
+                  <Text weight="medium" style="margin-bottom: 0.5rem;">Import the component:</Text>
+                  <Code
+                    language="javascript"
+                    code={`import { ${documentation.name} } from '${documentation.importPath}';`}
+                  />
+                </div>
+              </Stack>
+            </Card>
+          </section>
+
+          <!-- Examples -->
+          {#if documentation.examples.length > 0}
+            <section class="examples-section">
+              <div>
+                <Heading as="h2" size="3">Examples</Heading>
+              </div>
+
+              {#each documentation.examples as example, index}
+                <div class="example-item">
+                  {#if index > 0}
+                    <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color);" />
+                  {/if}
+
+                  <div>
+                    <Heading as="h3" size="5" style="margin-bottom: 0.5rem;">{example.title}</Heading>
+                    {#if example.description}
+                      <Text color="var(--text-secondary)" size="sm" style="margin-bottom: 1.5rem;">
+                        {example.description}
+                      </Text>
+                    {/if}
+                  </div>
+
+                  <EnhancedPlayground
+                    componentName={documentation.name}
+                    props={documentation.props}
+                    examples={[example]}
+                    showThemeToggle={true}
+                    showResponsiveControls={true}
+                  />
+                </div>
+              {/each}
+            </section>
+          {/if}
+
+          <!-- API Reference -->
+          <section class="api-section">
+            <Card>
+              <Stack gap="6">
+                <Heading as="h2" size="3">API Reference</Heading>
+
+                <!-- Props -->
+                <div>
+                  <Heading as="h3" size="4">Props</Heading>
+                  {#if documentation.props.length > 0}
+                    <div class="api-table">
+                      <div class="api-table-header">
+                        <div>Name</div>
+                        <div>Type</div>
+                        <div>Default</div>
+                        <div>Description</div>
+                      </div>
+                      {#each documentation.props as prop}
+                        <div class="api-table-row">
+                          <div class="prop-name">
+                            <code>{prop.name}</code>
+                            {#if prop.required}<span class="required">*</span>{/if}
+                          </div>
+                          <div class="prop-type"><code>{prop.type}</code></div>
+                          <div class="prop-default"><code>{prop.defaultValue}</code></div>
+                          <div class="prop-description">{prop.description}</div>
+                        </div>
+                      {/each}
+                    </div>
+                  {:else}
+                    <Text color="var(--text-secondary)">This component does not accept any props.</Text>
+                  {/if}
+                </div>
+
+                <!-- Events -->
+                <div>
+                  <Heading as="h3" size="4">Events</Heading>
+                  {#if documentation.events.length > 0}
+                    <div class="api-table">
+                      <div class="api-table-header">
+                        <div>Name</div>
+                        <div>Type</div>
+                        <div>Description</div>
+                      </div>
+                      {#each documentation.events as event}
+                        <div class="api-table-row">
+                          <div class="prop-name"><code>{event.name}</code></div>
+                          <div class="prop-type"><code>{event.type}</code></div>
+                          <div class="prop-description">{event.description}</div>
+                        </div>
+                      {/each}
+                    </div>
+                  {:else}
+                    <Text color="var(--text-secondary)">This component does not emit any custom events.</Text>
+                  {/if}
+                </div>
+
+                <!-- Slots -->
+                <div>
+                  <Heading as="h3" size="4">Slots</Heading>
+                  {#if documentation.slots.length > 0}
+                    <div class="api-table">
+                      <div class="api-table-header">
+                        <div>Name</div>
+                        <div>Description</div>
+                      </div>
+                      {#each documentation.slots as slot}
+                        <div class="api-table-row">
+                          <div class="prop-name"><code>{slot.name}</code></div>
+                          <div class="prop-description">{slot.description}</div>
+                        </div>
+                      {/each}
+                    </div>
+                  {:else}
+                    <Text color="var(--text-secondary)">This component does not provide any slots.</Text>
+                  {/if}
+                </div>
+              </Stack>
+            </Card>
+          </section>
+
+          <!-- Accessibility -->
+          <section class="accessibility-section">
+            <Card>
+              <Stack gap="4">
+                <Heading as="h2" size="3">Accessibility</Heading>
+
+                {#if documentation.accessibility.keyboardNavigation?.length}
+                  <div>
+                    <Heading as="h4" size="5">Keyboard Navigation</Heading>
+                    <ul class="accessibility-list">
+                      {#each documentation.accessibility.keyboardNavigation as item}
+                        <li>{item}</li>
+                      {/each}
+                    </ul>
+                  </div>
+                {/if}
+
+                {#if documentation.accessibility.ariaAttributes?.length}
+                  <div>
+                    <Heading as="h4" size="5">ARIA Attributes</Heading>
+                    <ul class="accessibility-list">
+                      {#each documentation.accessibility.ariaAttributes as attr}
+                        <li><code>{attr}</code></li>
+                      {/each}
+                    </ul>
+                  </div>
+                {/if}
+
+                {#if documentation.accessibility.focusManagement}
+                  <div>
+                    <Heading as="h4" size="5">Focus Management</Heading>
+                    <Text>{documentation.accessibility.focusManagement}</Text>
+                  </div>
+                {/if}
+
+                {#if documentation.accessibility.guidelines?.length}
+                  <div>
+                    <Heading as="h4" size="5">Guidelines</Heading>
+                    <ul class="accessibility-list">
+                      {#each documentation.accessibility.guidelines as guideline}
+                        <li>{guideline}</li>
+                      {/each}
+                    </ul>
+                  </div>
+                {/if}
+              </Stack>
+            </Card>
+          </section>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="docs-sidebar">
+          <Card class="sidebar-nav">
+            <Stack gap="4">
+              <Heading as="h3" size="5">On This Page</Heading>
+              <nav class="page-nav">
+                <a href="#installation">Installation & Usage</a>
+                {#if documentation.examples.length > 0}
+                  <a href="#examples">Examples</a>
+                {/if}
+                <a href="#api">API Reference</a>
+                <a href="#accessibility">Accessibility</a>
+              </nav>
+            </Stack>
+          </Card>
+
+          {#if documentation.relatedComponents?.length}
+            <Card class="related-components">
+              <Stack gap="3">
+                <Heading as="h4" size="5">Related Components</Heading>
+                <div class="related-list">
+                  {#each documentation.relatedComponents as related}
+                    <a href="/docs/components/{related.toLowerCase()}">{related}</a>
+                  {/each}
+                </div>
+              </Stack>
+            </Card>
+          {/if}
+        </aside>
+      </div>
+    {/if}
+  </div>
+</Container>
+
+<style>
+  .component-docs-page {
+    padding: 2rem 0 4rem;
+  }
+
+  .error-state {
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .component-header {
+    margin-bottom: 3rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .header-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .docs-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .docs-main {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .docs-sidebar {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .page-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .page-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border-left: 2px solid transparent;
+    padding-left: 1rem;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+  }
+
+  .page-nav a:hover {
+    color: var(--text-primary);
+    border-left-color: var(--color-primary-light);
+  }
+
+  .related-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .related-list a {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .related-list a:hover {
+    text-decoration: underline;
+  }
+
+  .example-item {
+    scroll-margin-top: 100px;
+    margin-bottom: 3rem;
+  }
+
+  .examples-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .accessibility-list {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .accessibility-list li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+  }
+
+  .accessibility-list code {
+    background: var(--bg-secondary);
+    padding: 0.125rem 0.25rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+  }
+
+  /* API Table Styles */
+  .api-table {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 1rem 0;
+  }
+
+  .api-table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    background: var(--bg-secondary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+  }
+
+  .api-table-header > div {
+    padding: 0.75rem 1rem;
+    border-right: 1px solid var(--border-color);
+  }
+
+  .api-table-header > div:last-child {
+    border-right: none;
+  }
+
+  .api-table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .api-table-row > div {
+    padding: 0.75rem 1rem;
+    border-right: 1px solid var(--border-color);
+    font-size: 0.875rem;
+  }
+
+  .api-table-row > div:last-child {
+    border-right: none;
+  }
+
+  .prop-name code {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .prop-type code {
+    color: var(--color-secondary);
+    font-size: 0.8rem;
+  }
+
+  .prop-default code {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+  }
+
+  .required {
+    color: var(--color-error);
+    font-weight: bold;
+    margin-left: 0.25rem;
+  }
+
+  .prop-description {
+    color: var(--text-secondary);
+  }
+
+  /* Events table has different columns */
+  .api-table-row:has(.prop-name + .prop-type + .prop-description) {
+    grid-template-columns: 1fr 1fr 2fr;
+  }
+
+  .api-table-header:has(div:nth-child(3):last-child) {
+    grid-template-columns: 1fr 1fr 2fr;
+  }
+
+  /* Slots table has different columns */
+  .api-table-row:has(.prop-name + .prop-description:last-child) {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .api-table-header:has(div:nth-child(2):last-child) {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  /* Add scroll margin for anchor links */
+  .installation-section,
+  .examples-section,
+  .api-section,
+  .accessibility-section {
+    scroll-margin-top: 100px;
+  }
+
+  @media (max-width: 1024px) {
+    .docs-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .docs-sidebar {
+      position: static;
+      order: -1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .component-docs-page {
+      padding: 1rem 0 2rem;
+    }
+
+    .docs-main {
+      gap: 2rem;
+    }
+
+    .header-content {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .header-badges {
+      align-self: flex-start;
+    }
+  }
+</style>

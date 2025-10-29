@@ -1,285 +1,260 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { Text } from '$lib/ui';
+  import { onMount } from 'svelte'
+  import { Text } from '$lib/ui'
 
-	interface Props {
-		code: string;
-		showError?: boolean;
-	}
+  interface Props {
+    code: string
+    showError?: boolean
+  }
 
-	let { code, showError = true }: Props = $props();
+  let { code, showError = true }: Props = $props()
 
-	let previewContainer: HTMLDivElement | undefined = $state();
-	let error: string | null = $state(null);
-	let loading = $state(false);
+  let previewContainer: HTMLDivElement | undefined = $state()
+  let error: string | null = $state(null)
+  let loading = $state(false)
+  let messageHandler: ((event: MessageEvent) => void) | null = $state(null)
+  let isFallback = $state(false)
 
-	// Compile and render the Svelte code
-	$effect(() => {
-		if (!code.trim()) return;
-		
-		(async () => {
-			loading = true;
-			error = null;
+  onMount(() => {
+    return () => {
+      if (messageHandler) {
+        window.removeEventListener('message', messageHandler)
+      }
+    }
+  })
 
-			try {
-				await renderPreview(code);
-			} catch (err) {
-			error = err instanceof Error ? err.message : 'Failed to render preview';
-			console.error('Preview error:', err);
-			} finally {
-				loading = false;
-			}
-		})();
-	});
+  let lastCode = $state('')
 
-	async function renderPreview(svelteCode: string) {
-		if (!previewContainer) return;
+  /**
+   * Compile Svelte code using our enhanced API
+   */
+  async function compileComponent(svelteCode: string): Promise<{ html: string; isFallback: boolean }> {
+    try {
+      const response = await fetch('/api/compile/v2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code: svelteCode }),
+      })
 
-		// Clear previous content
-		previewContainer.innerHTML = '';
+      if (!response.ok) {
+        throw new Error(`Compilation failed: ${response.statusText}`)
+      }
 
-		try {
-			// For now, we'll create a simple iframe-based preview
-			// In a full implementation, you'd want to use Svelte's compiler
-			const iframe = document.createElement('iframe');
-			iframe.style.width = '100%';
-			iframe.style.height = '100%';
-			iframe.style.border = 'none';
-			iframe.style.background = 'transparent';
+      const result = await response.json()
 
-			// Create the HTML content for the iframe
-			const htmlContent = createPreviewHTML(svelteCode);
-			
-			previewContainer.appendChild(iframe);
-			
-			// Write content to iframe
-			const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-			if (iframeDoc) {
-				iframeDoc.open();
-				iframeDoc.write(htmlContent);
-				iframeDoc.close();
-			}
-		} catch (err) {
-			throw new Error(`Preview compilation failed: ${err}`);
-		}
-	}
+      if (result.error && !result.html) {
+        throw new Error(result.error)
+      }
 
-	function createPreviewHTML(svelteCode: string): string {
-		// Extract the component content (simplified approach)
-		const componentMatch = svelteCode.match(/<(\w+)[^>]*>.*?<\/\1>/s);
-		const componentHTML = componentMatch ? componentMatch[0] : svelteCode;
+      return {
+        html: result.html,
+        isFallback: result.fallback || false,
+      }
+    } catch (err) {
+      console.error('Compilation error:', err)
+      throw err
+    }
+  }
 
-		// For demo purposes, we'll create a static HTML representation
-		// In a real implementation, you'd compile the Svelte code
-		const staticHTML = convertSvelteToHTML(componentHTML);
+  $effect(() => {
+    if (!code.trim()) {
+      error = null
+      lastCode = ''
+      isFallback = false
+      if (previewContainer) {
+        previewContainer.innerHTML = ''
+      }
+      return
+    }
 
-		return `
-			<!DOCTYPE html>
-			<html>
-			<head>
-				<meta charset="utf-8">
-				<meta name="viewport" content="width=device-width, initial-scale=1">
-				<style>
-					body {
-						margin: 0;
-						padding: 1rem;
-						font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-						background: transparent;
-						color: var(--text-primary, #1a1a1a);
-					}
-					
-					/* Import theme variables */
-					:root {
-						--color-primary: #a855f7;
-						--color-secondary: #3b82f6;
-						--text-primary: #1a1a1a;
-						--text-secondary: #6b7280;
-						--bg-primary: #ffffff;
-						--bg-secondary: #f9fafb;
-						--border-color: #e5e7eb;
-						--radius-sm: 0.25rem;
-						--radius-md: 0.375rem;
-						--radius-lg: 0.5rem;
-					}
-					
-					@media (prefers-color-scheme: dark) {
-						:root {
-							--text-primary: #f9fafb;
-							--text-secondary: #9ca3af;
-							--bg-primary: #111827;
-							--bg-secondary: #1f2937;
-							--border-color: #374151;
-						}
-					}
-					
-					/* Basic component styles */
-					.btn {
-						display: inline-flex;
-						align-items: center;
-						justify-content: center;
-						padding: 0.5rem 1rem;
-						border-radius: var(--radius-md);
-						font-weight: 500;
-						text-decoration: none;
-						border: 1px solid transparent;
-						cursor: pointer;
-						transition: all 0.2s ease;
-					}
-					
-					.btn--primary {
-						background: var(--color-primary);
-						color: white;
-					}
-					
-					.btn--secondary {
-						background: var(--bg-secondary);
-						color: var(--text-primary);
-						border-color: var(--border-color);
-					}
-					
-					.card {
-						background: var(--bg-primary);
-						border: 1px solid var(--border-color);
-						border-radius: var(--radius-lg);
-						padding: 1.5rem;
-						box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-					}
-					
-					.input {
-						width: 100%;
-						padding: 0.5rem 0.75rem;
-						border: 1px solid var(--border-color);
-						border-radius: var(--radius-md);
-						background: var(--bg-primary);
-						color: var(--text-primary);
-					}
-					
-					.input:focus {
-						outline: none;
-						border-color: var(--color-primary);
-						box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
-					}
-				</style>
-			</head>
-			<body>
-				${staticHTML}
-			</body>
-			</html>
-		`;
-	}
+    if (!previewContainer) {
+      return
+    }
 
-	function convertSvelteToHTML(svelteCode: string): string {
-		// Simple conversion from Svelte syntax to HTML
-		// This is a basic implementation - a full version would need proper parsing
-		
-		let html = svelteCode;
-		
-		// Convert component names to HTML with classes
-		html = html.replace(/<Button([^>]*)>/g, '<button class="btn btn--primary"$1>');
-		html = html.replace(/<\/Button>/g, '</button>');
-		
-		html = html.replace(/<Card([^>]*)>/g, '<div class="card"$1>');
-		html = html.replace(/<\/Card>/g, '</div>');
-		
-		html = html.replace(/<Input([^>]*)>/g, '<input class="input"$1>');
-		html = html.replace(/<\/Input>/g, '');
-		
-		// Handle props
-		html = html.replace(/variant="([^"]+)"/g, (match, variant) => {
-			return `class="btn btn--${variant}"`;
-		});
-		
-		// Remove Svelte-specific attributes
-		html = html.replace(/\s*bind:\w+="[^"]*"/g, '');
-		html = html.replace(/\s*on:\w+="[^"]*"/g, '');
-		html = html.replace(/\s*\{[^}]*\}/g, '');
-		
-		return html;
-	}
+    if (code === lastCode) {
+      return
+    }
 
-	onMount(() => {
-		// Initial render
-		if (code) {
-			renderPreview(code);
-		}
-	});
+    lastCode = code
+    const container = previewContainer
+    container.innerHTML = ''
+    ;(async () => {
+      loading = true
+      error = null
+      isFallback = false
+
+      try {
+        const { html, isFallback: fallback } = await compileComponent(code)
+        isFallback = fallback
+        console.log('✅ Compiled successfully', { fallback })
+
+        const iframe = document.createElement('iframe')
+        iframe.style.width = '100%'
+        iframe.style.height = '100%'
+        iframe.style.border = 'none'
+        iframe.style.background = '#ffffff'
+        iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin')
+        iframe.setAttribute('title', 'Component Preview')
+
+        let loaded = false
+
+        iframe.onload = () => {
+          if (!loaded) {
+            loaded = true
+            loading = false
+            console.log('✅ Iframe loaded!')
+          }
+        }
+
+        iframe.onerror = () => {
+          loading = false
+          error = 'Failed to load preview'
+        }
+
+        function handleIframeMessage(event: MessageEvent) {
+          if (event.data?.type === 'preview-error') {
+            error = event.data.message
+          }
+          if (event.data?.type === 'console') {
+            console.log('[Preview Console]', event.data.level, event.data.message)
+          }
+        }
+
+        if (messageHandler) {
+          window.removeEventListener('message', messageHandler)
+        }
+
+        messageHandler = handleIframeMessage
+        window.addEventListener('message', messageHandler)
+
+        container.appendChild(iframe)
+        iframe.srcdoc = html
+
+        // Fallback timeout
+        setTimeout(() => {
+          if (!loaded) {
+            loading = false
+          }
+        }, 3000)
+      } catch (err) {
+        loading = false
+        error = err instanceof Error ? err.message : 'Failed to render preview'
+        console.error('Preview error:', err)
+      }
+    })()
+  })
 </script>
 
 <div class="live-preview">
-	{#if loading}
-		<div class="preview-loading">
-			<div class="spinner"></div>
-			<Text size="sm" color="var(--text-secondary)">Rendering preview...</Text>
-		</div>
-	{:else if error && showError}
-		<div class="preview-error">
-			<Text size="sm" color="var(--color-error)">Preview Error:</Text>
-			<Text size="xs" color="var(--text-secondary)">{error}</Text>
-		</div>
-	{:else if !code.trim()}
-		<div class="preview-empty">
-			<Text size="sm" color="var(--text-secondary)">No code to preview</Text>
-		</div>
-	{:else}
-		<div 
-			bind:this={previewContainer}
-			class="preview-container"
-		></div>
-	{/if}
+  {#if loading}
+    <div class="preview-loading">
+      <div class="spinner"></div>
+      <Text size="sm" color="var(--text-secondary)">Compiling and rendering...</Text>
+    </div>
+  {:else if error && showError}
+    <div class="preview-error">
+      <Text size="sm" weight="medium" color="var(--color-error)">Preview Error:</Text>
+      <Text size="xs" color="var(--text-secondary)">{error}</Text>
+    </div>
+  {:else if !code.trim()}
+    <div class="preview-empty">
+      <Text size="sm" color="var(--text-secondary)">No code to preview</Text>
+    </div>
+  {:else}
+    <div class="preview-wrapper">
+      {#if isFallback}
+        <div class="fallback-banner">
+          <Text size="xs" color="var(--color-warning)">
+            ⚠️ Using HTML fallback preview (Svelte compilation unavailable)
+          </Text>
+        </div>
+      {/if}
+      <div bind:this={previewContainer} class="preview-container"></div>
+    </div>
+  {/if}
 </div>
 
 <style>
-	.live-preview {
-		width: 100%;
-		height: 100%;
-		min-height: 200px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+  .live-preview {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+  }
 
-	.preview-container {
-		width: 100%;
-		height: 100%;
-		min-height: 200px;
-	}
+  .preview-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
-	.preview-loading,
-	.preview-error,
-	.preview-empty {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5rem;
-		padding: 2rem;
-		text-align: center;
-	}
+  .fallback-banner {
+    padding: 0.5rem 1rem;
+    background: rgba(245, 158, 11, 0.1);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+    border-top-left-radius: var(--radius-md);
+    border-top-right-radius: var(--radius-md);
+    text-align: center;
+  }
 
-	.preview-error {
-		background: rgba(239, 68, 68, 0.1);
-		border: 1px solid rgba(239, 68, 68, 0.2);
-		border-radius: var(--radius-md);
-	}
+  .preview-container {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
 
-	.spinner {
-		width: 24px;
-		height: 24px;
-		border: 2px solid var(--border-color);
-		border-top: 2px solid var(--color-primary);
-		border-radius: 50%;
-		animation: spin 1s linear infinite;
-	}
+  .preview-wrapper:has(.fallback-banner) .preview-container {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 
-	@keyframes spin {
-		0% { transform: rotate(0deg); }
-		100% { transform: rotate(360deg); }
-	}
+  :global(.preview-container iframe) {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
 
-	/* Ensure iframe content is responsive */
-	:global(.preview-container iframe) {
-		width: 100%;
-		height: 100%;
-		min-height: 200px;
-	}
+  .preview-loading,
+  .preview-error,
+  .preview-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .preview-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: var(--radius-md);
+  }
+
+  .spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border-color);
+    border-top: 2px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 </style>

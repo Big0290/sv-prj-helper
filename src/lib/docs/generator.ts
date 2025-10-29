@@ -1,283 +1,282 @@
-import { readFile, writeFile, readdir, stat } from 'fs/promises';
-import { join, dirname } from 'path';
-import type { ComponentDocumentation, ComponentRegistry, DocumentationMetadata } from './types.js';
-import { generateComponentReadme } from './templates.js';
-import { createComponentDocumentation } from './parser.js';
+/**
+ * Generate code examples from component props and variants
+ */
+
+import type { PropDefinition, CodeExample } from './types'
+import type { ParsedComponent } from './parser'
 
 /**
- * Generate documentation for all components in the library
+ * Extract union type variants from a prop type
  */
-export async function generateAllDocumentation(srcPath: string = 'src/lib/components'): Promise<DocumentationMetadata> {
-  const registry: ComponentRegistry = {};
-  const categories = new Map<string, string[]>();
+function extractUnionVariants(type: string): string[] {
+  // Match union types like 'primary' | 'secondary' | 'ghost'
+  const match = type.match(/'([^']+)'(\s*\|\s*'([^']+)')+/g)
+  if (!match) return []
 
-  try {
-    await processDirectory(srcPath, registry, categories);
-    
-    const metadata: DocumentationMetadata = {
-      version: '1.0.0',
-      lastUpdated: new Date().toISOString(),
-      components: registry,
-      categories: Array.from(categories.entries()).map(([name, components]) => ({
-        name,
-        description: getCategoryDescription(name),
-        components
-      })),
-      totalComponents: Object.keys(registry).length
-    };
-
-    return metadata;
-  } catch (error) {
-    console.error('Error generating documentation:', error);
-    throw error;
+  const variants: string[] = []
+  const allMatches = type.match(/'([^']+)'/g)
+  if (allMatches) {
+    allMatches.forEach((m) => {
+      const variant = m.replace(/'/g, '')
+      if (variant) variants.push(variant)
+    })
   }
+
+  return variants
 }
 
 /**
- * Process a directory recursively to find and document components
+ * Check if a prop represents a variant
  */
-async function processDirectory(
-  dirPath: string, 
-  registry: ComponentRegistry, 
-  categories: Map<string, string[]>
-): Promise<void> {
-  try {
-    const entries = await readdir(dirPath);
-    
-    for (const entry of entries) {
-      const fullPath = join(dirPath, entry);
-      const stats = await stat(fullPath);
-      
-      if (stats.isDirectory()) {
-        // Check if this is a component directory (contains .svelte file)
-        const componentFiles = await readdir(fullPath);
-        const svelteFile = componentFiles.find(f => f.endsWith('.svelte'));
-        
-        if (svelteFile) {
-          // This is a component directory
-          await processComponent(fullPath, entry, registry, categories);
-        } else {
-          // Continue recursing
-          await processDirectory(fullPath, registry, categories);
-        }
-      }
-    }
-  } catch (error) {
-    console.warn(`Could not process directory ${dirPath}:`, error);
+function isVariantProp(prop: PropDefinition): boolean {
+  return prop.name === 'variant' && prop.type.includes('|')
+}
+
+/**
+ * Check if a prop represents a size
+ */
+function isSizeProp(prop: PropDefinition): boolean {
+  return prop.name === 'size' && prop.type.includes('|')
+}
+
+/**
+ * Check if a prop represents a type (like input type)
+ */
+function isTypeProp(prop: PropDefinition): boolean {
+  return prop.name === 'type' && prop.type.includes('|')
+}
+
+/**
+ * Generate basic usage example
+ */
+function generateBasicExample(component: ParsedComponent): CodeExample {
+  const props = component.hasChildren
+    ? '<' + component.name + '>Default Content</' + component.name + '>'
+    : '<' + component.name + ' />'
+
+  const importLine = `import { ${component.name} } from '@big0290/sv-prj-helper-ui';`
+  const fullCode = `<script>\n  ${importLine}\n</script>\n\n${props}`
+
+  return {
+    title: 'Basic Usage',
+    description: `Simple ${component.name} component with default props`,
+    code: fullCode,
+    language: 'svelte',
   }
 }
 
 /**
- * Process a single component directory
+ * Generate variant examples
  */
-async function processComponent(
-  componentPath: string,
-  componentName: string,
-  registry: ComponentRegistry,
-  categories: Map<string, string[]>
-): Promise<void> {
-  try {
-    const files = await readdir(componentPath);
-    
-    // Find component files
-    const svelteFile = files.find(f => f.endsWith('.svelte'));
-    const typesFile = files.find(f => f.endsWith('.types.ts'));
-    const indexFile = files.find(f => f === 'index.ts');
-    
-    if (!svelteFile) return;
+function generateVariantExamples(component: ParsedComponent): CodeExample[] {
+  const examples: CodeExample[] = []
 
-    // Read component content
-    const componentContent = await readFile(join(componentPath, svelteFile), 'utf-8');
-    
-    // Read types content if available
-    let typeContent = '';
-    if (typesFile) {
-      typeContent = await readFile(join(componentPath, typesFile), 'utf-8');
-    }
+  const variantProp = component.props.find(isVariantProp)
+  if (!variantProp) return examples
 
-    // Determine category from path
-    const category = determineCategoryFromPath(componentPath);
-    const importPath = generateImportPath(componentPath, componentName);
+  const variants = extractUnionVariants(variantProp.type)
+  if (variants.length === 0) return examples
 
-    // Create documentation
-    const documentation = createComponentDocumentation(
-      componentName,
-      category,
-      importPath,
-      typeContent,
-      componentContent
-    );
+  // Single variant example
+  if (variants.length <= 4) {
+    const importLine = `import { ${component.name} } from '@big0290/sv-prj-helper-ui';`
+    const variantExamples = variants
+      .map((v) => {
+        const content = component.hasChildren ? `${v.charAt(0).toUpperCase() + v.slice(1)} Variant` : ''
+        return `<${component.name} variant="${v}">${content}</${component.name}>`
+      })
+      .join('\n')
 
-    // Generate README
-    const readmeContent = generateComponentReadme(documentation);
-    await writeFile(join(componentPath, 'README.md'), readmeContent);
+    examples.push({
+      title: 'Variants',
+      description: `All available ${component.name} variants`,
+      code: `<script>\n  ${importLine}\n</script>\n\n${variantExamples}`,
+      language: 'svelte',
+    })
+  } else {
+    // Show first few variants as example
+    const importLine = `import { ${component.name} } from '@big0290/sv-prj-helper-ui';`
+    const sampleVariants = variants.slice(0, 3)
+    const variantExamples = sampleVariants
+      .map((v) => {
+        const content = component.hasChildren ? `${v.charAt(0).toUpperCase() + v.slice(1)} Variant` : ''
+        return `<${component.name} variant="${v}">${content}</${component.name}>`
+      })
+      .join('\n')
 
-    // Add to registry
-    registry[componentName] = {
-      path: componentPath,
-      category,
-      exports: [componentName],
-      dependencies: extractDependencies(componentContent),
-      documentation
-    };
-
-    // Add to category
-    if (!categories.has(category)) {
-      categories.set(category, []);
-    }
-    categories.get(category)!.push(componentName);
-
-    console.log(`Generated documentation for ${componentName}`);
-  } catch (error) {
-    console.error(`Error processing component ${componentName}:`, error);
+    examples.push({
+      title: 'Variants',
+      description: `Available ${component.name} variants`,
+      code: `<script>\n  ${importLine}\n</script>\n\n${variantExamples}`,
+      language: 'svelte',
+    })
   }
+
+  return examples
 }
 
 /**
- * Update documentation for a specific component
+ * Generate size examples
  */
-export async function updateComponentDocumentation(
-  componentPath: string,
-  componentName: string,
-  customDescription?: string
-): Promise<ComponentDocumentation | null> {
-  try {
-    const files = await readdir(componentPath);
-    
-    const svelteFile = files.find(f => f.endsWith('.svelte'));
-    const typesFile = files.find(f => f.endsWith('.types.ts'));
-    
-    if (!svelteFile) {
-      throw new Error(`No Svelte component found in ${componentPath}`);
-    }
+function generateSizeExamples(component: ParsedComponent): CodeExample[] {
+  const examples: CodeExample[] = []
 
-    // Read files
-    const componentContent = await readFile(join(componentPath, svelteFile), 'utf-8');
-    let typeContent = '';
-    if (typesFile) {
-      typeContent = await readFile(join(componentPath, typesFile), 'utf-8');
-    }
+  const sizeProp = component.props.find(isSizeProp)
+  if (!sizeProp) return examples
 
-    // Generate documentation
-    const category = determineCategoryFromPath(componentPath);
-    const importPath = generateImportPath(componentPath, componentName);
-    
-    const documentation = createComponentDocumentation(
-      componentName,
-      category,
-      importPath,
-      typeContent,
-      componentContent,
-      customDescription
-    );
+  const sizes = extractUnionVariants(sizeProp.type)
+  if (sizes.length === 0) return examples
 
-    // Generate and write README
-    const readmeContent = generateComponentReadme(documentation);
-    await writeFile(join(componentPath, 'README.md'), readmeContent);
+  const importLine = `import { ${component.name} } from '@big0290/sv-prj-helper-ui';`
+  const sizeExamples = sizes
+    .map((s) => {
+      const content = component.hasChildren ? `${s.charAt(0).toUpperCase() + s.slice(1)} Size` : ''
+      return `<${component.name} size="${s}">${content}</${component.name}>`
+    })
+    .join('\n')
 
-    console.log(`Updated documentation for ${componentName}`);
-    return documentation;
-  } catch (error) {
-    console.error(`Error updating documentation for ${componentName}:`, error);
-    return null;
-  }
+  examples.push({
+    title: 'Sizes',
+    description: `Different sizes for ${component.name}`,
+    code: `<script>\n  ${importLine}\n</script>\n\n${sizeExamples}`,
+    language: 'svelte',
+  })
+
+  return examples
 }
 
 /**
- * Validate that all components have proper documentation
+ * Generate type examples (like input types)
  */
-export async function validateDocumentation(srcPath: string = 'src/lib/components'): Promise<string[]> {
-  const issues: string[] = [];
-  
-  try {
-    const registry: ComponentRegistry = {};
-    const categories = new Map<string, string[]>();
-    
-    await processDirectory(srcPath, registry, categories);
-    
-    for (const [componentName, component] of Object.entries(registry)) {
-      const readmePath = join(component.path, 'README.md');
-      
-      try {
-        const readmeContent = await readFile(readmePath, 'utf-8');
-        
-        // Check for required sections
-        const requiredSections = ['## Overview', '## Props', '## Accessibility', '## Examples'];
-        for (const section of requiredSections) {
-          if (!readmeContent.includes(section)) {
-            issues.push(`${componentName}: Missing ${section} section`);
-          }
-        }
-        
-        // Check if props documentation matches actual props
-        if (component.documentation.props.length > 0) {
-          const hasPropsTable = readmeContent.includes('| Name | Type | Default | Required | Description |');
-          if (!hasPropsTable) {
-            issues.push(`${componentName}: Props table not found or malformed`);
-          }
-        }
-        
-      } catch (error) {
-        issues.push(`${componentName}: README.md not found or unreadable`);
-      }
-    }
-    
-  } catch (error) {
-    issues.push(`Error validating documentation: ${error}`);
+function generateTypeExamples(component: ParsedComponent): CodeExample[] {
+  const examples: CodeExample[] = []
+
+  const typeProp = component.props.find(isTypeProp)
+  if (!typeProp) return examples
+
+  const types = extractUnionVariants(typeProp.type)
+  if (types.length === 0) return examples
+
+  // Only generate for HTML-like types (not button types)
+  const htmlTypeComponents = ['Input', 'Textarea']
+  if (!htmlTypeComponents.includes(component.name)) return examples
+
+  const importLine = `import { ${component.name} } from '@big0290/sv-prj-helper-ui';`
+  const typeExamples = types
+    .map((t) => {
+      const placeholder = `Enter ${t}`
+      return `<${component.name} type="${t}" placeholder="${placeholder}" />`
+    })
+    .join('\n')
+
+  examples.push({
+    title: 'Types',
+    description: `Different types for ${component.name}`,
+    code: `<script>\n  ${importLine}\n</script>\n\n${typeExamples}`,
+    language: 'svelte',
+  })
+
+  return examples
+}
+
+/**
+ * Generate state examples (disabled, loading, etc.)
+ */
+function generateStateExamples(component: ParsedComponent): CodeExample[] {
+  const examples: CodeExample[] = []
+  const states: PropDefinition[] = []
+
+  if (component.props.find((p) => p.name === 'disabled')) {
+    states.push({ name: 'disabled', type: 'boolean', defaultValue: 'false', required: false, description: '' })
   }
-  
-  return issues;
-}
-
-// Helper functions
-
-function determineCategoryFromPath(componentPath: string): ComponentDocumentation['category'] {
-  if (componentPath.includes('/atoms/')) return 'atoms';
-  if (componentPath.includes('/molecules/')) return 'molecules';
-  if (componentPath.includes('/organisms/')) return 'organisms';
-  if (componentPath.includes('/layouts/')) return 'layouts';
-  if (componentPath.includes('/utils/')) return 'utils';
-  if (componentPath.includes('/hooks/')) return 'hooks';
-  if (componentPath.includes('/theme/')) return 'theme';
-  return 'atoms'; // default
-}
-
-function generateImportPath(componentPath: string, componentName: string): string {
-  // Generate import path based on library structure
-  if (componentPath.includes('src/lib/components/')) {
-    return '@sv-project-helper/ui';
+  if (component.props.find((p) => p.name === 'loading')) {
+    states.push({ name: 'loading', type: 'boolean', defaultValue: 'false', required: false, description: '' })
   }
-  return `@sv-project-helper/ui/${componentName}`;
+
+  if (states.length === 0) return examples
+
+  const importLine = `import { ${component.name} } from '@big0290/sv-prj-helper-ui';`
+  const stateExamples = states
+    .map((state) => {
+      const content = component.hasChildren ? `${state.name.charAt(0).toUpperCase() + state.name.slice(1)} State` : ''
+      const attrs = state.name === 'loading' ? `${state.name}` : `${state.name}={true}`
+      return `<${component.name} ${attrs}>${content}</${component.name}>`
+    })
+    .join('\n')
+
+  examples.push({
+    title: 'States',
+    description: `Different states for ${component.name}`,
+    code: `<script>\n  ${importLine}\n</script>\n\n${stateExamples}`,
+    language: 'svelte',
+  })
+
+  return examples
 }
 
-function extractDependencies(componentContent: string): string[] {
-  const dependencies: string[] = [];
-  
-  // Extract import statements
-  const importMatches = componentContent.matchAll(/import\s+.*?\s+from\s+['"]([^'"]+)['"]/g);
-  for (const [, importPath] of importMatches) {
-    if (importPath.startsWith('./') || importPath.startsWith('../')) {
-      // Local imports
-      const componentMatch = importPath.match(/\/(\w+)(?:\.svelte)?$/);
-      if (componentMatch) {
-        dependencies.push(componentMatch[1]);
-      }
-    }
+/**
+ * Generate examples for a component
+ */
+export function generateExamples(component: ParsedComponent): CodeExample[] {
+  const examples: CodeExample[] = []
+
+  // Basic usage
+  const basicExample = generateBasicExample(component)
+  examples.push(basicExample)
+
+  // Variants
+  const variantExamples = generateVariantExamples(component)
+  examples.push(...variantExamples)
+
+  // Sizes
+  const sizeExamples = generateSizeExamples(component)
+  examples.push(...sizeExamples)
+
+  // Types (like input types: text, password, number, etc.)
+  const typeExamples = generateTypeExamples(component)
+  examples.push(...typeExamples)
+
+  // States
+  const stateExamples = generateStateExamples(component)
+  examples.push(...stateExamples)
+
+  return examples
+}
+
+/**
+ * Generate accessibility info from component props
+ */
+export function generateAccessibilityInfo(component: ParsedComponent) {
+  const ariaLabel = component.props.find((p) => p.name === 'ariaLabel')
+  const disabled = component.props.find((p) => p.name === 'disabled')
+  const loading = component.props.find((p) => p.name === 'loading')
+
+  const info: any = {
+    keyboardNavigation: [],
+    ariaAttributes: [],
+    focusManagement: 'Component receives focus with visible indicators',
+    guidelines: [],
   }
-  
-  return dependencies;
-}
 
-function getCategoryDescription(category: string): string {
-  const descriptions = {
-    atoms: 'Basic building blocks and primitive components',
-    molecules: 'Composed components built from atoms',
-    organisms: 'Complex components with multiple molecules and atoms',
-    layouts: 'Layout and structural components',
-    utils: 'Utility components for common functionality',
-    hooks: 'Svelte 5 runes-based hooks and composables',
-    theme: 'Theme and styling related components'
-  };
-  
-  return descriptions[category as keyof typeof descriptions] || 'Component category';
+  if (ariaLabel) {
+    info.ariaAttributes.push('aria-label for screen reader support')
+    info.guidelines.push('Provide meaningful aria-label for screen readers')
+  }
+
+  if (disabled) {
+    info.ariaAttributes.push('aria-disabled when disabled')
+    info.guidelines.push('Ensure disabled state is properly announced')
+  }
+
+  if (loading) {
+    info.ariaAttributes.push('aria-busy when loading')
+  }
+
+  // Default keyboard navigation for interactive components
+  if (component.props.find((p) => p.name === 'onclick')) {
+    info.keyboardNavigation.push('Tab to focus the component')
+    info.keyboardNavigation.push('Enter or Space to activate')
+  }
+
+  return info
 }
