@@ -23,7 +23,7 @@
 	</div>
 </Story>
 
-<Story name="WithIcon">
+<Story name="WithIcon" args={{}}>
 	{#snippet icon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
 			<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -32,7 +32,7 @@
 	{/snippet}
 	
 	<div style="background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 8px; width: 200px;">
-		<MenuItem icon={icon}>Profile</MenuItem>
+		<MenuItem {icon}>Profile</MenuItem>
 	</div>
 </Story>
 
@@ -48,7 +48,7 @@
 	</div>
 </Story>
 
-<Story name="MenuExample">
+<Story name="MenuExample" args={{}}>
 	{#snippet userIcon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
 			<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
