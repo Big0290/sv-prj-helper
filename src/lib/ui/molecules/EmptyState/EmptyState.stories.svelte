@@ -25,8 +25,7 @@
 	/>
 </Story>
 
-<!-- svelte-ignore a11y-missing-attribute -->
-<Story name="WithAction" args={{ title: "No projects yet", description: "Get started by creating your first project" }}>
+<Story name="WithAction">
 	{#snippet icon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 48px; height: 48px;">
 			<path d="M12 5v14m-7-7h14" />
@@ -53,8 +52,7 @@
 	/>
 </Story>
 
-<!-- svelte-ignore a11y-missing-attribute -->
-<Story name="CustomIcon" args={{ title: "Nothing here", description: "Start adding content to see it appear here" }}>
+<Story name="CustomIcon">
 	{#snippet customIcon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 64px; height: 64px;">
 			<circle cx="12" cy="12" r="10" />

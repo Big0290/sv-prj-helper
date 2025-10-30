@@ -23,8 +23,7 @@
 	</div>
 </Story>
 
-<!-- svelte-ignore a11y-missing-attribute -->
-<Story name="WithIcon" args={{}}>
+<Story name="WithIcon">
 	{#snippet icon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
 			<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -49,8 +48,7 @@
 	</div>
 </Story>
 
-<!-- svelte-ignore a11y-missing-attribute -->
-<Story name="MenuExample" args={{}}>
+<Story name="MenuExample">
 	{#snippet userIcon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
 			<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
