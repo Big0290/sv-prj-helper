@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/Big0290/sv-prj-helper/compare/v0.6.0...v0.7.0) (2025-10-29)
+
+
+### Features
+
+* Enhance MoneyCounter component with TypeScript interface ([22f25ef](https://github.com/Big0290/sv-prj-helper/commit/22f25ef84e24eec1d53a5dd8b88b614913324fc6))
+
+
+
 # [0.6.0](https://github.com/Big0290/sv-prj-helper/compare/v0.5.0...v0.6.0) (2025-10-29)
 
 
