@@ -40,23 +40,6 @@
 	/>
 </Story>
 
-<Story name="WithIcon">
-	{#snippet icon()}
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px; color: #3b82f6;">
-			<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-			<circle cx="8.5" cy="7" r="4" />
-			<path d="M20 8v6M23 11h-6" />
-		</svg>
-	{/snippet}
-	
-	<StatsCard 
-		label="New Users"
-		value="234"
-		trend={18.2}
-		{icon}
-	/>
-</Story>
-
 <Story name="SuccessVariant">
 	<StatsCard 
 		label="Sales"

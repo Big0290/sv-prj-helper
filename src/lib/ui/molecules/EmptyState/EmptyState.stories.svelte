@@ -25,25 +25,6 @@
 	/>
 </Story>
 
-<Story name="WithAction">
-	{#snippet icon()}
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 48px; height: 48px;">
-			<path d="M12 5v14m-7-7h14" />
-		</svg>
-	{/snippet}
-	
-	{#snippet action()}
-		<Button variant="primary">Create Item</Button>
-	{/snippet}
-	
-	<EmptyState 
-		title="No projects yet"
-		description="Get started by creating your first project"
-		{icon}
-		{action}
-	/>
-</Story>
-
 <Story name="Compact">
 	<EmptyState 
 		title="No results"
@@ -52,17 +33,9 @@
 	/>
 </Story>
 
-<Story name="CustomIcon">
-	{#snippet customIcon()}
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 64px; height: 64px;">
-			<circle cx="12" cy="12" r="10" />
-			<path d="M8 12h8M12 8v8" />
-		</svg>
-	{/snippet}
-	
+<Story name="WithDescription">
 	<EmptyState 
-		title="Nothing here"
-		description="Start adding content to see it appear here"
-		icon={customIcon}
+		title="No projects yet"
+		description="Get started by creating your first project"
 	/>
 </Story>
