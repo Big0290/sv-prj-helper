@@ -1,74 +1,78 @@
 <script module>
-	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import Modal from './Modal.svelte';
+  import { defineMeta } from '@storybook/addon-svelte-csf'
+  import Modal from './Modal.svelte'
 
-	const { Story } = defineMeta({
-		title: 'Organisms/Interactive/Modal',
-		component: Modal,
-		tags: ['autodocs'],
-		parameters: {
-			layout: 'centered',
-			docs: {
-				description: {
-					component: 'A modal dialog component with customizable sizes and behaviors.'
-				}
-			}
-		}
-	});
+  const { Story } = defineMeta({
+    title: 'Organisms/Interactive/Modal',
+    component: Modal,
+    tags: ['autodocs'],
+    parameters: {
+      layout: 'centered',
+      docs: {
+        description: {
+          component: 'A modal dialog component with customizable sizes and behaviors.',
+        },
+      },
+    },
+  })
 </script>
 
-<Story name="Small Modal" args={{ open: true, size: 'sm', title: 'Small Modal' }}>
-	<p>This is a small modal dialog.</p>
+<Story name="Default">
+  <script>
+    let open = $state(false)
+  </script>
+
+  <button class="trigger-btn" onclick={() => (open = true)}>Open Modal</button>
+
+  <Modal {open} title="Modal Title" onclose={() => (open = false)}>
+    <p>Modal content goes here</p>
+  </Modal>
 </Story>
 
-<Story name="Medium Modal" args={{ open: true, size: 'md', title: 'Medium Modal' }}>
-	<p>This is a medium-sized modal dialog with more content.</p>
+<Story name="Small">
+  <script>
+    let open = $state(false)
+  </script>
+
+  <button class="trigger-btn" onclick={() => (open = true)}>Open Small Modal</button>
+
+  <Modal {open} size="sm" title="Small Modal" onclose={() => (open = false)}>
+    <p>This is a small modal</p>
+  </Modal>
 </Story>
 
-<Story name="Large Modal" args={{ open: true, size: 'lg', title: 'Large Modal' }}>
-	<p>This is a large modal dialog with extensive content that can wrap to multiple lines.</p>
-</Story>
+<Story name="Large">
+  <script>
+    let open = $state(false)
+  </script>
 
-<Story name="Confirmation" args={{ open: true, title: 'Confirm Action' }}>
-	<p>Are you sure you want to proceed with this action?</p>
-	<div class="actions">
-		<button class="cancel-btn">Cancel</button>
-		<button class="confirm-btn">Confirm</button>
-	</div>
-</Story>
+  <button class="trigger-btn" onclick={() => (open = true)}>Open Large Modal</button>
 
-<Story name="Information" args={{ open: true, title: 'Information', size: 'md' }}>
-	<p>This is an informational modal to display important information to the user.</p>
-	<ul>
-		<li>First point of information</li>
-		<li>Second point of information</li>
-		<li>Third point of information</li>
-	</ul>
+  <Modal {open} size="lg" title="Large Modal" onclose={() => (open = false)}>
+    <p>This is a large modal with more space for content</p>
+  </Modal>
 </Story>
 
 <style>
-	.actions {
-		display: flex;
-		gap: 1rem;
-		justify-content: flex-end;
-		margin-top: 2rem;
-	}
-	
-	.actions button {
-		padding: 0.75rem 1.5rem;
-		border: none;
-		border-radius: 0.5rem;
-		cursor: pointer;
-		font-weight: 600;
-	}
-	
-	.cancel-btn {
-		background: #e5e7eb;
-		color: #374151;
-	}
-	
-	.confirm-btn {
-		background: var(--color-primary-500, #3b82f6);
-		color: white;
-	}
+  .trigger-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary-500, #8b5cf6);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+
+  .trigger-btn:hover {
+    background: var(--color-primary-600, #7c3aed);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  .trigger-btn:active {
+    transform: translateY(0);
+  }
 </style>
