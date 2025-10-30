@@ -40,6 +40,7 @@
 	/>
 </Story>
 
+<!-- @ts-expect-error - Storybook CSF doesn't understand Svelte 5 snippets in Story body -->
 <Story name="WithIcon" args={{ label: "New Users", value: "234", trend: 18.2 }}>
 	{#snippet icon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px; color: #3b82f6;">

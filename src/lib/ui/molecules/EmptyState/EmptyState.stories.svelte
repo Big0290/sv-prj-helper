@@ -25,6 +25,7 @@
 	/>
 </Story>
 
+<!-- @ts-expect-error - Storybook CSF doesn't understand Svelte 5 snippets in Story body -->
 <Story name="WithAction" args={{ title: "No projects yet", description: "Get started by creating your first project" }}>
 	{#snippet icon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 48px; height: 48px;">
@@ -52,6 +53,7 @@
 	/>
 </Story>
 
+<!-- @ts-expect-error - Storybook CSF doesn't understand Svelte 5 snippets in Story body -->
 <Story name="CustomIcon" args={{ title: "Nothing here", description: "Start adding content to see it appear here" }}>
 	{#snippet customIcon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 64px; height: 64px;">
