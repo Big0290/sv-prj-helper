@@ -18,30 +18,17 @@
 </script>
 
 <Story name="Product Card">
-	<script>
-		let isFavorite = $state(false);
-		let quantity = $state(1);
-		
-		function toggleFavorite() {
-			isFavorite = !isFavorite;
-		}
-		
-		function addToCart() {
-			alert(`Added ${quantity} item(s) to cart!`);
-		}
-	</script>
-	
-	<Card class="product-card">
+	<Card>
 		<div class="product-image">🖼️</div>
 		<h3>Premium Wireless Headphones</h3>
 		<p class="price">$199.99</p>
 		<p class="description">High-quality audio with noise cancellation</p>
 		
 		<div class="product-actions">
-			<button class="favorite-btn" onclick={toggleFavorite}>
-				{isFavorite ? '❤️' : '🤍'}
+			<button class="favorite-btn" onclick={() => console.log('Toggled favorite')}>
+				🤍
 			</button>
-			<button class="add-btn" onclick={addToCart}>Add to Cart</button>
+			<button class="add-btn" onclick={() => console.log('Added to cart')}>Add to Cart</button>
 		</div>
 	</Card>
 </Story>
@@ -66,13 +53,7 @@
 </Story>
 
 <Story name="Interactive Card">
-	<script>
-		function handleClick() {
-			alert('Card clicked!');
-		}
-	</script>
-	
-	<Card interactive onclick={handleClick}>
+	<Card interactive onclick={() => console.log('Card clicked!')}>
 		<h4>Click Me!</h4>
 		<p>This card responds to clicks and has hover effects.</p>
 	</Card>
@@ -129,10 +110,6 @@
 		max-width: 900px;
 	}
 	
-	.product-card {
-		max-width: 300px;
-	}
-	
 	.product-image {
 		width: 100%;
 		height: 200px;
@@ -143,11 +120,6 @@
 		justify-content: center;
 		font-size: 4rem;
 		margin-bottom: 1rem;
-	}
-	
-	.product-card h3 {
-		margin: 0 0 0.5rem 0;
-		font-size: 1.25rem;
 	}
 	
 	.price {
@@ -186,11 +158,6 @@
 		font-weight: 600;
 	}
 	
-	.profile-card {
-		max-width: 300px;
-		text-align: center;
-	}
-	
 	.avatar {
 		width: 80px;
 		height: 80px;
@@ -201,11 +168,6 @@
 		align-items: center;
 		justify-content: center;
 		font-size: 2rem;
-	}
-	
-	.profile-card h3 {
-		margin: 0 0 0.25rem 0;
-		font-size: 1.5rem;
 	}
 	
 	.role {

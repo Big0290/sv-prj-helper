@@ -42,22 +42,8 @@
 	});
 </script>
 
-<Story name="Interactive" args={{}}>
-	<script>
-		let clickCount = $state(0);
-		let loading = $state(false);
-		
-		async function handleClick() {
-			loading = true;
-			clickCount++;
-			await new Promise(resolve => setTimeout(resolve, 2000));
-			loading = false;
-		}
-	</script>
-	
-	<Button onclick={handleClick} loading={loading}>
-		Clicked {clickCount} times
-	</Button>
+<Story name="Primary Button" args={{ variant: 'primary' }}>
+	<Button variant="primary">Click Me</Button>
 </Story>
 
 <Story name="All Variants">

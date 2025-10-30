@@ -38,13 +38,7 @@
 </Story>
 
 <Story name="Dismissible">
-	<script>
-		function handleClose() {
-			alert('Alert dismissed!');
-		}
-	</script>
-	
-	<Alert variant="info" dismissible={true} onclose={handleClose}>
+	<Alert variant="info" dismissible={true} onclose={() => console.log('Alert dismissed')}>
 		This alert can be dismissed by clicking the close button.
 	</Alert>
 </Story>

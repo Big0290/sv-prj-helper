@@ -18,32 +18,18 @@
 </script>
 
 <Story name="Interactive Rating">
-	<script>
-		let rating = $state(0);
-		let submitted = $state(false);
-		
-		function handleRating(value: number) {
-			rating = value;
-		}
-		
-		function submitRating() {
-			submitted = true;
-			alert(`Thanks for your ${rating}-star rating!`);
-		}
-	</script>
-	
 	<div class="rating-container">
 		<h3>Rate your experience</h3>
 		<Rating 
-			value={rating} 
+			value={0} 
 			max={5} 
 			size="lg"
-			onChange={handleRating}
+			onChange={(value) => console.log('Rating:', value)}
 		/>
 		<p class="rating-text">
-			{rating === 0 ? 'Click to rate' : `You rated ${rating} out of 5`}
+			Click to rate
 		</p>
-		<button onclick={submitRating} class="submit-btn" disabled={rating === 0}>
+		<button onclick={() => console.log('Submit rating')} class="submit-btn">
 			Submit Rating
 		</button>
 	</div>

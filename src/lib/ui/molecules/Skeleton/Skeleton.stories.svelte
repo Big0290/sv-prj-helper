@@ -38,7 +38,9 @@
 		<Skeleton variant="text" width="100%" height="20px" />
 		<Skeleton variant="text" width="100%" height="16px" />
 		<Skeleton variant="text" width="80%" height="16px" />
-		<Skeleton variant="rectangular" width="100%" height="200px" style="margin-top: 1rem;" />
+		<div style="margin-top: 1rem;">
+			<Skeleton variant="rectangular" width="100%" height="200px" />
+		</div>
 	</div>
 </Story>
 

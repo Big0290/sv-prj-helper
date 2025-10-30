@@ -28,8 +28,5 @@
 </Story>
 
 <Story name="WithValue">
-	<script>
-		let value = '123456';
-	</script>
-	<OTPInput value={value} length={6} />
+	<OTPInput value="123456" length={6} />
 </Story>

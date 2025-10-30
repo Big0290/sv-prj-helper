@@ -18,61 +18,20 @@
 </script>
 
 <Story name="Default">
-  <script>
-    let isOpen = $state(false)
-  </script>
-
-  <button class="trigger-btn" onclick={() => (isOpen = true)}>Open Modal</button>
-
-  <Modal open={isOpen} title="Modal Title" onclose={() => (isOpen = false)}>
+  <Modal open={true} title="Modal Title" onclose={() => console.log('Modal closed')}>
     <p>Modal content goes here</p>
   </Modal>
 </Story>
 
 <Story name="Small">
-  <script>
-    let isOpen = $state(false)
-  </script>
-
-  <button class="trigger-btn" onclick={() => (isOpen = true)}>Open Small Modal</button>
-
-  <Modal open={isOpen} size="sm" title="Small Modal" onclose={() => (isOpen = false)}>
+  <Modal open={true} size="sm" title="Small Modal" onclose={() => console.log('Modal closed')}>
     <p>This is a small modal</p>
   </Modal>
 </Story>
 
 <Story name="Large">
-  <script>
-    let isOpen = $state(false)
-  </script>
-
-  <button class="trigger-btn" onclick={() => (isOpen = true)}>Open Large Modal</button>
-
-  <Modal open={isOpen} size="lg" title="Large Modal" onclose={() => (isOpen = false)}>
+  <Modal open={true} size="lg" title="Large Modal" onclose={() => console.log('Modal closed')}>
     <p>This is a large modal with more space for content</p>
   </Modal>
 </Story>
 
-<style>
-  .trigger-btn {
-    padding: 0.75rem 1.5rem;
-    background: var(--color-primary-500, #8b5cf6);
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.2s;
-  }
-
-  .trigger-btn:hover {
-    background: var(--color-primary-600, #7c3aed);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-  }
-
-  .trigger-btn:active {
-    transform: translateY(0);
-  }
-</style>

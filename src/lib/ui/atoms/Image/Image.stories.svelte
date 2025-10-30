@@ -18,11 +18,7 @@
 </script>
 
 <Story name="Basic" args={{}}>
-	<script>
-		// Using placeholder image service
-		const src = 'https://picsum.photos/400/300';
-	</script>
-	<Image src={src} alt="Random placeholder image" width="400px" height="300px" />
+	<Image src="https://picsum.photos/400/300" alt="Random placeholder image" width="400px" height="300px" />
 </Story>
 
 <Story name="DifferentSizes">
@@ -54,13 +50,9 @@
 </Story>
 
 <Story name="WithFallback" args={{}}>
-	<script>
-		const invalidSrc = 'https://invalid-url.com/image.jpg';
-		const fallback = 'https://picsum.photos/400/300';
-	</script>
 	<Image 
-		src={invalidSrc} 
-		fallback={fallback}
+		src="https://invalid-url.com/image.jpg"
+		fallback="https://picsum.photos/400/300"
 		alt="Image with fallback" 
 		width="400px" 
 		height="300px" 
