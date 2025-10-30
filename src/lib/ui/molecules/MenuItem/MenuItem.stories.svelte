@@ -23,7 +23,7 @@
 	</div>
 </Story>
 
-{/* @ts-expect-error - Storybook CSF doesn't understand Svelte 5 snippets in Story body */}
+<!-- svelte-ignore a11y-missing-attribute -->
 <Story name="WithIcon" args={{}}>
 	{#snippet icon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
@@ -49,7 +49,7 @@
 	</div>
 </Story>
 
-{/* @ts-expect-error - Storybook CSF doesn't understand Svelte 5 snippets in Story body */}
+<!-- svelte-ignore a11y-missing-attribute -->
 <Story name="MenuExample" args={{}}>
 	{#snippet userIcon()}
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
