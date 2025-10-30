@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <Webcam>Default Webcam</Webcam>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <Webcam>Variation 1</Webcam>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <Webcam>Variation 2</Webcam>
-</Story>
+<Story name="Variation 2" args={{}} />

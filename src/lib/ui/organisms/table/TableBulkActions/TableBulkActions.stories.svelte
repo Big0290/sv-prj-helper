@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <TableBulkActions>Default TableBulkActions</TableBulkActions>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <TableBulkActions>Variation 1</TableBulkActions>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <TableBulkActions>Variation 2</TableBulkActions>
-</Story>
+<Story name="Variation 2" args={{}} />

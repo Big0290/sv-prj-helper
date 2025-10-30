@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <VoiceRecorder>Default VoiceRecorder</VoiceRecorder>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <VoiceRecorder>Variation 1</VoiceRecorder>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <VoiceRecorder>Variation 2</VoiceRecorder>
-</Story>
+<Story name="Variation 2" args={{}} />

@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <Dropdown>Default Dropdown</Dropdown>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <Dropdown>Variation 1</Dropdown>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <Dropdown>Variation 2</Dropdown>
-</Story>
+<Story name="Variation 2" args={{}} />

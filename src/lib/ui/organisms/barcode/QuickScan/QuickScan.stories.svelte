@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <QuickScan>Default QuickScan</QuickScan>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <QuickScan>Variation 1</QuickScan>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <QuickScan>Variation 2</QuickScan>
-</Story>
+<Story name="Variation 2" args={{}} />

@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <CommandPalette>Default CommandPalette</CommandPalette>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <CommandPalette>Variation 1</CommandPalette>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <CommandPalette>Variation 2</CommandPalette>
-</Story>
+<Story name="Variation 2" args={{}} />

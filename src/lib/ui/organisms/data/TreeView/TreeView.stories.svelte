@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <TreeView>Default TreeView</TreeView>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <TreeView>Variation 1</TreeView>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <TreeView>Variation 2</TreeView>
-</Story>
+<Story name="Variation 2" args={{}} />

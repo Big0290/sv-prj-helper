@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <RichTextEditor>Default RichTextEditor</RichTextEditor>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <RichTextEditor>Variation 1</RichTextEditor>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <RichTextEditor>Variation 2</RichTextEditor>
-</Story>
+<Story name="Variation 2" args={{}} />

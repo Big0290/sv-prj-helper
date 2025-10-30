@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <ConfirmDialog>Default ConfirmDialog</ConfirmDialog>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <ConfirmDialog>Variation 1</ConfirmDialog>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <ConfirmDialog>Variation 2</ConfirmDialog>
-</Story>
+<Story name="Variation 2" args={{}} />

@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <DataTable>Default DataTable</DataTable>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <DataTable>Variation 1</DataTable>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <DataTable>Variation 2</DataTable>
-</Story>
+<Story name="Variation 2" args={{}} />

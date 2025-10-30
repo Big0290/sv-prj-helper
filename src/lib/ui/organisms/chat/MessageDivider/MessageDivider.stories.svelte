@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <MessageDivider>Default MessageDivider</MessageDivider>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <MessageDivider>Variation 1</MessageDivider>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <MessageDivider>Variation 2</MessageDivider>
-</Story>
+<Story name="Variation 2" args={{}} />

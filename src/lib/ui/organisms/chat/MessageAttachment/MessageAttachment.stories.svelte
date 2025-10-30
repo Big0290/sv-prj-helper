@@ -15,57 +15,53 @@
 			}
 		}
 	});
+
+	const imageAttachment = {
+		id: '1',
+		name: 'image.jpg',
+		size: 2456789,
+		type: 'image/jpeg',
+		url: 'https://picsum.photos/400/300',
+		thumbnail: 'https://picsum.photos/200/150'
+	};
+
+	const pdfAttachment = {
+		id: '2',
+		name: 'document.pdf',
+		size: 1024567,
+		type: 'application/pdf',
+		url: '#'
+	};
+
+	const videoAttachment = {
+		id: '3',
+		name: 'video.mp4',
+		size: 15728640,
+		type: 'video/mp4',
+		url: '#'
+	};
+
+	const compactAttachment = {
+		id: '4',
+		name: 'small-file.zip',
+		size: 512345,
+		type: 'application/zip',
+		url: '#'
+	};
 </script>
 
 <Story name="Image">
-	<script>
-		const attachment = {
-			id: '1',
-			name: 'image.jpg',
-			size: 2456789,
-			type: 'image/jpeg',
-			url: 'https://picsum.photos/400/300',
-			thumbnail: 'https://picsum.photos/200/150'
-		};
-	</script>
-	<MessageAttachment attachment={attachment} />
+	<MessageAttachment attachment={imageAttachment} />
 </Story>
 
 <Story name="PDF">
-	<script>
-		const attachment = {
-			id: '2',
-			name: 'document.pdf',
-			size: 1024567,
-			type: 'application/pdf',
-			url: '#'
-		};
-	</script>
-	<MessageAttachment attachment={attachment} />
+	<MessageAttachment attachment={pdfAttachment} />
 </Story>
 
 <Story name="Video">
-	<script>
-		const attachment = {
-			id: '3',
-			name: 'video.mp4',
-			size: 15728640,
-			type: 'video/mp4',
-			url: '#'
-		};
-	</script>
-	<MessageAttachment attachment={attachment} />
+	<MessageAttachment attachment={videoAttachment} />
 </Story>
 
 <Story name="Compact">
-	<script>
-		const attachment = {
-			id: '4',
-			name: 'small-file.zip',
-			size: 512345,
-			type: 'application/zip',
-			url: '#'
-		};
-	</script>
-	<MessageAttachment attachment={attachment} variant="compact" />
+	<MessageAttachment attachment={compactAttachment} variant="compact" />
 </Story>

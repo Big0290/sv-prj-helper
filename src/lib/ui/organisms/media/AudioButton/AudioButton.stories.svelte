@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <AudioButton>Default AudioButton</AudioButton>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <AudioButton>Variation 1</AudioButton>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <AudioButton>Variation 2</AudioButton>
-</Story>
+<Story name="Variation 2" args={{}} />

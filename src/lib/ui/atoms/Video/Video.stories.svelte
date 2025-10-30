@@ -38,10 +38,22 @@
 		/>
 		<div class="playlist-tracks">
 			<h3>More Videos</h3>
-			<div class="track" onclick={() => alert('Switch to For Bigger Blazes')}>
+			<div 
+				class="track" 
+				role="button" 
+				tabindex="0"
+				onclick={() => alert('Switch to For Bigger Blazes')}
+				onkeydown={(e) => e.key === 'Enter' && alert('Switch to For Bigger Blazes')}
+			>
 				📹 For Bigger Blazes
 			</div>
-			<div class="track" onclick={() => alert('Switch to Sintel')}>
+			<div 
+				class="track" 
+				role="button" 
+				tabindex="0"
+				onclick={() => alert('Switch to Sintel')}
+				onkeydown={(e) => e.key === 'Enter' && alert('Switch to Sintel')}
+			>
 				📹 Sintel
 			</div>
 		</div>

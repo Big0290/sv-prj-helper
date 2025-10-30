@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <DragAndDrop>Default DragAndDrop</DragAndDrop>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <DragAndDrop>Variation 1</DragAndDrop>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <DragAndDrop>Variation 2</DragAndDrop>
-</Story>
+<Story name="Variation 2" args={{}} />

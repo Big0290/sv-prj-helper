@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <CodeBlock>Default CodeBlock</CodeBlock>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <CodeBlock>Variation 1</CodeBlock>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <CodeBlock>Variation 2</CodeBlock>
-</Story>
+<Story name="Variation 2" args={{}} />

@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <ContextMenu>Default ContextMenu</ContextMenu>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <ContextMenu>Variation 1</ContextMenu>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <ContextMenu>Variation 2</ContextMenu>
-</Story>
+<Story name="Variation 2" args={{}} />

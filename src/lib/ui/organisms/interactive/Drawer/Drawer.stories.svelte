@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <Drawer>Default Drawer</Drawer>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <Drawer>Variation 1</Drawer>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <Drawer>Variation 2</Drawer>
-</Story>
+<Story name="Variation 2" args={{}} />

@@ -15,51 +15,46 @@
 			}
 		}
 	});
+
+	const singleReaction = [
+		{ emoji: '👍', count: 3, userReacted: true, users: ['You', 'Alice', 'Bob'] }
+	];
+
+	const multipleReactions = [
+		{ emoji: '👍', count: 5, userReacted: true, users: ['You', 'Alice', 'Bob', 'Charlie', 'Dave'] },
+		{ emoji: '❤️', count: 2, userReacted: false, users: ['Eve', 'Frank'] },
+		{ emoji: '😂', count: 1, userReacted: false, users: ['Grace'] }
+	];
+
+	const pickerReactions = [
+		{ emoji: '👍', count: 3, userReacted: true }
+	];
+
+	const smallReactions = [
+		{ emoji: '👍', count: 5, userReacted: true }
+	];
+
+	const largeReactions = [
+		{ emoji: '🔥', count: 10, userReacted: true }
+	];
 </script>
 
 <Story name="SingleReaction">
-	<script>
-		const reactions = [
-			{ emoji: '👍', count: 3, userReacted: true, users: ['You', 'Alice', 'Bob'] }
-		];
-	</script>
-	<MessageReaction reactions={reactions} />
+	<MessageReaction reactions={singleReaction} />
 </Story>
 
 <Story name="MultipleReactions">
-	<script>
-		const reactions = [
-			{ emoji: '👍', count: 5, userReacted: true, users: ['You', 'Alice', 'Bob', 'Charlie', 'Dave'] },
-			{ emoji: '❤️', count: 2, userReacted: false, users: ['Eve', 'Frank'] },
-			{ emoji: '😂', count: 1, userReacted: false, users: ['Grace'] }
-		];
-	</script>
-	<MessageReaction reactions={reactions} />
+	<MessageReaction reactions={multipleReactions} />
 </Story>
 
 <Story name="WithPicker">
-	<script>
-		const reactions = [
-			{ emoji: '👍', count: 3, userReacted: true }
-		];
-	</script>
-	<MessageReaction reactions={reactions} showPicker={true} />
+	<MessageReaction reactions={pickerReactions} showPicker={true} />
 </Story>
 
 <Story name="SmallSize">
-	<script>
-		const reactions = [
-			{ emoji: '👍', count: 5, userReacted: true }
-		];
-	</script>
-	<MessageReaction reactions={reactions} size="sm" />
+	<MessageReaction reactions={smallReactions} size="sm" />
 </Story>
 
 <Story name="LargeSize">
-	<script>
-		const reactions = [
-			{ emoji: '🔥', count: 10, userReacted: true }
-		];
-	</script>
-	<MessageReaction reactions={reactions} size="lg" />
+	<MessageReaction reactions={largeReactions} size="lg" />
 </Story>

@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <Popover>Default Popover</Popover>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <Popover>Variation 1</Popover>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <Popover>Variation 2</Popover>
-</Story>
+<Story name="Variation 2" args={{}} />

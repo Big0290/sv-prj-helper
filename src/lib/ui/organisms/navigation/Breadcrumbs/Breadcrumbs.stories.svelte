@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <Breadcrumbs>Default Breadcrumbs</Breadcrumbs>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <Breadcrumbs>Variation 1</Breadcrumbs>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <Breadcrumbs>Variation 2</Breadcrumbs>
-</Story>
+<Story name="Variation 2" args={{}} />

@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <SimpleTable>Default SimpleTable</SimpleTable>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <SimpleTable>Variation 1</SimpleTable>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <SimpleTable>Variation 2</SimpleTable>
-</Story>
+<Story name="Variation 2" args={{}} />

@@ -19,13 +19,13 @@
 
 <Story name="Text" args={{ variant: 'text' }} />
 
-<Story name="Circle" args={{ variant: 'circle' }} />
+<Story name="Circular" args={{ variant: 'circular' }} />
 
-<Story name="Rectangle" args={{ variant: 'rectangle' }} />
+<Story name="Rectangular" args={{ variant: 'rectangular' }} />
 
 <Story name="Card Skeleton">
 	<div class="card-skeleton">
-		<Skeleton variant="circle" width="60px" height="60px" />
+		<Skeleton variant="circular" width="60px" height="60px" />
 		<div class="content">
 			<Skeleton variant="text" width="70%" />
 			<Skeleton variant="text" width="50%" />
@@ -38,7 +38,7 @@
 		<Skeleton variant="text" width="100%" height="20px" />
 		<Skeleton variant="text" width="100%" height="16px" />
 		<Skeleton variant="text" width="80%" height="16px" />
-		<Skeleton variant="rectangle" width="100%" height="200px" style="margin-top: 1rem;" />
+		<Skeleton variant="rectangular" width="100%" height="200px" style="margin-top: 1rem;" />
 	</div>
 </Story>
 
@@ -46,7 +46,7 @@
 	<div class="list-skeleton">
 		{#each Array(5) as _}
 			<div class="list-item">
-				<Skeleton variant="circle" width="40px" height="40px" />
+				<Skeleton variant="circular" width="40px" height="40px" />
 				<div class="text-group">
 					<Skeleton variant="text" width="150px" height="14px" />
 					<Skeleton variant="text" width="100px" height="12px" />

@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <ChatHeader>Default ChatHeader</ChatHeader>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <ChatHeader>Variation 1</ChatHeader>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <ChatHeader>Variation 2</ChatHeader>
-</Story>
+<Story name="Variation 2" args={{}} />

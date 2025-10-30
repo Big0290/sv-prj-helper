@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <BottomNavigation>Default BottomNavigation</BottomNavigation>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <BottomNavigation>Variation 1</BottomNavigation>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <BottomNavigation>Variation 2</BottomNavigation>
-</Story>
+<Story name="Variation 2" args={{}} />

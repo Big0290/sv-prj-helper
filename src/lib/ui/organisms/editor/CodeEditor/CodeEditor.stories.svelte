@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <CodeEditor>Default CodeEditor</CodeEditor>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <CodeEditor>Variation 1</CodeEditor>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <CodeEditor>Variation 2</CodeEditor>
-</Story>
+<Story name="Variation 2" args={{}} />

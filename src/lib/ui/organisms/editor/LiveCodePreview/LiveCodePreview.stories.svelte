@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <LiveCodePreview>Default LiveCodePreview</LiveCodePreview>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <LiveCodePreview>Variation 1</LiveCodePreview>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <LiveCodePreview>Variation 2</LiveCodePreview>
-</Story>
+<Story name="Variation 2" args={{}} />

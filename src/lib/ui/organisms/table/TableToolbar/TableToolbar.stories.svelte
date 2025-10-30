@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <TableToolbar>Default TableToolbar</TableToolbar>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <TableToolbar>Variation 1</TableToolbar>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <TableToolbar>Variation 2</TableToolbar>
-</Story>
+<Story name="Variation 2" args={{}} />

@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <Carousel>Default Carousel</Carousel>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <Carousel>Variation 1</Carousel>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <Carousel>Variation 2</Carousel>
-</Story>
+<Story name="Variation 2" args={{}} />

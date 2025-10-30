@@ -19,36 +19,36 @@
 
 <Story name="Default">
   <script>
-    let open = $state(false)
+    let isOpen = $state(false)
   </script>
 
-  <button class="trigger-btn" onclick={() => (open = true)}>Open Modal</button>
+  <button class="trigger-btn" onclick={() => (isOpen = true)}>Open Modal</button>
 
-  <Modal {open} title="Modal Title" onclose={() => (open = false)}>
+  <Modal open={isOpen} title="Modal Title" onclose={() => (isOpen = false)}>
     <p>Modal content goes here</p>
   </Modal>
 </Story>
 
 <Story name="Small">
   <script>
-    let open = $state(false)
+    let isOpen = $state(false)
   </script>
 
-  <button class="trigger-btn" onclick={() => (open = true)}>Open Small Modal</button>
+  <button class="trigger-btn" onclick={() => (isOpen = true)}>Open Small Modal</button>
 
-  <Modal {open} size="sm" title="Small Modal" onclose={() => (open = false)}>
+  <Modal open={isOpen} size="sm" title="Small Modal" onclose={() => (isOpen = false)}>
     <p>This is a small modal</p>
   </Modal>
 </Story>
 
 <Story name="Large">
   <script>
-    let open = $state(false)
+    let isOpen = $state(false)
   </script>
 
-  <button class="trigger-btn" onclick={() => (open = true)}>Open Large Modal</button>
+  <button class="trigger-btn" onclick={() => (isOpen = true)}>Open Large Modal</button>
 
-  <Modal {open} size="lg" title="Large Modal" onclose={() => (open = false)}>
+  <Modal open={isOpen} size="lg" title="Large Modal" onclose={() => (isOpen = false)}>
     <p>This is a large modal with more space for content</p>
   </Modal>
 </Story>

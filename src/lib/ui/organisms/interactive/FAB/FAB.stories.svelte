@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <FAB>Default FAB</FAB>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <FAB>Variation 1</FAB>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <FAB>Variation 2</FAB>
-</Story>
+<Story name="Variation 2" args={{}} />

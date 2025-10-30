@@ -21,8 +21,8 @@
 	<Badge>Badge</Badge>
 </Story>
 
-<Story name="Primary">
-	<Badge variant="primary">New</Badge>
+<Story name="Info">
+	<Badge variant="info">New</Badge>
 </Story>
 
 <Story name="Success">
@@ -56,11 +56,10 @@
 <Story name="AllVariants">
 	<div class="badges-container">
 		<Badge>Default</Badge>
-		<Badge variant="primary">Primary</Badge>
+		<Badge variant="info">Info</Badge>
 		<Badge variant="success">Success</Badge>
 		<Badge variant="warning">Warning</Badge>
 		<Badge variant="error">Error</Badge>
-		<Badge variant="info">Info</Badge>
 	</div>
 </Story>
 

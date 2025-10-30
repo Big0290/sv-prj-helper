@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <ChatSearch>Default ChatSearch</ChatSearch>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <ChatSearch>Variation 1</ChatSearch>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <ChatSearch>Variation 2</ChatSearch>
-</Story>
+<Story name="Variation 2" args={{}} />

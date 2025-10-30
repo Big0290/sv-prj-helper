@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <UserProfile>Default UserProfile</UserProfile>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <UserProfile>Variation 1</UserProfile>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <UserProfile>Variation 2</UserProfile>
-</Story>
+<Story name="Variation 2" args={{}} />

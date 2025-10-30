@@ -58,12 +58,12 @@
 <Story name="FormLayout">
 	<Stack direction="column" gap="6">
 		<div class="form-field">
-			<label>Email</label>
-			<input type="email" placeholder="Enter email" class="form-input" />
+			<label for="email-input">Email</label>
+			<input id="email-input" type="email" placeholder="Enter email" class="form-input" />
 		</div>
 		<div class="form-field">
-			<label>Password</label>
-			<input type="password" placeholder="Enter password" class="form-input" />
+			<label for="password-input">Password</label>
+			<input id="password-input" type="password" placeholder="Enter password" class="form-input" />
 		</div>
 		<Stack direction="row" gap="4" justify="between" align="center">
 			<label class="checkbox-label">
@@ -89,11 +89,13 @@
 </Story>
 
 <Story name="WrappedItems">
-	<Stack direction="row" gap="4" wrap={true} style="max-width: 400px;">
-		{#each Array(8) as _, i}
-			<div class="chip">Tag {i + 1}</div>
-		{/each}
-	</Stack>
+	<div style="max-width: 400px;">
+		<Stack direction="row" gap="4" wrap={true}>
+			{#each Array(8) as _, i}
+				<div class="chip">Tag {i + 1}</div>
+			{/each}
+		</Stack>
+	</div>
 </Story>
 
 <style>

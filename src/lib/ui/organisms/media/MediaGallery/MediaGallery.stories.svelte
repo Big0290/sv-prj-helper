@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <MediaGallery>Default MediaGallery</MediaGallery>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <MediaGallery>Variation 1</MediaGallery>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <MediaGallery>Variation 2</MediaGallery>
-</Story>
+<Story name="Variation 2" args={{}} />

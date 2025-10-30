@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <TableRowActions>Default TableRowActions</TableRowActions>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <TableRowActions>Variation 1</TableRowActions>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <TableRowActions>Variation 2</TableRowActions>
-</Story>
+<Story name="Variation 2" args={{}} />

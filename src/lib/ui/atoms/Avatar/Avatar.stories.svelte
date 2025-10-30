@@ -19,22 +19,22 @@
 
 <Story name="With Image" args={{ src: 'https://i.pravatar.cc/150?img=1' }} />
 
-<Story name="With Initials" args={{ name: 'John Doe' }} />
+<Story name="With Initials" args={{ initials: 'John Doe' }} />
 
-<Story name="Small" args={{ size: 'sm', name: 'JD' }} />
+<Story name="Small" args={{ size: 'sm', initials: 'JD' }} />
 
-<Story name="Medium" args={{ size: 'md', name: 'JD' }} />
+<Story name="Medium" args={{ size: 'md', initials: 'JD' }} />
 
-<Story name="Large" args={{ size: 'lg', name: 'JD' }} />
+<Story name="Large" args={{ size: 'lg', initials: 'JD' }} />
 
-<Story name="XL" args={{ size: 'xl', name: 'JD' }} />
+<Story name="XL" args={{ size: 'xl', initials: 'JD' }} />
 
 <Story name="All Sizes">
 	<div class="avatars-container">
-		<Avatar size="sm" name="S" />
-		<Avatar size="md" name="M" />
-		<Avatar size="lg" name="L" />
-		<Avatar size="xl" name="XL" />
+		<Avatar size="sm" initials="S" />
+		<Avatar size="md" initials="M" />
+		<Avatar size="lg" initials="L" />
+		<Avatar size="xl" initials="XL" />
 	</div>
 </Story>
 

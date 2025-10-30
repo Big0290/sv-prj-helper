@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <TableCard>Default TableCard</TableCard>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <TableCard>Variation 1</TableCard>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <TableCard>Variation 2</TableCard>
-</Story>
+<Story name="Variation 2" args={{}} />

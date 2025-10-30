@@ -7,24 +7,43 @@
     component: KanbanBoard,
     tags: ['autodocs'],
     parameters: {
-      layout: 'centered',
+      layout: 'fullscreen',
       docs: {
         description: {
-          component: 'Description of KanbanBoard component.'
+          component: 'A Kanban board component for managing tasks across multiple columns with drag and drop support.'
         }
       }
     }
   });
+
+  const defaultColumns = [
+    {
+      id: 'todo',
+      title: 'To Do',
+      cards: [
+        { id: '1', title: 'Task 1', description: 'First task' },
+        { id: '2', title: 'Task 2', description: 'Second task' }
+      ]
+    },
+    {
+      id: 'in-progress',
+      title: 'In Progress',
+      cards: [
+        { id: '3', title: 'Task 3', description: 'Third task' }
+      ]
+    },
+    {
+      id: 'done',
+      title: 'Done',
+      cards: [
+        { id: '4', title: 'Task 4', description: 'Fourth task' }
+      ]
+    }
+  ];
 </script>
 
-<Story name="Default">
-  <KanbanBoard>Default KanbanBoard</KanbanBoard>
-</Story>
+<Story name="Default" args={{ columns: defaultColumns }} />
 
-<Story name="Variation 1">
-  <KanbanBoard>Variation 1</KanbanBoard>
-</Story>
+<Story name="With Add Column" args={{ columns: defaultColumns, showAddColumn: true }} />
 
-<Story name="Variation 2">
-  <KanbanBoard>Variation 2</KanbanBoard>
-</Story>
+<Story name="With Add Cards" args={{ columns: defaultColumns, allowAddCards: true }} />

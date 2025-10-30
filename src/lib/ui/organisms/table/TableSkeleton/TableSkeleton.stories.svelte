@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <TableSkeleton>Default TableSkeleton</TableSkeleton>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <TableSkeleton>Variation 1</TableSkeleton>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <TableSkeleton>Variation 2</TableSkeleton>
-</Story>
+<Story name="Variation 2" args={{}} />

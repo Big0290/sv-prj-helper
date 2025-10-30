@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <ImageCropper>Default ImageCropper</ImageCropper>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <ImageCropper>Variation 1</ImageCropper>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <ImageCropper>Variation 2</ImageCropper>
-</Story>
+<Story name="Variation 2" args={{}} />

@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <BarcodeInput>Default BarcodeInput</BarcodeInput>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <BarcodeInput>Variation 1</BarcodeInput>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <BarcodeInput>Variation 2</BarcodeInput>
-</Story>
+<Story name="Variation 2" args={{}} />

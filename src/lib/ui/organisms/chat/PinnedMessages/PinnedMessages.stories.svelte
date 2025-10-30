@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <PinnedMessages>Default PinnedMessages</PinnedMessages>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <PinnedMessages>Variation 1</PinnedMessages>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <PinnedMessages>Variation 2</PinnedMessages>
-</Story>
+<Story name="Variation 2" args={{}} />

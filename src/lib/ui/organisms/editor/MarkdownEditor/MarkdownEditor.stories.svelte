@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <MarkdownEditor>Default MarkdownEditor</MarkdownEditor>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <MarkdownEditor>Variation 1</MarkdownEditor>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <MarkdownEditor>Variation 2</MarkdownEditor>
-</Story>
+<Story name="Variation 2" args={{}} />

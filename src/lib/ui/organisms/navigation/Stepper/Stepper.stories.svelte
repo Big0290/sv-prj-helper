@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <Stepper>Default Stepper</Stepper>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <Stepper>Variation 1</Stepper>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <Stepper>Variation 2</Stepper>
-</Story>
+<Story name="Variation 2" args={{}} />

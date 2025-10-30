@@ -17,14 +17,8 @@
   });
 </script>
 
-<Story name="Default">
-  <VirtualList>Default VirtualList</VirtualList>
-</Story>
+<Story name="Default" args={{}} />
 
-<Story name="Variation 1">
-  <VirtualList>Variation 1</VirtualList>
-</Story>
+<Story name="Variation 1" args={{}} />
 
-<Story name="Variation 2">
-  <VirtualList>Variation 2</VirtualList>
-</Story>
+<Story name="Variation 2" args={{}} />
